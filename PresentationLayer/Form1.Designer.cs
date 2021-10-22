@@ -1,7 +1,7 @@
 ﻿
 namespace Grupp_28_RSS
 {
-    partial class Form1
+    partial class FrmAvsnitt
     {
         /// <summary>
         /// Required designer variable.
@@ -36,25 +36,38 @@ namespace Grupp_28_RSS
             this.cmbKategori = new System.Windows.Forms.ComboBox();
             this.cmbUppdateringsIntervall = new System.Windows.Forms.ComboBox();
             this.txtRSSURL = new System.Windows.Forms.TextBox();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.lvFeed = new System.Windows.Forms.ListView();
             this.lvChAvsnitt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvChNamn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvChIntervall = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chKategori = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnLaggTillURL = new System.Windows.Forms.Button();
+            this.btnUppdateraFeed = new System.Windows.Forms.Button();
+            this.btnTaBort = new System.Windows.Forms.Button();
+            this.btnAndraNamnKategori = new System.Windows.Forms.Button();
+            this.btnLaggTillKategori = new System.Windows.Forms.Button();
+            this.btnTaBortKategori = new System.Windows.Forms.Button();
+            this.lblURL = new System.Windows.Forms.Label();
+            this.lblIntervall = new System.Windows.Forms.Label();
+            this.lblKategori = new System.Windows.Forms.Label();
+            this.lblTitelDescription = new System.Windows.Forms.Label();
+            this.txtDescription = new System.Windows.Forms.TextBox();
+            this.txrNyKategori = new System.Windows.Forms.TextBox();
+            this.lblNyKategori = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbxKategorier
             // 
             this.lbxKategorier.FormattingEnabled = true;
-            this.lbxKategorier.Location = new System.Drawing.Point(593, 51);
+            this.lbxKategorier.Location = new System.Drawing.Point(776, 47);
             this.lbxKategorier.Name = "lbxKategorier";
-            this.lbxKategorier.Size = new System.Drawing.Size(120, 95);
+            this.lbxKategorier.Size = new System.Drawing.Size(223, 147);
             this.lbxKategorier.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(590, 35);
+            this.label1.Location = new System.Drawing.Point(773, 31);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 13);
             this.label1.TabIndex = 1;
@@ -63,15 +76,15 @@ namespace Grupp_28_RSS
             // lbxAvsnitt
             // 
             this.lbxAvsnitt.FormattingEnabled = true;
-            this.lbxAvsnitt.Location = new System.Drawing.Point(102, 257);
+            this.lbxAvsnitt.Location = new System.Drawing.Point(102, 330);
             this.lbxAvsnitt.Name = "lbxAvsnitt";
-            this.lbxAvsnitt.Size = new System.Drawing.Size(120, 95);
+            this.lbxAvsnitt.Size = new System.Drawing.Size(633, 173);
             this.lbxAvsnitt.TabIndex = 2;
             // 
             // lblAvsnitt
             // 
             this.lblAvsnitt.AutoSize = true;
-            this.lblAvsnitt.Location = new System.Drawing.Point(99, 241);
+            this.lblAvsnitt.Location = new System.Drawing.Point(99, 305);
             this.lblAvsnitt.Name = "lblAvsnitt";
             this.lblAvsnitt.Size = new System.Drawing.Size(107, 13);
             this.lblAvsnitt.TabIndex = 3;
@@ -80,9 +93,9 @@ namespace Grupp_28_RSS
             // cmbKategori
             // 
             this.cmbKategori.FormattingEnabled = true;
-            this.cmbKategori.Location = new System.Drawing.Point(388, 201);
+            this.cmbKategori.Location = new System.Drawing.Point(390, 265);
             this.cmbKategori.Name = "cmbKategori";
-            this.cmbKategori.Size = new System.Drawing.Size(121, 21);
+            this.cmbKategori.Size = new System.Drawing.Size(88, 21);
             this.cmbKategori.TabIndex = 4;
             // 
             // cmbUppdateringsIntervall
@@ -92,32 +105,32 @@ namespace Grupp_28_RSS
             "var 1 minut",
             "var 5 minuter",
             "var 10 minter"});
-            this.cmbUppdateringsIntervall.Location = new System.Drawing.Point(261, 201);
+            this.cmbUppdateringsIntervall.Location = new System.Drawing.Point(297, 265);
             this.cmbUppdateringsIntervall.Name = "cmbUppdateringsIntervall";
-            this.cmbUppdateringsIntervall.Size = new System.Drawing.Size(121, 21);
+            this.cmbUppdateringsIntervall.Size = new System.Drawing.Size(87, 21);
             this.cmbUppdateringsIntervall.TabIndex = 5;
             // 
             // txtRSSURL
             // 
-            this.txtRSSURL.Location = new System.Drawing.Point(102, 201);
+            this.txtRSSURL.Location = new System.Drawing.Point(102, 265);
             this.txtRSSURL.Name = "txtRSSURL";
-            this.txtRSSURL.Size = new System.Drawing.Size(120, 20);
+            this.txtRSSURL.Size = new System.Drawing.Size(189, 20);
             this.txtRSSURL.TabIndex = 6;
             // 
-            // listView1
+            // lvFeed
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lvFeed.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.lvChAvsnitt,
             this.lvChNamn,
             this.lvChIntervall,
             this.chKategori});
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(117, 64);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(331, 97);
-            this.listView1.TabIndex = 7;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.lvFeed.HideSelection = false;
+            this.lvFeed.Location = new System.Drawing.Point(102, 51);
+            this.lvFeed.Name = "lvFeed";
+            this.lvFeed.Size = new System.Drawing.Size(633, 182);
+            this.lvFeed.TabIndex = 7;
+            this.lvFeed.UseCompatibleStateImageBehavior = false;
+            this.lvFeed.View = System.Windows.Forms.View.Details;
             // 
             // lvChAvsnitt
             // 
@@ -131,12 +144,140 @@ namespace Grupp_28_RSS
             // 
             this.chKategori.Text = "Kategori";
             // 
-            // Form1
+            // btnLaggTillURL
+            // 
+            this.btnLaggTillURL.Location = new System.Drawing.Point(494, 263);
+            this.btnLaggTillURL.Name = "btnLaggTillURL";
+            this.btnLaggTillURL.Size = new System.Drawing.Size(75, 23);
+            this.btnLaggTillURL.TabIndex = 8;
+            this.btnLaggTillURL.Text = "Lägg Till:";
+            this.btnLaggTillURL.UseVisualStyleBackColor = true;
+            // 
+            // btnUppdateraFeed
+            // 
+            this.btnUppdateraFeed.Location = new System.Drawing.Point(579, 263);
+            this.btnUppdateraFeed.Name = "btnUppdateraFeed";
+            this.btnUppdateraFeed.Size = new System.Drawing.Size(75, 23);
+            this.btnUppdateraFeed.TabIndex = 9;
+            this.btnUppdateraFeed.Text = "Uppdatera:";
+            this.btnUppdateraFeed.UseVisualStyleBackColor = true;
+            // 
+            // btnTaBort
+            // 
+            this.btnTaBort.Location = new System.Drawing.Point(660, 263);
+            this.btnTaBort.Name = "btnTaBort";
+            this.btnTaBort.Size = new System.Drawing.Size(75, 23);
+            this.btnTaBort.TabIndex = 10;
+            this.btnTaBort.Text = "Ta Bort:";
+            this.btnTaBort.UseVisualStyleBackColor = true;
+            // 
+            // btnAndraNamnKategori
+            // 
+            this.btnAndraNamnKategori.Location = new System.Drawing.Point(924, 263);
+            this.btnAndraNamnKategori.Name = "btnAndraNamnKategori";
+            this.btnAndraNamnKategori.Size = new System.Drawing.Size(75, 23);
+            this.btnAndraNamnKategori.TabIndex = 11;
+            this.btnAndraNamnKategori.Text = "Ändra Namn";
+            this.btnAndraNamnKategori.UseVisualStyleBackColor = true;
+            // 
+            // btnLaggTillKategori
+            // 
+            this.btnLaggTillKategori.Location = new System.Drawing.Point(776, 262);
+            this.btnLaggTillKategori.Name = "btnLaggTillKategori";
+            this.btnLaggTillKategori.Size = new System.Drawing.Size(64, 23);
+            this.btnLaggTillKategori.TabIndex = 12;
+            this.btnLaggTillKategori.Text = "Lägg Till:";
+            this.btnLaggTillKategori.UseVisualStyleBackColor = true;
+            // 
+            // btnTaBortKategori
+            // 
+            this.btnTaBortKategori.Location = new System.Drawing.Point(846, 262);
+            this.btnTaBortKategori.Name = "btnTaBortKategori";
+            this.btnTaBortKategori.Size = new System.Drawing.Size(57, 23);
+            this.btnTaBortKategori.TabIndex = 13;
+            this.btnTaBortKategori.Text = "Ta Bort:";
+            this.btnTaBortKategori.UseVisualStyleBackColor = true;
+            // 
+            // lblURL
+            // 
+            this.lblURL.AutoSize = true;
+            this.lblURL.Location = new System.Drawing.Point(99, 249);
+            this.lblURL.Name = "lblURL";
+            this.lblURL.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblURL.Size = new System.Drawing.Size(32, 13);
+            this.lblURL.TabIndex = 14;
+            this.lblURL.Text = "URL:";
+            // 
+            // lblIntervall
+            // 
+            this.lblIntervall.AutoSize = true;
+            this.lblIntervall.Location = new System.Drawing.Point(298, 249);
+            this.lblIntervall.Name = "lblIntervall";
+            this.lblIntervall.Size = new System.Drawing.Size(47, 13);
+            this.lblIntervall.TabIndex = 15;
+            this.lblIntervall.Text = "Intervall:";
+            // 
+            // lblKategori
+            // 
+            this.lblKategori.AutoSize = true;
+            this.lblKategori.Location = new System.Drawing.Point(390, 248);
+            this.lblKategori.Name = "lblKategori";
+            this.lblKategori.Size = new System.Drawing.Size(49, 13);
+            this.lblKategori.TabIndex = 16;
+            this.lblKategori.Text = "Kategori:";
+            // 
+            // lblTitelDescription
+            // 
+            this.lblTitelDescription.AutoSize = true;
+            this.lblTitelDescription.Location = new System.Drawing.Point(773, 305);
+            this.lblTitelDescription.Name = "lblTitelDescription";
+            this.lblTitelDescription.Size = new System.Drawing.Size(30, 13);
+            this.lblTitelDescription.TabIndex = 17;
+            this.lblTitelDescription.Text = "Title:";
+            // 
+            // txtDescription
+            // 
+            this.txtDescription.Location = new System.Drawing.Point(776, 330);
+            this.txtDescription.Multiline = true;
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(223, 173);
+            this.txtDescription.TabIndex = 18;
+            // 
+            // txrNyKategori
+            // 
+            this.txrNyKategori.Location = new System.Drawing.Point(776, 217);
+            this.txrNyKategori.Name = "txrNyKategori";
+            this.txrNyKategori.Size = new System.Drawing.Size(223, 20);
+            this.txrNyKategori.TabIndex = 19;
+            // 
+            // lblNyKategori
+            // 
+            this.lblNyKategori.AutoSize = true;
+            this.lblNyKategori.Location = new System.Drawing.Point(776, 201);
+            this.lblNyKategori.Name = "lblNyKategori";
+            this.lblNyKategori.Size = new System.Drawing.Size(116, 13);
+            this.lblNyKategori.TabIndex = 20;
+            this.lblNyKategori.Text = "Lägg till en ny kategori:";
+            // 
+            // FrmAvsnitt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.listView1);
+            this.ClientSize = new System.Drawing.Size(1056, 541);
+            this.Controls.Add(this.lblNyKategori);
+            this.Controls.Add(this.txrNyKategori);
+            this.Controls.Add(this.txtDescription);
+            this.Controls.Add(this.lblTitelDescription);
+            this.Controls.Add(this.lblKategori);
+            this.Controls.Add(this.lblIntervall);
+            this.Controls.Add(this.lblURL);
+            this.Controls.Add(this.btnTaBortKategori);
+            this.Controls.Add(this.btnLaggTillKategori);
+            this.Controls.Add(this.btnAndraNamnKategori);
+            this.Controls.Add(this.btnTaBort);
+            this.Controls.Add(this.btnUppdateraFeed);
+            this.Controls.Add(this.btnLaggTillURL);
+            this.Controls.Add(this.lvFeed);
             this.Controls.Add(this.txtRSSURL);
             this.Controls.Add(this.cmbUppdateringsIntervall);
             this.Controls.Add(this.cmbKategori);
@@ -144,8 +285,9 @@ namespace Grupp_28_RSS
             this.Controls.Add(this.lbxAvsnitt);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lbxKategorier);
-            this.Name = "Form1";
+            this.Name = "FrmAvsnitt";
             this.Text = "Really Simple Syndication by Grupp 28 ";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -155,16 +297,29 @@ namespace Grupp_28_RSS
 
         private System.Windows.Forms.ListBox lbxKategorier;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox lbxAvsnitt;
         private System.Windows.Forms.Label lblAvsnitt;
         private System.Windows.Forms.ComboBox cmbKategori;
         private System.Windows.Forms.ComboBox cmbUppdateringsIntervall;
         private System.Windows.Forms.TextBox txtRSSURL;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView lvFeed;
         private System.Windows.Forms.ColumnHeader lvChAvsnitt;
         private System.Windows.Forms.ColumnHeader lvChNamn;
         private System.Windows.Forms.ColumnHeader lvChIntervall;
         private System.Windows.Forms.ColumnHeader chKategori;
+        private System.Windows.Forms.Button btnLaggTillURL;
+        private System.Windows.Forms.Button btnUppdateraFeed;
+        private System.Windows.Forms.Button btnTaBort;
+        private System.Windows.Forms.Button btnAndraNamnKategori;
+        private System.Windows.Forms.Button btnLaggTillKategori;
+        private System.Windows.Forms.Button btnTaBortKategori;
+        private System.Windows.Forms.Label lblURL;
+        private System.Windows.Forms.ListBox lbxAvsnitt;
+        private System.Windows.Forms.Label lblIntervall;
+        private System.Windows.Forms.Label lblKategori;
+        private System.Windows.Forms.Label lblTitelDescription;
+        private System.Windows.Forms.TextBox txtDescription;
+        private System.Windows.Forms.TextBox txrNyKategori;
+        private System.Windows.Forms.Label lblNyKategori;
     }
 }
 

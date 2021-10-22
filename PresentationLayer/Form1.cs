@@ -10,11 +10,20 @@ using System.Windows.Forms;
 
 namespace Grupp_28_RSS
 {
-    public partial class Form1 : Form
+    public partial class FrmAvsnitt : Form
     {
-        public Form1()
+        public FrmAvsnitt()
         {
             InitializeComponent();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        
+
+        
     }
 }
