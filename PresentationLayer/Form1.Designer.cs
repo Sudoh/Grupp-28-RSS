@@ -1,7 +1,7 @@
 ﻿
 namespace Grupp_28_RSS
 {
-    partial class FrmAvsnitt
+    partial class FrmGRP28RSS
     {
         /// <summary>
         /// Required designer variable.
@@ -40,7 +40,7 @@ namespace Grupp_28_RSS
             this.lvChAvsnitt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvChNamn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvChIntervall = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.chKategori = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lvchKategori = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnLaggTillURL = new System.Windows.Forms.Button();
             this.btnUppdateraFeed = new System.Windows.Forms.Button();
             this.btnTaBort = new System.Windows.Forms.Button();
@@ -54,20 +54,21 @@ namespace Grupp_28_RSS
             this.txtDescription = new System.Windows.Forms.TextBox();
             this.txrNyKategori = new System.Windows.Forms.TextBox();
             this.lblNyKategori = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbxKategorier
             // 
             this.lbxKategorier.FormattingEnabled = true;
-            this.lbxKategorier.Location = new System.Drawing.Point(776, 47);
+            this.lbxKategorier.Location = new System.Drawing.Point(653, 25);
             this.lbxKategorier.Name = "lbxKategorier";
-            this.lbxKategorier.Size = new System.Drawing.Size(223, 147);
+            this.lbxKategorier.Size = new System.Drawing.Size(258, 134);
             this.lbxKategorier.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(773, 31);
+            this.label1.Location = new System.Drawing.Point(650, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 13);
             this.label1.TabIndex = 1;
@@ -76,24 +77,29 @@ namespace Grupp_28_RSS
             // lbxAvsnitt
             // 
             this.lbxAvsnitt.FormattingEnabled = true;
-            this.lbxAvsnitt.Location = new System.Drawing.Point(102, 330);
+            this.lbxAvsnitt.Items.AddRange(new object[] {
+            "Avsnitt Namn :: Nummer",
+            "Avsnitt Namn :: Nummer",
+            "Avsnitt Namn :: Nummer",
+            "Avsnitt Namn :: Nummer"});
+            this.lbxAvsnitt.Location = new System.Drawing.Point(12, 317);
             this.lbxAvsnitt.Name = "lbxAvsnitt";
-            this.lbxAvsnitt.Size = new System.Drawing.Size(633, 173);
+            this.lbxAvsnitt.Size = new System.Drawing.Size(189, 173);
             this.lbxAvsnitt.TabIndex = 2;
             // 
             // lblAvsnitt
             // 
             this.lblAvsnitt.AutoSize = true;
-            this.lblAvsnitt.Location = new System.Drawing.Point(99, 305);
+            this.lblAvsnitt.Location = new System.Drawing.Point(12, 301);
             this.lblAvsnitt.Name = "lblAvsnitt";
-            this.lblAvsnitt.Size = new System.Drawing.Size(107, 13);
+            this.lblAvsnitt.Size = new System.Drawing.Size(80, 13);
             this.lblAvsnitt.TabIndex = 3;
-            this.lblAvsnitt.Text = "[RSSNamn]  : Avsnitt";
+            this.lblAvsnitt.Text = "Podcast Namn ";
             // 
             // cmbKategori
             // 
             this.cmbKategori.FormattingEnabled = true;
-            this.cmbKategori.Location = new System.Drawing.Point(390, 265);
+            this.cmbKategori.Location = new System.Drawing.Point(302, 252);
             this.cmbKategori.Name = "cmbKategori";
             this.cmbKategori.Size = new System.Drawing.Size(88, 21);
             this.cmbKategori.TabIndex = 4;
@@ -105,14 +111,14 @@ namespace Grupp_28_RSS
             "var 1 minut",
             "var 5 minuter",
             "var 10 minter"});
-            this.cmbUppdateringsIntervall.Location = new System.Drawing.Point(297, 265);
+            this.cmbUppdateringsIntervall.Location = new System.Drawing.Point(209, 252);
             this.cmbUppdateringsIntervall.Name = "cmbUppdateringsIntervall";
             this.cmbUppdateringsIntervall.Size = new System.Drawing.Size(87, 21);
             this.cmbUppdateringsIntervall.TabIndex = 5;
             // 
             // txtRSSURL
             // 
-            this.txtRSSURL.Location = new System.Drawing.Point(102, 265);
+            this.txtRSSURL.Location = new System.Drawing.Point(12, 252);
             this.txtRSSURL.Name = "txtRSSURL";
             this.txtRSSURL.Size = new System.Drawing.Size(189, 20);
             this.txtRSSURL.TabIndex = 6;
@@ -123,9 +129,9 @@ namespace Grupp_28_RSS
             this.lvChAvsnitt,
             this.lvChNamn,
             this.lvChIntervall,
-            this.chKategori});
+            this.lvchKategori});
             this.lvFeed.HideSelection = false;
-            this.lvFeed.Location = new System.Drawing.Point(102, 51);
+            this.lvFeed.Location = new System.Drawing.Point(15, 25);
             this.lvFeed.Name = "lvFeed";
             this.lvFeed.Size = new System.Drawing.Size(633, 182);
             this.lvFeed.TabIndex = 7;
@@ -134,19 +140,27 @@ namespace Grupp_28_RSS
             // 
             // lvChAvsnitt
             // 
-            this.lvChAvsnitt.Text = "Avsnitt";
+            this.lvChAvsnitt.Text = "Antal Avsnitt";
+            this.lvChAvsnitt.Width = 91;
+            // 
+            // lvChNamn
+            // 
+            this.lvChNamn.Text = "Namn";
+            this.lvChNamn.Width = 126;
             // 
             // lvChIntervall
             // 
             this.lvChIntervall.Text = "Uppdateringsintervall";
+            this.lvChIntervall.Width = 143;
             // 
-            // chKategori
+            // lvchKategori
             // 
-            this.chKategori.Text = "Kategori";
+            this.lvchKategori.Text = "Kategori";
+            this.lvchKategori.Width = 155;
             // 
             // btnLaggTillURL
             // 
-            this.btnLaggTillURL.Location = new System.Drawing.Point(494, 263);
+            this.btnLaggTillURL.Location = new System.Drawing.Point(406, 250);
             this.btnLaggTillURL.Name = "btnLaggTillURL";
             this.btnLaggTillURL.Size = new System.Drawing.Size(75, 23);
             this.btnLaggTillURL.TabIndex = 8;
@@ -155,7 +169,7 @@ namespace Grupp_28_RSS
             // 
             // btnUppdateraFeed
             // 
-            this.btnUppdateraFeed.Location = new System.Drawing.Point(579, 263);
+            this.btnUppdateraFeed.Location = new System.Drawing.Point(491, 250);
             this.btnUppdateraFeed.Name = "btnUppdateraFeed";
             this.btnUppdateraFeed.Size = new System.Drawing.Size(75, 23);
             this.btnUppdateraFeed.TabIndex = 9;
@@ -164,7 +178,7 @@ namespace Grupp_28_RSS
             // 
             // btnTaBort
             // 
-            this.btnTaBort.Location = new System.Drawing.Point(660, 263);
+            this.btnTaBort.Location = new System.Drawing.Point(572, 250);
             this.btnTaBort.Name = "btnTaBort";
             this.btnTaBort.Size = new System.Drawing.Size(75, 23);
             this.btnTaBort.TabIndex = 10;
@@ -173,7 +187,7 @@ namespace Grupp_28_RSS
             // 
             // btnAndraNamnKategori
             // 
-            this.btnAndraNamnKategori.Location = new System.Drawing.Point(924, 263);
+            this.btnAndraNamnKategori.Location = new System.Drawing.Point(836, 250);
             this.btnAndraNamnKategori.Name = "btnAndraNamnKategori";
             this.btnAndraNamnKategori.Size = new System.Drawing.Size(75, 23);
             this.btnAndraNamnKategori.TabIndex = 11;
@@ -182,7 +196,7 @@ namespace Grupp_28_RSS
             // 
             // btnLaggTillKategori
             // 
-            this.btnLaggTillKategori.Location = new System.Drawing.Point(776, 262);
+            this.btnLaggTillKategori.Location = new System.Drawing.Point(688, 249);
             this.btnLaggTillKategori.Name = "btnLaggTillKategori";
             this.btnLaggTillKategori.Size = new System.Drawing.Size(64, 23);
             this.btnLaggTillKategori.TabIndex = 12;
@@ -191,7 +205,7 @@ namespace Grupp_28_RSS
             // 
             // btnTaBortKategori
             // 
-            this.btnTaBortKategori.Location = new System.Drawing.Point(846, 262);
+            this.btnTaBortKategori.Location = new System.Drawing.Point(758, 249);
             this.btnTaBortKategori.Name = "btnTaBortKategori";
             this.btnTaBortKategori.Size = new System.Drawing.Size(57, 23);
             this.btnTaBortKategori.TabIndex = 13;
@@ -201,7 +215,7 @@ namespace Grupp_28_RSS
             // lblURL
             // 
             this.lblURL.AutoSize = true;
-            this.lblURL.Location = new System.Drawing.Point(99, 249);
+            this.lblURL.Location = new System.Drawing.Point(12, 235);
             this.lblURL.Name = "lblURL";
             this.lblURL.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lblURL.Size = new System.Drawing.Size(32, 13);
@@ -211,7 +225,7 @@ namespace Grupp_28_RSS
             // lblIntervall
             // 
             this.lblIntervall.AutoSize = true;
-            this.lblIntervall.Location = new System.Drawing.Point(298, 249);
+            this.lblIntervall.Location = new System.Drawing.Point(206, 235);
             this.lblIntervall.Name = "lblIntervall";
             this.lblIntervall.Size = new System.Drawing.Size(47, 13);
             this.lblIntervall.TabIndex = 15;
@@ -220,7 +234,7 @@ namespace Grupp_28_RSS
             // lblKategori
             // 
             this.lblKategori.AutoSize = true;
-            this.lblKategori.Location = new System.Drawing.Point(390, 248);
+            this.lblKategori.Location = new System.Drawing.Point(299, 235);
             this.lblKategori.Name = "lblKategori";
             this.lblKategori.Size = new System.Drawing.Size(49, 13);
             this.lblKategori.TabIndex = 16;
@@ -229,41 +243,52 @@ namespace Grupp_28_RSS
             // lblTitelDescription
             // 
             this.lblTitelDescription.AutoSize = true;
-            this.lblTitelDescription.Location = new System.Drawing.Point(773, 305);
+            this.lblTitelDescription.Location = new System.Drawing.Point(206, 301);
             this.lblTitelDescription.Name = "lblTitelDescription";
-            this.lblTitelDescription.Size = new System.Drawing.Size(30, 13);
+            this.lblTitelDescription.Size = new System.Drawing.Size(61, 13);
             this.lblTitelDescription.TabIndex = 17;
-            this.lblTitelDescription.Text = "Title:";
+            this.lblTitelDescription.Text = "Avsnitt titel:";
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(776, 330);
+            this.txtDescription.Location = new System.Drawing.Point(209, 317);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(223, 173);
+            this.txtDescription.Size = new System.Drawing.Size(702, 173);
             this.txtDescription.TabIndex = 18;
+            this.txtDescription.Text = "(text)Avsnitt description ...... (länk)Läs Mer";
             // 
             // txrNyKategori
             // 
-            this.txrNyKategori.Location = new System.Drawing.Point(776, 217);
+            this.txrNyKategori.Location = new System.Drawing.Point(653, 187);
             this.txrNyKategori.Name = "txrNyKategori";
-            this.txrNyKategori.Size = new System.Drawing.Size(223, 20);
+            this.txrNyKategori.Size = new System.Drawing.Size(258, 20);
             this.txrNyKategori.TabIndex = 19;
             // 
             // lblNyKategori
             // 
             this.lblNyKategori.AutoSize = true;
-            this.lblNyKategori.Location = new System.Drawing.Point(776, 201);
+            this.lblNyKategori.Location = new System.Drawing.Point(654, 171);
             this.lblNyKategori.Name = "lblNyKategori";
             this.lblNyKategori.Size = new System.Drawing.Size(116, 13);
             this.lblNyKategori.TabIndex = 20;
             this.lblNyKategori.Text = "Lägg till en ny kategori:";
             // 
-            // FrmAvsnitt
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(51, 13);
+            this.label2.TabIndex = 21;
+            this.label2.Text = "Podcasts";
+            // 
+            // FrmGRP28RSS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1056, 541);
+            this.ClientSize = new System.Drawing.Size(925, 505);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.lblNyKategori);
             this.Controls.Add(this.txrNyKategori);
             this.Controls.Add(this.txtDescription);
@@ -285,9 +310,8 @@ namespace Grupp_28_RSS
             this.Controls.Add(this.lbxAvsnitt);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lbxKategorier);
-            this.Name = "FrmAvsnitt";
+            this.Name = "FrmGRP28RSS";
             this.Text = "Really Simple Syndication by Grupp 28 ";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -305,7 +329,7 @@ namespace Grupp_28_RSS
         private System.Windows.Forms.ColumnHeader lvChAvsnitt;
         private System.Windows.Forms.ColumnHeader lvChNamn;
         private System.Windows.Forms.ColumnHeader lvChIntervall;
-        private System.Windows.Forms.ColumnHeader chKategori;
+        private System.Windows.Forms.ColumnHeader lvchKategori;
         private System.Windows.Forms.Button btnLaggTillURL;
         private System.Windows.Forms.Button btnUppdateraFeed;
         private System.Windows.Forms.Button btnTaBort;
@@ -320,6 +344,7 @@ namespace Grupp_28_RSS
         private System.Windows.Forms.TextBox txtDescription;
         private System.Windows.Forms.TextBox txrNyKategori;
         private System.Windows.Forms.Label lblNyKategori;
+        private System.Windows.Forms.Label label2;
     }
 }
 
