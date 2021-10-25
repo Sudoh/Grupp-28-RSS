@@ -1,12 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Xml.Serialization;
 
-namespace modelss
+namespace Models
 {
-    class Class1
+
+    [XmlInclude(typeof(Feed))]
+    [XmlInclude(typeof(Avsnitt))]
+
+    public abstract class Podcast
     {
+        public string Namn { get; set; }
+        public string URLToRSS { get; set; }
+        public Podcast()
+        {
+            //ghghgh
+        }
+
     }
 }
