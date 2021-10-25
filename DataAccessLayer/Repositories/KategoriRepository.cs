@@ -18,17 +18,20 @@ namespace DataAccessLayer.Repositories
 
         public void Delete(int index)
         {
-           //Metoderna pratar med serializer
+            //Metoderna pratar med serializer
+            throw new NotImplementedException();
         }
 
         public List<Kategori> GetAll()
         {
             //Metoderna pratar med serializer
+            throw new NotImplementedException();
         }
 
         public int GetIndex(string name)
         {
             //Metoderna pratar med serializer
+            throw new NotImplementedException();
         }
 
         public Kategori GetKategoriByName(string name)
