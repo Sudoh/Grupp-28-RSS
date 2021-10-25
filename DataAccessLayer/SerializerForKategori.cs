@@ -10,7 +10,7 @@ namespace DataAccesLayer
 {
     internal class SerializerForKategori
     {
-        public void Serialize(List<Kategori> KategoriList)
+        public void Serialize(List<Kategori> kategoriList)
         {
             try
             {
@@ -18,10 +18,10 @@ namespace DataAccesLayer
                 using (FileStream outFile = new FileStream("Kategori.xml", FileMode.Create,
                     FileAccess.Write))
                 {
-                    xmlSerializer.Serialize(outFile, KategoriList);
+                    xmlSerializer.Serialize(outFile, kategoriList);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw new SerializerException("Kategori.xml", "Could not serialize to the file");
             }
@@ -38,7 +38,7 @@ namespace DataAccesLayer
                     return (List<Kategori>)xmlSerializer.Deserialize(inFile);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw new SerializerException("Kategori.xml", "Could not deserialize the file.");
             }
