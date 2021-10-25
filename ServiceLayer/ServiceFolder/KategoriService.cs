@@ -28,7 +28,6 @@ namespace ServiceLayer.ServiceFolder
         {
             int index = kategoriRepository.GetIndex(name);
             kategoriRepository.Delete(index);
-
         }
 
         public void RenameKategori(string name)
