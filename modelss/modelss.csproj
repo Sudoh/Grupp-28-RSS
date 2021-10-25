@@ -62,9 +62,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Avsnitt.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="Kategori.cs" />
     <Compile Include="Feed.cs" />
+    <Compile Include="Podcast.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

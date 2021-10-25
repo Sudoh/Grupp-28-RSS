@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Models
+namespace modelss
 {
     public class Feed : Podcast
     {
@@ -18,4 +18,4 @@ namespace Models
 
 
 
-    }
+}
