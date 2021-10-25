@@ -6,9 +6,9 @@ using modelss;
 using DataAccesLayer.Exceptions;
 namespace DataAccesLayer
 {
-    internal class SerializerForXml
+    internal class SerializerForPodcast
     {
-        public void Serialize(List<Podcast> personList)
+        public void Serialize(List<Podcast> PodcastList)
         {
             try
             {
@@ -16,7 +16,7 @@ namespace DataAccesLayer
                 using (FileStream outFile = new FileStream("Podcast.xml", FileMode.Create,
                     FileAccess.Write))
                 {
-                    xmlSerializer.Serialize(outFile, personList);
+                    xmlSerializer.Serialize(outFile, PodcastList);
                 }
             }
             catch (Exception e)
