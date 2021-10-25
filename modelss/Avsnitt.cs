@@ -6,10 +6,21 @@ using System.Threading.Tasks;
 
 namespace modelss
 {
-    class Avsnitt
+    public class Avsnitt
     {
-        static void Main(string[] args)
+        public string namn { get; set; }
+
+        public string beskrivning { get; set; }
+
+        public Avsnitt(string namn, string beskrivning)
         {
+            this.namn = namn;
+            this.beskrivning = beskrivning;
+        }
+
+        public Avsnitt()
+        {
+
         }
     }
 }
