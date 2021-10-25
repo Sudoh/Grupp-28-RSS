@@ -36,6 +36,11 @@ namespace DataAccessLayer.Repositories
             throw new NotImplementedException();
         }
 
+        public void RenameKategori(int index)
+        {
+            throw new NotImplementedException();
+        }
+
         public void SaveChanges()
         {
             throw new NotImplementedException();

@@ -10,6 +10,7 @@ namespace modelss
     {
         static void Main(string[] args)
         {
+
         }
     }
 }

@@ -33,7 +33,8 @@ namespace ServiceLayer.ServiceFolder
 
         public void RenameKategori(string name)
         {
-
+            int index = kategoriRepository.GetIndex(name);
+            kategoriRepository.RenameKategori(index);
         }
     }
 }
