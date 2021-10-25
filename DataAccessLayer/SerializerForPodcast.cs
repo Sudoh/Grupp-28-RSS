@@ -13,7 +13,7 @@ namespace DataAccesLayer
             try
             {
                 XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Podcast>));
-                using (FileStream outFile = new FileStream("Persons.xml", FileMode.Create,
+                using (FileStream outFile = new FileStream("Podcast.xml", FileMode.Create,
                     FileAccess.Write))
                 {
                     xmlSerializer.Serialize(outFile, personList);
@@ -21,7 +21,7 @@ namespace DataAccesLayer
             }
             catch (Exception e)
             {
-                throw new SerializerException("Persons.xml", "Could not serialize to the file");
+                throw new SerializerException("Podcast.xml", "Could not serialize to the file");
             }
         }
 
@@ -30,7 +30,7 @@ namespace DataAccesLayer
             try
             {
                 XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Podcast>));
-                using (FileStream inFile = new FileStream("Persons.xml", FileMode.Open,
+                using (FileStream inFile = new FileStream("Podcast.xml", FileMode.Open,
                     FileAccess.Read))
                 {
                     return (List<Podcast>)xmlSerializer.Deserialize(inFile);
@@ -38,7 +38,7 @@ namespace DataAccesLayer
             }
             catch (Exception e)
             {
-                throw new SerializerException("Persons.xml", "Could not deserialize the file.");
+                throw new SerializerException("Podcast.xml", "Could not deserialize the file.");
             }
             
         }
