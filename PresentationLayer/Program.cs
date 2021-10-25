@@ -16,7 +16,7 @@ namespace Grupp_28_RSS
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmGRP28RSS());
+            Application.Run(new FrmAvsnitt());
         }
 
     }

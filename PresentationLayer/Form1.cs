@@ -10,13 +10,17 @@ using System.Windows.Forms;
 
 namespace Grupp_28_RSS
 {
-    public partial class FrmGRP28RSS : Form
+    public partial class FrmAvsnitt : Form
     {
-        public FrmGRP28RSS()
+        public FrmAvsnitt()
         {
             InitializeComponent();
         }
 
+        
 
+        
+
+        
     }
 }
