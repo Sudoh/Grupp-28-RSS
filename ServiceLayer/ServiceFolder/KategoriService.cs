@@ -30,5 +30,10 @@ namespace ServiceLayer.ServiceFolder
             kategoriRepository.Delete(index);
 
         }
+
+        public void RenameKategori(string name)
+        {
+
+        }
     }
 }
