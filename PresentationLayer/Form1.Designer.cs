@@ -129,7 +129,7 @@ namespace Grupp_28_RSS
             this.lvChIntervall,
             this.chKategori});
             this.lvFeed.HideSelection = false;
-            this.lvFeed.Location = new System.Drawing.Point(37, 32);
+            this.lvFeed.Location = new System.Drawing.Point(37, 36);
             this.lvFeed.Name = "lvFeed";
             this.lvFeed.Size = new System.Drawing.Size(633, 182);
             this.lvFeed.TabIndex = 7;
@@ -139,6 +139,10 @@ namespace Grupp_28_RSS
             // lvChAvsnitt
             // 
             this.lvChAvsnitt.Text = "Avsnitt";
+            // 
+            // lvChNamn
+            // 
+            this.lvChNamn.Width = 145;
             // 
             // lvChIntervall
             // 
@@ -183,6 +187,7 @@ namespace Grupp_28_RSS
             this.btnAndraNamnKategori.TabIndex = 11;
             this.btnAndraNamnKategori.Text = "Ändra Namn";
             this.btnAndraNamnKategori.UseVisualStyleBackColor = true;
+            this.btnAndraNamnKategori.Click += new System.EventHandler(this.btnAndraNamnKategori_Click);
             // 
             // btnLaggTillKategori
             // 

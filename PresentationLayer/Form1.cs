@@ -17,10 +17,9 @@ namespace Grupp_28_RSS
             InitializeComponent();
         }
 
-        
-
-        
-
-        
+        private void btnAndraNamnKategori_Click(object sender, EventArgs e)
+        {
+            //RenameKategori(string name);
+        }
     }
 }

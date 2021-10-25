@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using modelss;
 using DataAccessLayer.Repositories;
 
+
 namespace ServiceLayer.ServiceFolder
 {
     public class KategoriService

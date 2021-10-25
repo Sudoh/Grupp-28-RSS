@@ -53,6 +53,7 @@
     <Compile Include="Repositories\FeedRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\KategoriRepository.cs" />
+    <Compile Include="Repositories\Serializer-DeserialzerforXML.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
