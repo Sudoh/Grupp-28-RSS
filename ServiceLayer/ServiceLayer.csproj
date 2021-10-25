@@ -56,6 +56,10 @@
       <Project>{4bfda4e8-a555-4a08-be18-7c0c4299fd9b}</Project>
       <Name>DataAccessLayer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\modelss\modelss.csproj">
+      <Project>{931e6e45-a747-4368-be23-bb0e4e369a74}</Project>
+      <Name>modelss</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

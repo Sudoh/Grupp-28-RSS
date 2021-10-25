@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Validering.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +90,10 @@
     <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
       <Project>{4bfda4e8-a555-4a08-be18-7c0c4299fd9b}</Project>
       <Name>DataAccessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\modelss\modelss.csproj">
+      <Project>{931e6e45-a747-4368-be23-bb0e4e369a74}</Project>
+      <Name>modelss</Name>
     </ProjectReference>
     <ProjectReference Include="..\ServiceLayer\ServiceLayer.csproj">
       <Project>{796d99fd-b2f9-4269-b1dc-b81cb6ea6db2}</Project>
