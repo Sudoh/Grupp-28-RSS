@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Models
 {
-    class Class1
+    class Feed
     {
     }
 }
