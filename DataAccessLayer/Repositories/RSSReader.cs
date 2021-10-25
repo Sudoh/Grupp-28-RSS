@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 namespace DataAccessLayer.Repositories
-//{
+{
 //    class RSSReader
 //    {
 //        public static List<Tuple<string, string>> rssRead(string url)
@@ -85,4 +85,4 @@ namespace DataAccessLayer.Repositories
 
 //        }
 //    }
-//}
+}
