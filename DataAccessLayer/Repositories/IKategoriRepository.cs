@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using modelss;
 
 namespace DataAccessLayer.Repositories
 {
-    class FeedRepository
+    public interface IKategoriRepository<T> : IRepository<T> where T : Kategori
     {
-        //I denna class sparar vi data om alla RSS feed lokalt på datorn. 
+        T GetKategoriByName(string name);
+
+        int GetIndex(string name);
     }
 }

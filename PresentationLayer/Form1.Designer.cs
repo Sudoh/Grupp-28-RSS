@@ -59,6 +59,10 @@ namespace Grupp_28_RSS
             // lbxKategorier
             // 
             this.lbxKategorier.FormattingEnabled = true;
+            this.lbxKategorier.Items.AddRange(new object[] {
+            "TestKategori1",
+            "TestKategori2",
+            "TestKategori3"});
             this.lbxKategorier.Location = new System.Drawing.Point(711, 28);
             this.lbxKategorier.Name = "lbxKategorier";
             this.lbxKategorier.Size = new System.Drawing.Size(223, 147);
