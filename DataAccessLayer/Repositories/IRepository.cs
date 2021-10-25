@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repositories
 {
-    interface IRepository<T>
+    public interface IRepository<T>
     {
 
         void Create(T entity);
@@ -16,6 +16,8 @@ namespace DataAccessLayer.Repositories
         void Update(int index, T entity);
 
         void SaveChanges();
+        List<T> GetAll();
+
 
     }
 }

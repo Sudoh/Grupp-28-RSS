@@ -16,5 +16,11 @@ namespace modelss
         {
             KategoriNamn = kategoriNamn;
         }
+
+        //Tom kontruktor - för att klara krav om fler konstruktörer.
+        public Kategori()
+        {
+
+        }
     }
 }
