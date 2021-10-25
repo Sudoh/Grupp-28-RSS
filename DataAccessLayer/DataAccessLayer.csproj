@@ -46,9 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entites\AvsnittEntity.cs" />
-    <Compile Include="Entites\FeedEntity.cs" />
-    <Compile Include="Entites\KategoriEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AvsnittRepository.cs" />
     <Compile Include="Repositories\RSSReader.cs" />
