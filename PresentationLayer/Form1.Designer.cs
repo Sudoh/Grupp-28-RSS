@@ -164,7 +164,7 @@ namespace Grupp_28_RSS
             this.btnLaggTillURL.Name = "btnLaggTillURL";
             this.btnLaggTillURL.Size = new System.Drawing.Size(75, 23);
             this.btnLaggTillURL.TabIndex = 8;
-            this.btnLaggTillURL.Text = "Lägg Till:";
+            this.btnLaggTillURL.Text = "Lägg Till";
             this.btnLaggTillURL.UseVisualStyleBackColor = true;
             // 
             // btnUppdateraFeed
@@ -173,7 +173,7 @@ namespace Grupp_28_RSS
             this.btnUppdateraFeed.Name = "btnUppdateraFeed";
             this.btnUppdateraFeed.Size = new System.Drawing.Size(75, 23);
             this.btnUppdateraFeed.TabIndex = 9;
-            this.btnUppdateraFeed.Text = "Uppdatera:";
+            this.btnUppdateraFeed.Text = "Uppdatera";
             this.btnUppdateraFeed.UseVisualStyleBackColor = true;
             // 
             // btnTaBort
@@ -182,12 +182,12 @@ namespace Grupp_28_RSS
             this.btnTaBort.Name = "btnTaBort";
             this.btnTaBort.Size = new System.Drawing.Size(75, 23);
             this.btnTaBort.TabIndex = 10;
-            this.btnTaBort.Text = "Ta Bort:";
+            this.btnTaBort.Text = "Ta Bort";
             this.btnTaBort.UseVisualStyleBackColor = true;
             // 
             // btnAndraNamnKategori
             // 
-            this.btnAndraNamnKategori.Location = new System.Drawing.Point(836, 250);
+            this.btnAndraNamnKategori.Location = new System.Drawing.Point(775, 249);
             this.btnAndraNamnKategori.Name = "btnAndraNamnKategori";
             this.btnAndraNamnKategori.Size = new System.Drawing.Size(75, 23);
             this.btnAndraNamnKategori.TabIndex = 11;
@@ -196,20 +196,20 @@ namespace Grupp_28_RSS
             // 
             // btnLaggTillKategori
             // 
-            this.btnLaggTillKategori.Location = new System.Drawing.Point(688, 249);
+            this.btnLaggTillKategori.Location = new System.Drawing.Point(705, 249);
             this.btnLaggTillKategori.Name = "btnLaggTillKategori";
             this.btnLaggTillKategori.Size = new System.Drawing.Size(64, 23);
             this.btnLaggTillKategori.TabIndex = 12;
-            this.btnLaggTillKategori.Text = "Lägg Till:";
+            this.btnLaggTillKategori.Text = "Lägg Till";
             this.btnLaggTillKategori.UseVisualStyleBackColor = true;
             // 
             // btnTaBortKategori
             // 
-            this.btnTaBortKategori.Location = new System.Drawing.Point(758, 249);
+            this.btnTaBortKategori.Location = new System.Drawing.Point(856, 249);
             this.btnTaBortKategori.Name = "btnTaBortKategori";
             this.btnTaBortKategori.Size = new System.Drawing.Size(57, 23);
             this.btnTaBortKategori.TabIndex = 13;
-            this.btnTaBortKategori.Text = "Ta Bort:";
+            this.btnTaBortKategori.Text = "Ta Bort";
             this.btnTaBortKategori.UseVisualStyleBackColor = true;
             // 
             // lblURL
@@ -287,7 +287,7 @@ namespace Grupp_28_RSS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(925, 505);
+            this.ClientSize = new System.Drawing.Size(926, 505);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblNyKategori);
             this.Controls.Add(this.txrNyKategori);
