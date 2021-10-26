@@ -10,7 +10,7 @@ namespace modelss
     public class Kategori
     {
         //Här är själva kategoriclassen, varje kategori blir ett obkjekt.
-        public string KategoriNamn{ get; private set; }
+        public string KategoriNamn{ get; set; }
 
         public Kategori(string kategoriNamn)
         {

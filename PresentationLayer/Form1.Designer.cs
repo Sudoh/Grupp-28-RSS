@@ -52,7 +52,7 @@ namespace Grupp_28_RSS
             this.lblKategori = new System.Windows.Forms.Label();
             this.lblTitelDescription = new System.Windows.Forms.Label();
             this.txtDescription = new System.Windows.Forms.TextBox();
-            this.txrNyKategori = new System.Windows.Forms.TextBox();
+            this.txtNyKategori = new System.Windows.Forms.TextBox();
             this.lblNyKategori = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -197,6 +197,7 @@ namespace Grupp_28_RSS
             this.btnLaggTillKategori.TabIndex = 12;
             this.btnLaggTillKategori.Text = "Lägg Till:";
             this.btnLaggTillKategori.UseVisualStyleBackColor = true;
+            this.btnLaggTillKategori.Click += new System.EventHandler(this.btnLaggTillKategori_Click);
             // 
             // btnTaBortKategori
             // 
@@ -206,6 +207,7 @@ namespace Grupp_28_RSS
             this.btnTaBortKategori.TabIndex = 13;
             this.btnTaBortKategori.Text = "Ta Bort:";
             this.btnTaBortKategori.UseVisualStyleBackColor = true;
+            this.btnTaBortKategori.Click += new System.EventHandler(this.btnTaBortKategori_Click);
             // 
             // lblURL
             // 
@@ -252,12 +254,12 @@ namespace Grupp_28_RSS
             this.txtDescription.Size = new System.Drawing.Size(223, 173);
             this.txtDescription.TabIndex = 18;
             // 
-            // txrNyKategori
+            // txtNyKategori
             // 
-            this.txrNyKategori.Location = new System.Drawing.Point(711, 198);
-            this.txrNyKategori.Name = "txrNyKategori";
-            this.txrNyKategori.Size = new System.Drawing.Size(223, 20);
-            this.txrNyKategori.TabIndex = 19;
+            this.txtNyKategori.Location = new System.Drawing.Point(711, 198);
+            this.txtNyKategori.Name = "txtNyKategori";
+            this.txtNyKategori.Size = new System.Drawing.Size(223, 20);
+            this.txtNyKategori.TabIndex = 19;
             // 
             // lblNyKategori
             // 
@@ -274,7 +276,7 @@ namespace Grupp_28_RSS
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(980, 537);
             this.Controls.Add(this.lblNyKategori);
-            this.Controls.Add(this.txrNyKategori);
+            this.Controls.Add(this.txtNyKategori);
             this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.lblTitelDescription);
             this.Controls.Add(this.lblKategori);
@@ -296,6 +298,7 @@ namespace Grupp_28_RSS
             this.Controls.Add(this.lbxKategorier);
             this.Name = "FrmAvsnitt";
             this.Text = "Really Simple Syndication by Grupp 28 ";
+            this.Load += new System.EventHandler(this.FrmAvsnitt_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -326,7 +329,7 @@ namespace Grupp_28_RSS
         private System.Windows.Forms.Label lblKategori;
         private System.Windows.Forms.Label lblTitelDescription;
         private System.Windows.Forms.TextBox txtDescription;
-        private System.Windows.Forms.TextBox txrNyKategori;
+        private System.Windows.Forms.TextBox txtNyKategori;
         private System.Windows.Forms.Label lblNyKategori;
     }
 }

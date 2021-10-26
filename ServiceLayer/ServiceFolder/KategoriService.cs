@@ -36,5 +36,10 @@ namespace ServiceLayer.ServiceFolder
             int index = kategoriRepository.GetIndex(name);
             kategoriRepository.RenameKategori(index);
         }
+
+        public List<Kategori> GetAllKategoris()
+        {
+            return kategoriRepository.GetAll();
+        }
     }
 }

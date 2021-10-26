@@ -54,7 +54,6 @@
     <Compile Include="Repositories\FeedRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\KategoriRepository.cs" />
-    <Compile Include="Repositories\Serializer-DeserialzerforXML.cs" />
     <Compile Include="SerializerForKategori.cs" />
     <Compile Include="SerializerForPodcast.cs" />
   </ItemGroup>
