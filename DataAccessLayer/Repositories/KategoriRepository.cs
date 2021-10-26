@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using modelss;
+using DataAccesLayer;
 
 namespace DataAccessLayer.Repositories
 {
@@ -11,32 +12,58 @@ namespace DataAccessLayer.Repositories
     {
         //Note to self: Här sker filhanteringen.
         //Gör om metoderna så att det ser ut soma tt den har laddat från interface när allt är klart. 
+
+        SerializerForKategori dataManager;
+        List<Kategori> listOfKategories;
+
+        public KategoriRepository()
+        {
+            dataManager = new SerializerForKategori();
+            listOfKategories = new List<Kategori>();
+            listOfKategories = GetAll();
+        }
+
         public void Create(Kategori entity)
         {
-            Console.WriteLine($"Ny kategori skapad som heter {entity.KategoriNamn}");
+            listOfKategories.Add(entity);
+            SaveChanges();
         }
 
         public void Delete(int index)
         {
             //Metoderna pratar med serializer
-            throw new NotImplementedException();
+            listOfKategories.RemoveAt(index);
+            SaveChanges();
+
         }
 
         public List<Kategori> GetAll()
         {
             //Metoderna pratar med serializer
-            throw new NotImplementedException();
+            List<Kategori> listOfKategoriesDeserialized = new List<Kategori>();
+
+            try
+            {
+                listOfKategoriesDeserialized = dataManager.Deserialize();
+            }
+            catch (Exception)
+            {
+
+            
+            }
+
+            return listOfKategoriesDeserialized;
+
         }
 
         public int GetIndex(string name)
         {
-            //Metoderna pratar med serializer
-            throw new NotImplementedException();
+            return GetAll().FindIndex(e => e.KategoriNamn.Equals(name));
         }
 
         public Kategori GetKategoriByName(string name)
         {
-            throw new NotImplementedException();
+            return GetAll().FirstOrDefault(p => p.KategoriNamn.Equals(name));
         }
 
         public void RenameKategori(int index)
@@ -46,12 +73,17 @@ namespace DataAccessLayer.Repositories
 
         public void SaveChanges()
         {
-            throw new NotImplementedException();
+            //Skicka till serializer
+            dataManager.Serialize(listOfKategories);
         }
 
         public void Update(int index, Kategori entity)
         {
-            throw new NotImplementedException();
+            if (index <=0)
+            {
+                listOfKategories[index] = entity;
+            }
+           SaveChanges();
         }
     }
 
