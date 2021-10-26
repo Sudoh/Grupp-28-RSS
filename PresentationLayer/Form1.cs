@@ -27,6 +27,13 @@ namespace Grupp_28_RSS
         {
             //Lägg in alla kod som ska köras när formen laddar. 
             // MessageBox.Show("Welcome to the show");
+            ClearAndReloadKategorieListAfterChangeHeeHaw();
+        }
+
+
+        private void ClearAndReloadKategorieListAfterChangeHeeHaw()
+        {
+
             lbxKategorier.Items.Clear();
             foreach (Kategori item in kategoriService.GetAllKategoris())
             {
@@ -37,6 +44,7 @@ namespace Grupp_28_RSS
             }
         }
 
+
         private void btnAndraNamnKategori_Click(object sender, EventArgs e)
         {
             //RenameKategori(string name);
@@ -45,6 +53,7 @@ namespace Grupp_28_RSS
         private void btnLaggTillKategori_Click(object sender, EventArgs e)
         {
             kategoriService.CreateKategori(txtNyKategori.Text);
+            ClearAndReloadKategorieListAfterChangeHeeHaw();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -55,6 +64,7 @@ namespace Grupp_28_RSS
         private void btnTaBortKategori_Click(object sender, EventArgs e)
         {
             kategoriService.DeleteKategori(lbxKategorier.SelectedItem.ToString());
+            ClearAndReloadKategorieListAfterChangeHeeHaw();
         }
     }
 }
