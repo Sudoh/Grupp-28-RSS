@@ -66,7 +66,9 @@ namespace Grupp_28_RSS
             this.lbxKategorier.Location = new System.Drawing.Point(711, 28);
             this.lbxKategorier.Name = "lbxKategorier";
             this.lbxKategorier.Size = new System.Drawing.Size(223, 147);
+            this.lbxKategorier.Sorted = true;
             this.lbxKategorier.TabIndex = 0;
+            this.lbxKategorier.SelectedIndexChanged += new System.EventHandler(this.lbxKategorier_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -266,9 +268,9 @@ namespace Grupp_28_RSS
             this.lblNyKategori.AutoSize = true;
             this.lblNyKategori.Location = new System.Drawing.Point(711, 182);
             this.lblNyKategori.Name = "lblNyKategori";
-            this.lblNyKategori.Size = new System.Drawing.Size(116, 13);
+            this.lblNyKategori.Size = new System.Drawing.Size(263, 13);
             this.lblNyKategori.TabIndex = 20;
-            this.lblNyKategori.Text = "Lägg till en ny kategori:";
+            this.lblNyKategori.Text = "Lägg till en ny kategor / Ändra namn på vald kategorii:";
             // 
             // FrmAvsnitt
             // 

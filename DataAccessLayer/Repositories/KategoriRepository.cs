@@ -66,9 +66,13 @@ namespace DataAccessLayer.Repositories
             return GetAll().FirstOrDefault(p => p.KategoriNamn.Equals(name));
         }
 
-        public void RenameKategori(int index)
+        public void Update(int index, Kategori entity)
         {
-            throw new NotImplementedException();
+
+
+         listOfKategories[index].KategoriNamn = entity.KategoriNamn.ToString();
+
+            SaveChanges();
         }
 
         public void SaveChanges()
@@ -77,14 +81,8 @@ namespace DataAccessLayer.Repositories
             dataManager.Serialize(listOfKategories);
         }
 
-        public void Update(int index, Kategori entity)
-        {
-            if (index <=0)
-            {
-                listOfKategories[index] = entity;
-            }
-           SaveChanges();
-        }
+
+
     }
 
 }

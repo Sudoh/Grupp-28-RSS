@@ -16,6 +16,7 @@ namespace DataAccessLayer.Repositories
         void Update(int index, T entity);
 
         void SaveChanges();
+
         List<T> GetAll();
 
 
