@@ -12,7 +12,5 @@ namespace DataAccessLayer.Repositories
         T GetKategoriByName(string name);
 
         int GetIndex(string name);
- 
-        void RenameKategori(int index);
     }
 }

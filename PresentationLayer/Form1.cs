@@ -15,10 +15,13 @@ namespace Grupp_28_RSS
     public partial class FrmAvsnitt : Form
     {
 
+        private string valdKategori;
+
         KategoriService kategoriService;
         public FrmAvsnitt()
         {
             InitializeComponent();
+            valdKategori = null;
             kategoriService = new KategoriService();
 
         }
@@ -27,11 +30,10 @@ namespace Grupp_28_RSS
         {
             //Lägg in alla kod som ska köras när formen laddar. 
             // MessageBox.Show("Welcome to the show");
-            ClearAndReloadKategorieListAfterChangeHeeHaw();
+            ClearAndReloadKategorieListAfterChange();
         }
 
-
-        private void ClearAndReloadKategorieListAfterChangeHeeHaw()
+        private void ClearAndReloadKategorieListAfterChange()
         {
 
             lbxKategorier.Items.Clear();
@@ -47,24 +49,49 @@ namespace Grupp_28_RSS
 
         private void btnAndraNamnKategori_Click(object sender, EventArgs e)
         {
-            //RenameKategori(string name);
+            
+            if (valdKategori != null && valdKategori != txtNyKategori.Text)
+            {
+                kategoriService.RenameKategori(valdKategori, txtNyKategori.Text);
+                //string nyNamn = txtNyKategori.Text;
+                //kategoriService.RenameKategori();
+                ClearAndReloadKategorieListAfterChange();
+            }
+
         }
 
         private void btnLaggTillKategori_Click(object sender, EventArgs e)
         {
-            kategoriService.CreateKategori(txtNyKategori.Text);
-            ClearAndReloadKategorieListAfterChangeHeeHaw();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
+            if (txtNyKategori.Text != valdKategori)
+            {
+                kategoriService.CreateKategori(txtNyKategori.Text);
+                txtNyKategori.Text = null;
+                ClearAndReloadKategorieListAfterChange();
+            }
+      
         }
 
         private void btnTaBortKategori_Click(object sender, EventArgs e)
         {
-            kategoriService.DeleteKategori(lbxKategorier.SelectedItem.ToString());
-            ClearAndReloadKategorieListAfterChangeHeeHaw();
+            if (lbxKategorier.SelectedItem != null)
+            {
+                kategoriService.DeleteKategori(lbxKategorier.SelectedItem.ToString());
+                txtNyKategori.Text = null;
+                ClearAndReloadKategorieListAfterChange();
+            }
+         
+        }
+
+        private void lbxKategorier_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Gör något bara om något är valt. Ananrs blir det null error utan ifsatsen.
+            if (lbxKategorier.SelectedItems.Count > 0)
+            {
+                txtNyKategori.Text = lbxKategorier.SelectedItem.ToString();
+                valdKategori = lbxKategorier.SelectedItem.ToString();
+            }   
+       
+            
         }
     }
 }

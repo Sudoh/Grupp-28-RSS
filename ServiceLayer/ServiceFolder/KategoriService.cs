@@ -25,16 +25,19 @@ namespace ServiceLayer.ServiceFolder
             kategoriRepository.Create(nyKategori);
         }
 
+        public void RenameKategori(string oldName, string nyName)
+        {
+           
+            Kategori uppdateradKategori = null;
+            int index = kategoriRepository.GetIndex(oldName);
+            uppdateradKategori = new Kategori(nyName);
+            kategoriRepository.Update(index, uppdateradKategori);
+        }
+
         public void DeleteKategori(string name)
         {
             int index = kategoriRepository.GetIndex(name);
             kategoriRepository.Delete(index);
-        }
-
-        public void RenameKategori(string name)
-        {
-            int index = kategoriRepository.GetIndex(name);
-            kategoriRepository.RenameKategori(index);
         }
 
         public List<Kategori> GetAllKategoris()
