@@ -18,11 +18,13 @@ namespace Grupp_28_RSS
         private string valdKategori;
 
         KategoriService kategoriService;
+        AvsnittService avsnittService;
         public FrmAvsnitt()
         {
             InitializeComponent();
             valdKategori = null;
             kategoriService = new KategoriService();
+            avsnittService = new AvsnittService();
 
         }
 
@@ -93,5 +95,12 @@ namespace Grupp_28_RSS
        
             
         }
+        //private void ListPodDescription(object sender, EventArgs e)
+        //{
+        //    if (lbxAvsnitt.SelectedItems.Count > 0)
+        //    {
+        //        txtDescription.Text = PodcastHandler.updateEpisodeDetails(lbxAvsnitt, podcastListview);
+        //    }
+        //}
     }
 }
