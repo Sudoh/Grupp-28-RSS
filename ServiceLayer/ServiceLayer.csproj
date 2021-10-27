@@ -50,6 +50,7 @@
     <Compile Include="ServiceFolder\AvsnittService.cs" />
     <Compile Include="ServiceFolder\FeedService.cs" />
     <Compile Include="ServiceFolder\KategoriService.cs" />
+    <Compile Include="ServiceFolder\PodcastService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">

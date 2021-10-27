@@ -5,83 +5,131 @@ using System.ServiceModel.Syndication;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Xml.Linq;
+using modelss;
+
+namespace DataAccessLayer.Repositories
+{
 
     public class RSSReader
     {
-        public static List<Tuple<string, string>> rssRead(string url)
+
+        public List<Avsnitt> RssRead(string url)
         {
-            string subject = "";
-            string summary = "";
-            var x = "";
-            var y = "";
-            var count = 0;
-            var list = new List<Tuple<string, string>>();
-            try
-            {
 
 
+            List<Avsnitt> avsnitt = new List<Avsnitt>();
+            XDocument rssfeedxml = new XDocument();
 
-                XmlReader reader = XmlReader.Create(url);
-                SyndicationFeed feed = SyndicationFeed.Load(reader);
-                reader.Close();
+            //XNamespace namespaceName = "http://www.w3.org/2005/Atom";
 
-                foreach (SyndicationItem item in feed.Items)
-                {
-                    count++;
-                    subject = item.Title.Text;
-                    summary = item.Summary.Text;
-                    x += count + " " + subject + " ";
-                    list.Add(new Tuple<string, string>("Avsnitt " + count + " " + subject, summary));
 
-                }
+            rssfeedxml = XDocument.Load(url);
 
-            }
-            catch (Exception message)
-            {
-                Console.WriteLine(message);
-            }
-            //Datahandler.SavePodFeed(list);
-            return list;
+                // StringBuilder rssContent = new StringBuilder();
+
+                avsnitt = (from descendant in rssfeedxml.Descendants("item")
+
+                               //Response.Write(list);  
+                           select new Avsnitt
+                           {
+                               NewsTitel = descendant.Element("title").Value,
+                               NewsDescription = descendant.Element("description").Value,
+                               NewsLink = descendant.Element("link").Value,
+                               //date = descendant.Element("pubDate").Value,
+                               //auth = descendant.Element("author").Value
+
+                           }).ToList();
+         return avsnitt;
+
         }
     }
+}
 
-    //public class RSSreader
-    //{
-    //    public static List<Tuple<string, string>> rssRead(string url)
-    //    {
-    //        string subject = "";
-    //        string summary = "";
-    //        var x = "";
-    //        var y = "";
-    //        var count = 0;
-    //        var list = new List<Tuple<string, string>>();
-    //        try
-    //        {
+            //    string subject = "";
+            //    string summary = "";
+            //    var x = "";
+            //    var y = "";
+            //    var count = 0;
+            //    //var list = new List<Tuple<string, string>>();
+            //     var podcast = new List<Podcast>();
+            //    try
+            //    {
 
 
-    //            //string urlX = "http://feeds.soundcloud.com/users/soundcloud:users:298230954/sounds.rss";
-    //            XmlReader reader = XmlReader.Create(url);
-    //            SyndicationFeed feed = SyndicationFeed.Load(reader);
-    //            reader.Close();
 
-    //            foreach (SyndicationItem item in feed.Items)
-    //            {
-    //                count++;
-    //                subject = item.Title.Text;
-    //                summary = item.Summary.Text;
-    //                x += count + " " + subject + " ";
-    //                list.Add(new Tuple<string, string>("Avsnitt " + count + " " + subject, summary));
+//        XmlReader reader = XmlReader.Create(url);
+//        SyndicationFeed feed = SyndicationFeed.Load(reader);
+//        reader.Close();
 
-    //            }
 
-    //        }
-    //        catch (Exception ex)
-    //        {
-    //            Console.WriteLine(ex);
-    //        }
+//        feed = (from x in feed.Descendants("item")
+//                   select new Episode
+//                   {
+//                       Name = x.Element("title").Value,
+//                       Description = x.Element("description").Value,
+//                       SoundFile = x.Descendants("link").Any() ? x.Element("link").Value : x.Descendants("enclosure").Any() ? x.Element("enclosure").Attribute("url").Value : "None"
+//                   }).ToList();
 
-    //        return list;
+//    //foreach (SyndicationItem item in feed.Items)
+//    //{
 
-    //    }
-    //}
+
+//    //    subject = item.Title.Text;
+//    //    summary = item.Summary.Text;
+//    //    x += count + " " + subject + " ";
+//    //    podcast.Add(new Tuple<string, string>("Avsnitt " + count + " " + subject, summary));
+
+//    //}
+
+//}
+//    catch (Exception message)
+//    {
+//        Console.WriteLine(message);
+//    }
+//    //Datahandler.SavePodFeed(list);
+//    return podcast;
+//}
+//}
+
+//public class RSSreader
+//{
+//    public static List<Tuple<string, string>> rssRead(string url)
+//    {
+//        string subject = "";
+//        string summary = "";
+//        var x = "";
+//        var y = "";
+//        var count = 0;
+//        var list = new List<Tuple<string, string>>();
+//        try
+//        {
+
+
+//            //string urlX = "http://feeds.soundcloud.com/users/soundcloud:users:298230954/sounds.rss";
+//            XmlReader reader = XmlReader.Create(url);
+//            SyndicationFeed feed = SyndicationFeed.Load(reader);
+//            reader.Close();
+
+//            foreach (SyndicationItem item in feed.Items)
+//            {
+//                count++;
+//                subject = item.Title.Text;
+//                summary = item.Summary.Text;
+//                x += count + " " + subject + " ";
+//                list.Add(new Tuple<string, string>("Avsnitt " + count + " " + subject, summary));
+
+//            }
+
+//        }
+//        catch (Exception ex)
+//        {
+//            Console.WriteLine(ex);
+//        }
+
+//        return list;
+
+//    }
+//}
+
 

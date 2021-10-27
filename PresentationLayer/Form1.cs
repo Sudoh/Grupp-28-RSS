@@ -19,13 +19,15 @@ namespace Grupp_28_RSS
         private string valdKategori;
 
         KategoriService kategoriService;
-        AvsnittService avsnittService;
+        //AvsnittService avsnittService;
+        PodcastService podcastService;
         public FrmAvsnitt()
         {
             InitializeComponent();
             valdKategori = null;
             kategoriService = new KategoriService();
-            avsnittService = new AvsnittService();
+            //avsnittService = new AvsnittService();
+            podcastService = new PodcastService();
 
         }
         
@@ -95,6 +97,15 @@ namespace Grupp_28_RSS
                 txtNyKategori.Text = lbxKategorier.SelectedItem.ToString();
                 valdKategori = lbxKategorier.SelectedItem.ToString();
             }
+
+
+        }
+
+        private void btnLaggTillURL_Click(object sender, EventArgs e)
+        {
+            // https://spelkosmos.se/alla-episoder.rss
+            podcastService.DownloadPodcast(txtRSSURL.Text.ToString());
+
 
 
         }
