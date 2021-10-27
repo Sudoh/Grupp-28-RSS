@@ -102,6 +102,7 @@ namespace Grupp_28_RSS
             this.cmbKategori.Location = new System.Drawing.Point(325, 246);
             this.cmbKategori.Name = "cmbKategori";
             this.cmbKategori.Size = new System.Drawing.Size(88, 21);
+            this.cmbKategori.Sorted = true;
             this.cmbKategori.TabIndex = 4;
             // 
             // cmbUppdateringsIntervall
@@ -144,7 +145,8 @@ namespace Grupp_28_RSS
             // 
             // lvChNamn
             // 
-            this.lvChNamn.Width = 145;
+            this.lvChNamn.Text = "Namn";
+            this.lvChNamn.Width = 220;
             // 
             // lvChIntervall
             // 

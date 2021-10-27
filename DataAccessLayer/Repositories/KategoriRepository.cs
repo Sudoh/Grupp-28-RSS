@@ -69,7 +69,6 @@ namespace DataAccessLayer.Repositories
         public void Update(int index, Kategori entity)
         {
 
-
          listOfKategories[index].KategoriNamn = entity.KategoriNamn.ToString();
 
             SaveChanges();

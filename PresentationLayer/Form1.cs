@@ -25,7 +25,7 @@ namespace Grupp_28_RSS
             kategoriService = new KategoriService();
 
         }
-
+        
         private void FrmAvsnitt_Load(object sender, EventArgs e)
         {
             //Lägg in alla kod som ska köras när formen laddar. 
@@ -37,15 +37,17 @@ namespace Grupp_28_RSS
         {
 
             lbxKategorier.Items.Clear();
+            cmbKategori.Text = "";
+            cmbKategori.Items.Clear();
             foreach (Kategori item in kategoriService.GetAllKategoris())
             {
                 if (item != null)
                 {
                     lbxKategorier.Items.Add(item.KategoriNamn);
+                    cmbKategori.Items.Add(item.KategoriNamn);
                 }
             }
         }
-
 
         private void btnAndraNamnKategori_Click(object sender, EventArgs e)
         {
