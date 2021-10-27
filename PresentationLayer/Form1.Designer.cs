@@ -145,7 +145,8 @@ namespace Grupp_28_RSS
             // 
             // lvChNamn
             // 
-            this.lvChNamn.Width = 145;
+            this.lvChNamn.Text = "Namn";
+            this.lvChNamn.Width = 220;
             // 
             // lvChIntervall
             // 
