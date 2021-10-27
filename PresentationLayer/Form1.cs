@@ -12,6 +12,7 @@ using ServiceLayer.ServiceFolder;
 
 namespace Grupp_28_RSS
 {
+
     public partial class FrmAvsnitt : Form
     {
 
@@ -30,7 +31,7 @@ namespace Grupp_28_RSS
 
         private void FrmAvsnitt_Load(object sender, EventArgs e)
         {
-            //Lägg in alla kod som ska köras när formen laddar. 
+            //Lägg in alla kod som ska köras när formen laddar.
             // MessageBox.Show("Welcome to the show");
             ClearAndReloadKategorieListAfterChange();
         }
@@ -51,7 +52,7 @@ namespace Grupp_28_RSS
 
         private void btnAndraNamnKategori_Click(object sender, EventArgs e)
         {
-            
+
             if (valdKategori != null && valdKategori != txtNyKategori.Text)
             {
                 kategoriService.RenameKategori(valdKategori, txtNyKategori.Text);
@@ -70,7 +71,7 @@ namespace Grupp_28_RSS
                 txtNyKategori.Text = null;
                 ClearAndReloadKategorieListAfterChange();
             }
-      
+
         }
 
         private void btnTaBortKategori_Click(object sender, EventArgs e)
@@ -81,7 +82,7 @@ namespace Grupp_28_RSS
                 txtNyKategori.Text = null;
                 ClearAndReloadKategorieListAfterChange();
             }
-         
+
         }
 
         private void lbxKategorier_SelectedIndexChanged(object sender, EventArgs e)
@@ -91,9 +92,9 @@ namespace Grupp_28_RSS
             {
                 txtNyKategori.Text = lbxKategorier.SelectedItem.ToString();
                 valdKategori = lbxKategorier.SelectedItem.ToString();
-            }   
-       
-            
+            }
+
+
         }
         //private void ListPodDescription(object sender, EventArgs e)
         //{
