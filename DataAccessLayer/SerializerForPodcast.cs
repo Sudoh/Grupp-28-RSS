@@ -4,6 +4,7 @@ using System.IO;
 using System.Xml.Serialization;
 using modelss;
 using DataAccesLayer.Exceptions;
+
 namespace DataAccesLayer
 {
     internal class SerializerForPodcast
@@ -25,7 +26,7 @@ namespace DataAccesLayer
             }
         }
 
-        public List<Podcast> Deserialize()
+       public List<Podcast> Deserialize()
         {
             try
             {
