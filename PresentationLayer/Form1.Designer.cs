@@ -82,6 +82,10 @@ namespace Grupp_28_RSS
             // lbxAvsnitt
             // 
             this.lbxAvsnitt.FormattingEnabled = true;
+            this.lbxAvsnitt.Items.AddRange(new object[] {
+            "HEJ",
+            "fkfkfkf",
+            "KUL"});
             this.lbxAvsnitt.Location = new System.Drawing.Point(37, 311);
             this.lbxAvsnitt.Name = "lbxAvsnitt";
             this.lbxAvsnitt.Size = new System.Drawing.Size(633, 173);
