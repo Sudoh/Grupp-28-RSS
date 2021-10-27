@@ -168,6 +168,7 @@ namespace Grupp_28_RSS
             this.btnLaggTillURL.TabIndex = 8;
             this.btnLaggTillURL.Text = "Lägg Till:";
             this.btnLaggTillURL.UseVisualStyleBackColor = true;
+            this.btnLaggTillURL.Click += new System.EventHandler(this.btnLaggTillURL_Click);
             // 
             // btnUppdateraFeed
             // 
