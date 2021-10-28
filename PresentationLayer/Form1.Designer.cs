@@ -55,6 +55,8 @@ namespace Grupp_28_RSS
             this.txtNyKategori = new System.Windows.Forms.TextBox();
             this.lblNyKategori = new System.Windows.Forms.Label();
             this.txtPodcastName = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbxKategorier
@@ -89,7 +91,7 @@ namespace Grupp_28_RSS
             "KUL"});
             this.lbxAvsnitt.Location = new System.Drawing.Point(37, 311);
             this.lbxAvsnitt.Name = "lbxAvsnitt";
-            this.lbxAvsnitt.Size = new System.Drawing.Size(633, 173);
+            this.lbxAvsnitt.Size = new System.Drawing.Size(633, 212);
             this.lbxAvsnitt.TabIndex = 2;
             // 
             // lblAvsnitt
@@ -303,11 +305,31 @@ namespace Grupp_28_RSS
             this.txtPodcastName.Size = new System.Drawing.Size(100, 20);
             this.txtPodcastName.TabIndex = 21;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(34, 20);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(54, 13);
+            this.label2.TabIndex = 22;
+            this.label2.Text = "Podcasts:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(229, 229);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(38, 13);
+            this.label3.TabIndex = 23;
+            this.label3.Text = "Namn:";
+            // 
             // FrmAvsnitt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(980, 537);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.txtPodcastName);
             this.Controls.Add(this.lblNyKategori);
             this.Controls.Add(this.txtNyKategori);
@@ -366,6 +388,8 @@ namespace Grupp_28_RSS
         private System.Windows.Forms.TextBox txtNyKategori;
         private System.Windows.Forms.Label lblNyKategori;
         private System.Windows.Forms.TextBox txtPodcastName;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }
 
