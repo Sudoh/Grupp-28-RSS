@@ -37,10 +37,10 @@ namespace Grupp_28_RSS
             this.cmbUppdateringsIntervall = new System.Windows.Forms.ComboBox();
             this.txtRSSURL = new System.Windows.Forms.TextBox();
             this.lvFeed = new System.Windows.Forms.ListView();
-            this.lvChAvsnitt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lvChNamn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lvChIntervall = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.chKategori = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colFeedAvsnitt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colFeedNamn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colFeedIntervall = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colFeedKategori = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnLaggTillURL = new System.Windows.Forms.Button();
             this.btnUppdateraFeed = new System.Windows.Forms.Button();
             this.btnTaBort = new System.Windows.Forms.Button();
@@ -128,38 +128,44 @@ namespace Grupp_28_RSS
             this.txtRSSURL.Name = "txtRSSURL";
             this.txtRSSURL.Size = new System.Drawing.Size(189, 20);
             this.txtRSSURL.TabIndex = 6;
+            this.txtRSSURL.Text = "https://www.svt.se/nyheter/rss.xml";
             // 
             // lvFeed
             // 
             this.lvFeed.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.lvChAvsnitt,
-            this.lvChNamn,
-            this.lvChIntervall,
-            this.chKategori});
+            this.colFeedAvsnitt,
+            this.colFeedNamn,
+            this.colFeedIntervall,
+            this.colFeedKategori});
+            this.lvFeed.FullRowSelect = true;
+            this.lvFeed.GridLines = true;
             this.lvFeed.HideSelection = false;
+            this.lvFeed.LabelEdit = true;
             this.lvFeed.Location = new System.Drawing.Point(37, 36);
             this.lvFeed.Name = "lvFeed";
-            this.lvFeed.Size = new System.Drawing.Size(633, 182);
+            this.lvFeed.Size = new System.Drawing.Size(668, 182);
             this.lvFeed.TabIndex = 7;
             this.lvFeed.UseCompatibleStateImageBehavior = false;
             this.lvFeed.View = System.Windows.Forms.View.Details;
             // 
-            // lvChAvsnitt
+            // colFeedAvsnitt
             // 
-            this.lvChAvsnitt.Text = "Avsnitt";
+            this.colFeedAvsnitt.Text = "Avsnitt";
             // 
-            // lvChNamn
+            // colFeedNamn
             // 
-            this.lvChNamn.Text = "Namn";
-            this.lvChNamn.Width = 220;
+            this.colFeedNamn.Text = "Namn";
+            this.colFeedNamn.Width = 198;
             // 
-            // lvChIntervall
+            // colFeedIntervall
             // 
-            this.lvChIntervall.Text = "Uppdateringsintervall";
+            this.colFeedIntervall.Text = "Uppdateringsintervall";
+            this.colFeedIntervall.Width = 229;
             // 
-            // chKategori
+            // colFeedKategori
             // 
-            this.chKategori.Text = "Kategori";
+            this.colFeedKategori.Text = "Kategori";
+            this.colFeedKategori.Width = 139;
             // 
             // btnLaggTillURL
             // 
@@ -264,11 +270,15 @@ namespace Grupp_28_RSS
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(711, 311);
+            this.txtDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDescription.Location = new System.Drawing.Point(676, 302);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(223, 173);
+            this.txtDescription.Size = new System.Drawing.Size(292, 223);
             this.txtDescription.TabIndex = 18;
+            this.txtDescription.TextChanged += new System.EventHandler(this.txtDescription_TextChanged);
             // 
             // txtNyKategori
             // 
@@ -337,10 +347,10 @@ namespace Grupp_28_RSS
         private System.Windows.Forms.ComboBox cmbUppdateringsIntervall;
         private System.Windows.Forms.TextBox txtRSSURL;
         private System.Windows.Forms.ListView lvFeed;
-        private System.Windows.Forms.ColumnHeader lvChAvsnitt;
-        private System.Windows.Forms.ColumnHeader lvChNamn;
-        private System.Windows.Forms.ColumnHeader lvChIntervall;
-        private System.Windows.Forms.ColumnHeader chKategori;
+        private System.Windows.Forms.ColumnHeader colFeedAvsnitt;
+        private System.Windows.Forms.ColumnHeader colFeedNamn;
+        private System.Windows.Forms.ColumnHeader colFeedIntervall;
+        private System.Windows.Forms.ColumnHeader colFeedKategori;
         private System.Windows.Forms.Button btnLaggTillURL;
         private System.Windows.Forms.Button btnUppdateraFeed;
         private System.Windows.Forms.Button btnTaBort;

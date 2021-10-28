@@ -18,12 +18,14 @@ namespace ServiceLayer.ServiceFolder
         }
 
 
-        public void DownloadPodcast(string url)
+        public void DownloadPodcast(string url, string namn, string kategori, int uppdateringsFrekvens)
         {
 
-            url = null;
             Podcast podcast = new Podcast();
-            podcast.URL = "https://spelkosmos.se/alla-episoder.rss";
+            podcast.URL = url;
+            podcast.Namn = namn;
+            podcast.kategori = kategori;
+            podcast.UppdateringsIntervall = uppdateringsFrekvens;
             podcastRepository.Create(podcast);
 
         }

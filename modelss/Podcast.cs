@@ -20,11 +20,12 @@ namespace modelss
 
         public int AntalAvsnitt { get; set; }
 
-        public Kategori kategori { get; set; }
+        //public Kategori kategori { get; set; }
+        public string kategori { get; set; }
 
         public int UppdateringsIntervall { get; set; }
 
-        public Podcast(string namn, Kategori kategori, string url, int antalAvsnitt, int uppdateringsIntervall, List<Avsnitt> avsnitt)
+        public Podcast(string namn, string kategori, string url, int antalAvsnitt, int uppdateringsIntervall, List<Avsnitt> avsnitt)
         {
             Namn = namn;
             this.kategori = kategori;
