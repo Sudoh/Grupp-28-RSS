@@ -19,6 +19,12 @@ namespace Grupp_28_RSS
         private string valdKategori;
         private string valdPodcast;
 
+        private string valdPodcastNamn;
+        private string valdPodcastKategori;
+        private int valdPodcastIntervall;
+
+
+
         KategoriService kategoriService;
         //AvsnittService avsnittService;
         PodcastService podcastService;
@@ -44,6 +50,9 @@ namespace Grupp_28_RSS
 
         private void ClearAndReloadPodcastsListAfterChange()
         {
+
+            lvFeed.BeginUpdate();
+
             lvFeed.Items.Clear();
             foreach (Podcast item in podcastService.GetAllPodcasts())
             {
@@ -57,6 +66,9 @@ namespace Grupp_28_RSS
 
                 }
             }
+            lvFeed.EndUpdate();
+            lvFeed.Refresh();
+
 
         }
 
@@ -150,18 +162,39 @@ namespace Grupp_28_RSS
 
         private void btnUppdateraFeed_Click(object sender, EventArgs e)
         {
+            podcastService.ChangePodcast(valdPodcastNamn, txtPodcastName.Text, valdPodcastIntervall, cmbUppdateringsIntervall.SelectedIndex, valdPodcastKategori, cmbKategori.SelectedItem.ToString());
+
+
             ClearAndReloadPodcastsListAfterChange();
         }
 
         private void lvFeed_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+            //Sätter några fält till värden som är lagrade om använderaren skulle vilja ändra i feed.
+
             //Gör något bara om något är valt. Ananrs blir det null error utan ifsatsen.
             if (lvFeed.SelectedItems.Count > 0)
             {
 
                 var item = lvFeed.SelectedItems[0];
+
+                valdPodcast = item.SubItems[1].Text;
+
+                //Sätter alla fält till vald podcast för ändring
+                txtPodcastName.Text = item.SubItems[1].Text;
+                valdPodcastNamn = item.SubItems[1].Text;
+
+                cmbUppdateringsIntervall.SelectedIndex = Convert.ToInt32(item.SubItems[2].Text);
+                valdPodcastIntervall = cmbUppdateringsIntervall.SelectedIndex;
+
+                cmbKategori.SelectedIndex = kategoriService.GetKategoriIndex(item.SubItems[3].Text);
+                valdPodcastKategori = cmbKategori.Text;
+
+
                 txtPodcastName.Text = item.SubItems[1].Text;
                 //valdPodcast = lvFeed.Items[1].Text;
+
             }
         }
     }
