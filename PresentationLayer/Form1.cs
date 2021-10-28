@@ -104,9 +104,14 @@ namespace Grupp_28_RSS
         private void btnLaggTillURL_Click(object sender, EventArgs e)
         {
             // https://spelkosmos.se/alla-episoder.rss
-            podcastService.DownloadPodcast(txtRSSURL.Text.ToString());
+            podcastService.DownloadPodcast(txtRSSURL.Text.ToString(), txtPodcastName.Text.ToString(), cmbKategori.SelectedItem.ToString(), Convert.ToInt32(cmbUppdateringsIntervall.SelectedIndex));
 
 
+
+        }
+
+        private void txtDescription_TextChanged(object sender, EventArgs e)
+        {
 
         }
         //private void ListPodDescription(object sender, EventArgs e)
