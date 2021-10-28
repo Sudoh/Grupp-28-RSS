@@ -19,6 +19,7 @@ namespace DataAccessLayer.Repositories
 
 
             List<Avsnitt> avsnitt = new List<Avsnitt>();
+
             XDocument rssfeedxml = new XDocument();
 
             //XNamespace namespaceName = "http://www.w3.org/2005/Atom";
