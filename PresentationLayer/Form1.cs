@@ -168,7 +168,6 @@ namespace Grupp_28_RSS
 
         private void lvFeed_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             //Sätter några fält till värden som är lagrade om använderaren skulle vilja ändra i feed.
 
             //Gör något bara om något är valt. Ananrs blir det null error utan ifsatsen.
@@ -192,6 +191,7 @@ namespace Grupp_28_RSS
 
                 txtPodcastName.Text = item.SubItems[1].Text;
                 //valdPodcast = lvFeed.Items[1].Text;
+
 
             }
         }
