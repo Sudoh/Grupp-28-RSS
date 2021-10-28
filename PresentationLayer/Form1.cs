@@ -28,6 +28,7 @@ namespace Grupp_28_RSS
         KategoriService kategoriService;
         //AvsnittService avsnittService;
         PodcastService podcastService;
+        private static Validering validator = new Validering();
         public FrmAvsnitt()
         {
             InitializeComponent();
@@ -35,6 +36,7 @@ namespace Grupp_28_RSS
             kategoriService = new KategoriService();
             //avsnittService = new AvsnittService();
             podcastService = new PodcastService();
+            validator = new Validering();
 
         }
 
@@ -89,7 +91,7 @@ namespace Grupp_28_RSS
         private void btnAndraNamnKategori_Click(object sender, EventArgs e)
         {
 
-            if (valdKategori != null && valdKategori != txtNyKategori.Text)
+            if (valdKategori != null)
             {
                 kategoriService.RenameKategori(valdKategori, txtNyKategori.Text);
                 //string nyNamn = txtNyKategori.Text;
@@ -101,7 +103,7 @@ namespace Grupp_28_RSS
 
         private void btnLaggTillKategori_Click(object sender, EventArgs e)
         {
-            if (txtNyKategori.Text != valdKategori)
+            if (txtNyKategori.Text != valdKategori && validator.CheckIfCategoryIsAvailable(txtNyKategori))
             {
                 kategoriService.CreateKategori(txtNyKategori.Text);
                 txtNyKategori.Text = null;
@@ -168,7 +170,6 @@ namespace Grupp_28_RSS
 
         private void lvFeed_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             //Sätter några fält till värden som är lagrade om använderaren skulle vilja ändra i feed.
             FeedFormControllUpdater();
 
@@ -224,6 +225,7 @@ namespace Grupp_28_RSS
 
                 txtPodcastName.Text = item.SubItems[1].Text;
                 //valdPodcast = lvFeed.Items[1].Text;
+
             }
         }
     }

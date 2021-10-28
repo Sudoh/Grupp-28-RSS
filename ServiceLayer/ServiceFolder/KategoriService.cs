@@ -27,7 +27,7 @@ namespace ServiceLayer.ServiceFolder
 
         public void RenameKategori(string oldName, string nyName)
         {
-           
+
             Kategori uppdateradKategori = null;
             int index = kategoriRepository.GetIndex(oldName);
             uppdateradKategori = new Kategori(nyName);
