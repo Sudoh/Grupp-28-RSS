@@ -39,6 +39,7 @@ namespace Grupp_28_RSS
             this.colFeedNamn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colFeedIntervall = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colFeedKategori = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colFeedSenastUppdaterad = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnLaggTillURL = new System.Windows.Forms.Button();
             this.btnUppdateraFeed = new System.Windows.Forms.Button();
             this.btnTaBort = new System.Windows.Forms.Button();
@@ -56,10 +57,9 @@ namespace Grupp_28_RSS
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.lvAvsnitt = new System.Windows.Forms.ListView();
             this.colAvsnittNr = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colAvsnittTitel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.colFeedSenastUppdaterad = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lbxKategorier
@@ -153,6 +153,11 @@ namespace Grupp_28_RSS
             // 
             this.colFeedKategori.Text = "Kategori";
             this.colFeedKategori.Width = 95;
+            // 
+            // colFeedSenastUppdaterad
+            // 
+            this.colFeedSenastUppdaterad.Text = "Senast uppdaterad";
+            this.colFeedSenastUppdaterad.Width = 120;
             // 
             // btnLaggTillURL
             // 
@@ -322,23 +327,23 @@ namespace Grupp_28_RSS
             this.label1.TabIndex = 24;
             this.label1.Text = "Kategori";
             // 
-            // listView1
+            // lvAvsnitt
             // 
-            this.listView1.AllowColumnReorder = true;
-            this.listView1.AllowDrop = true;
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lvAvsnitt.AllowColumnReorder = true;
+            this.lvAvsnitt.AllowDrop = true;
+            this.lvAvsnitt.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colAvsnittNr,
             this.colAvsnittTitel});
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.HideSelection = false;
-            this.listView1.LabelEdit = true;
-            this.listView1.Location = new System.Drawing.Point(37, 360);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(668, 212);
-            this.listView1.TabIndex = 25;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.lvAvsnitt.FullRowSelect = true;
+            this.lvAvsnitt.GridLines = true;
+            this.lvAvsnitt.HideSelection = false;
+            this.lvAvsnitt.LabelEdit = true;
+            this.lvAvsnitt.Location = new System.Drawing.Point(37, 360);
+            this.lvAvsnitt.Name = "lvAvsnitt";
+            this.lvAvsnitt.Size = new System.Drawing.Size(668, 212);
+            this.lvAvsnitt.TabIndex = 25;
+            this.lvAvsnitt.UseCompatibleStateImageBehavior = false;
+            this.lvAvsnitt.View = System.Windows.Forms.View.Details;
             // 
             // colAvsnittNr
             // 
@@ -349,17 +354,12 @@ namespace Grupp_28_RSS
             this.colAvsnittTitel.Text = "Titel";
             this.colAvsnittTitel.Width = 597;
             // 
-            // colFeedSenastUppdaterad
-            // 
-            this.colFeedSenastUppdaterad.Text = "Senast uppdaterad";
-            this.colFeedSenastUppdaterad.Width = 120;
-            // 
             // FrmAvsnitt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1196, 584);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.lvAvsnitt);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -420,7 +420,7 @@ namespace Grupp_28_RSS
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView lvAvsnitt;
         private System.Windows.Forms.ColumnHeader colAvsnittNr;
         private System.Windows.Forms.ColumnHeader colAvsnittTitel;
         private System.Windows.Forms.ColumnHeader colFeedSenastUppdaterad;

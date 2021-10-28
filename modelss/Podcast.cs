@@ -39,6 +39,13 @@ namespace modelss
         {
 
         }
+
+        public List<Avsnitt> DisplayAllaAvsnitt()
+        {
+            return Avsnitt;
+        }
+
+
     }
 
     }

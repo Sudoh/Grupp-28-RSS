@@ -52,7 +52,6 @@ namespace Grupp_28_RSS
         {
 
             lvFeed.BeginUpdate();
-
             lvFeed.Items.Clear();
             foreach (Podcast item in podcastService.GetAllPodcasts())
             {
@@ -171,44 +170,44 @@ namespace Grupp_28_RSS
         private void lvFeed_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Sätter några fält till värden som är lagrade om använderaren skulle vilja ändra i feed.
-            FeedFormControllUpdater();
-
-            SendSelectedFeedToAvsnittHandler();
-
-
-        }
-
-        private void SendSelectedFeedToAvsnittHandler()
-        {
-            var item = lvFeed.SelectedItems[0];
-
-
-
-            valdPodcast = item.SubItems[1].Text;
-
-            //Sätter alla fält till vald podcast för ändring
-            txtPodcastName.Text = item.SubItems[1].Text;
-            valdPodcastNamn = item.SubItems[1].Text;
-
-            cmbUppdateringsIntervall.SelectedIndex = Convert.ToInt32(item.SubItems[2].Text);
-            valdPodcastIntervall = cmbUppdateringsIntervall.SelectedIndex;
-
-            cmbKategori.SelectedIndex = kategoriService.GetKategoriIndex(item.SubItems[3].Text);
-            valdPodcastKategori = cmbKategori.Text;
-
-
-            txtPodcastName.Text = item.SubItems[1].Text;
-        }
-
-        private void FeedFormControllUpdater()
-        {
-            
-
-            //Gör något bara om något är valt. Ananrs blir det null error utan ifsatsen.
             if (lvFeed.SelectedItems.Count > 0)
             {
+                FeedFormControllUpdater(lvFeed.SelectedItems[0]);
+                SendSelectedFeedToAvsnittHandler(lvFeed.SelectedItems[0]);
+            }
 
-                var item = lvFeed.SelectedItems[0];
+
+        }
+
+        private void SendSelectedFeedToAvsnittHandler(ListViewItem item)
+        {
+
+            var avsnitten = podcastService.GetAllAvsnittFromPodcastByName(item.SubItems[1].Text);
+
+            lvAvsnitt.BeginUpdate();
+            lvAvsnitt.Items.Clear();
+
+            int i = 1;
+            foreach (var a in avsnitten)
+            {
+
+                ListViewItem rad = new ListViewItem(i.ToString());
+                rad.SubItems.Add(a.NewsTitel.ToString());
+                lvAvsnitt.Items.Add(rad);
+                i++;
+            }
+
+            lvAvsnitt.EndUpdate();
+            lvAvsnitt.Refresh();
+
+        }
+
+        private void FeedFormControllUpdater(ListViewItem item)
+        {
+            
+            
+            //Gör något bara om något är valt. Ananrs blir det null error utan ifsatsen.
+           
 
                 valdPodcast = item.SubItems[1].Text;
 
@@ -224,9 +223,9 @@ namespace Grupp_28_RSS
 
 
                 txtPodcastName.Text = item.SubItems[1].Text;
-                //valdPodcast = lvFeed.Items[1].Text;
+            
 
-            }
+            
         }
     }
 }

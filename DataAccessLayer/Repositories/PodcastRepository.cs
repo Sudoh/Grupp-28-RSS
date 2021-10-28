@@ -73,7 +73,7 @@ namespace DataAccessLayer.Repositories
 
         public Podcast GetPodcastByName(string name)
         {
-            throw new NotImplementedException();
+            return GetAll().FirstOrDefault(p => p.Namn.Equals(name));
         }
 
         public void SaveChanges()
