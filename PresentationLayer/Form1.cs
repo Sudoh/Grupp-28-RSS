@@ -17,7 +17,8 @@ namespace Grupp_28_RSS
     {
 
         private string valdKategori;
-     
+        private string valdPodcast;
+
         KategoriService kategoriService;
         //AvsnittService avsnittService;
         PodcastService podcastService;
@@ -32,12 +33,31 @@ namespace Grupp_28_RSS
             validator = new Validering();
 
         }
-        
+
         private void FrmAvsnitt_Load(object sender, EventArgs e)
         {
             //Lägg in alla kod som ska köras när formen laddar.
             // MessageBox.Show("Welcome to the show");
             ClearAndReloadKategorieListAfterChange();
+            ClearAndReloadPodcastsListAfterChange();
+        }
+
+        private void ClearAndReloadPodcastsListAfterChange()
+        {
+            lvFeed.Items.Clear();
+            foreach (Podcast item in podcastService.GetAllPodcasts())
+            {
+                if (item != null)
+                {
+                    ListViewItem rad = new ListViewItem(item.AntalAvsnitt.ToString());
+                    rad.SubItems.Add(item.Namn.ToString());
+                    rad.SubItems.Add(item.UppdateringsIntervall.ToString());
+                    rad.SubItems.Add(item.kategori.ToString());
+                    lvFeed.Items.Add(rad);
+
+                }
+            }
+
         }
 
         private void ClearAndReloadKategorieListAfterChange()
@@ -105,8 +125,9 @@ namespace Grupp_28_RSS
 
         private void btnLaggTillURL_Click(object sender, EventArgs e)
         {
-            // https://spelkosmos.se/alla-episoder.rss
+
             podcastService.DownloadPodcast(txtRSSURL.Text.ToString(), txtPodcastName.Text.ToString(), cmbKategori.SelectedItem.ToString(), Convert.ToInt32(cmbUppdateringsIntervall.SelectedIndex));
+            ClearAndReloadPodcastsListAfterChange();
 
 
 
@@ -116,12 +137,32 @@ namespace Grupp_28_RSS
         {
 
         }
-        //private void ListPodDescription(object sender, EventArgs e)
-        //{
-        //    if (lbxAvsnitt.SelectedItems.Count > 0)
-        //    {
-        //        txtDescription.Text = PodcastHandler.updateEpisodeDetails(lbxAvsnitt, podcastListview);
-        //    }
-        //}
+
+        private void btnTaBort_Click(object sender, EventArgs e)
+        {
+            if (lvFeed.SelectedItems != null)
+            {
+                podcastService.DeletPodcast(txtPodcastName.Text);
+                ClearAndReloadKategorieListAfterChange();
+            }
+            ClearAndReloadPodcastsListAfterChange();
+        }
+
+        private void btnUppdateraFeed_Click(object sender, EventArgs e)
+        {
+            ClearAndReloadPodcastsListAfterChange();
+        }
+
+        private void lvFeed_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Gör något bara om något är valt. Ananrs blir det null error utan ifsatsen.
+            if (lvFeed.SelectedItems.Count > 0)
+            {
+
+                var item = lvFeed.SelectedItems[0];
+                txtPodcastName.Text = item.SubItems[1].Text;
+                //valdPodcast = lvFeed.Items[1].Text;
+            }
+        }
     }
 }

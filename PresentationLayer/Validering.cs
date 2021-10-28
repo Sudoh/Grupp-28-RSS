@@ -69,6 +69,7 @@ namespace Grupp_28_RSS
             return result;
         }
 
+
         public bool CheckIfCategoryIsAvailable(TextBox textBox)
         {
             System.Collections.Generic.List<modelss.Kategori> KategorierSomFinns = kategoriService.GetAllKategoris();
@@ -85,6 +86,8 @@ namespace Grupp_28_RSS
             return true;
 
         }
+
+
 
     }
 }
