@@ -30,6 +30,17 @@ namespace ServiceLayer.ServiceFolder
 
         }
 
+        public List<Podcast> GetAllPodcasts()
+        {
+            return podcastRepository.GetAll();
 
+        }
+
+        public void DeletPodcast(string name)
+        {
+
+            int index = podcastRepository.GetIndex(name);
+            podcastRepository.Delete(index);
+        }
     }
 }
