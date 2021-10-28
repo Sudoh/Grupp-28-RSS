@@ -1,26 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using ServiceLayer.ServiceFolder;
+using System;
 using System.Net;
-using DataAccessLayer.Repositories;
-using modelss;
-using ServiceLayer.ServiceFolder;
+using System.Windows.Forms;
 
 
 namespace Grupp_28_RSS
 {
     public class Validering
 
-       
+
     {
-        KategoriService kategoriService;
+       public readonly KategoriService kategoriService;
 
         public Validering()
         {
             kategoriService = new KategoriService();
+
         }
         public bool StringIsEmpty(string input)
         {
@@ -45,7 +40,7 @@ namespace Grupp_28_RSS
             }
             catch (Exception e)
             {
-                
+
                 return false;
             }
             return URLValidering.Length != 0 ? true : false;
@@ -77,7 +72,7 @@ namespace Grupp_28_RSS
 
         public bool CheckIfCategoryIsAvailable(TextBox textBox)
         {
-            var KategorierSomFinns = kategoriService.GetAllKategoris();
+            System.Collections.Generic.List<modelss.Kategori> KategorierSomFinns = kategoriService.GetAllKategoris();
 
             foreach (var kategori in KategorierSomFinns)
             {
@@ -89,6 +84,7 @@ namespace Grupp_28_RSS
 
             }
             return true;
+
         }
 
 

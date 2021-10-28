@@ -28,6 +28,7 @@ namespace Grupp_28_RSS
         KategoriService kategoriService;
         //AvsnittService avsnittService;
         PodcastService podcastService;
+        private static Validering validator = new Validering();
         public FrmAvsnitt()
         {
             InitializeComponent();
@@ -35,9 +36,10 @@ namespace Grupp_28_RSS
             kategoriService = new KategoriService();
             //avsnittService = new AvsnittService();
             podcastService = new PodcastService();
+            validator = new Validering();
 
         }
-        
+
         private void FrmAvsnitt_Load(object sender, EventArgs e)
         {
             //Lägg in alla kod som ska köras när formen laddar.
@@ -66,7 +68,7 @@ namespace Grupp_28_RSS
             }
             lvFeed.EndUpdate();
             lvFeed.Refresh();
-         
+
 
         }
 
@@ -89,7 +91,7 @@ namespace Grupp_28_RSS
         private void btnAndraNamnKategori_Click(object sender, EventArgs e)
         {
 
-            if (valdKategori != null && valdKategori != txtNyKategori.Text)
+            if (valdKategori != null)
             {
                 kategoriService.RenameKategori(valdKategori, txtNyKategori.Text);
                 //string nyNamn = txtNyKategori.Text;
@@ -101,7 +103,7 @@ namespace Grupp_28_RSS
 
         private void btnLaggTillKategori_Click(object sender, EventArgs e)
         {
-            if (txtNyKategori.Text != valdKategori)
+            if (txtNyKategori.Text != valdKategori && validator.CheckIfCategoryIsAvailable(txtNyKategori))
             {
                 kategoriService.CreateKategori(txtNyKategori.Text);
                 txtNyKategori.Text = null;
@@ -135,7 +137,7 @@ namespace Grupp_28_RSS
 
         private void btnLaggTillURL_Click(object sender, EventArgs e)
         {
-           
+
             podcastService.DownloadPodcast(txtRSSURL.Text.ToString(), txtPodcastName.Text.ToString(), cmbKategori.SelectedItem.ToString(), Convert.ToInt32(cmbUppdateringsIntervall.SelectedIndex));
             ClearAndReloadPodcastsListAfterChange();
 
@@ -174,7 +176,7 @@ namespace Grupp_28_RSS
             //Gör något bara om något är valt. Ananrs blir det null error utan ifsatsen.
             if (lvFeed.SelectedItems.Count > 0)
             {
-                
+
                 var item = lvFeed.SelectedItems[0];
 
                 valdPodcast = item.SubItems[1].Text;
