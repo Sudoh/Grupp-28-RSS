@@ -36,6 +36,7 @@ namespace ServiceLayer.ServiceFolder
 
         }
 
+
         public void DeletPodcast(string name)
         {
 
@@ -57,6 +58,14 @@ namespace ServiceLayer.ServiceFolder
             };
 
             podcastRepository.Update(index, uppdateradPodcast);
+
+
+
+        public void DeletPodcast(string name)
+        {
+
+            int index = podcastRepository.GetIndex(name);
+            podcastRepository.Delete(index);
 
         }
     }
