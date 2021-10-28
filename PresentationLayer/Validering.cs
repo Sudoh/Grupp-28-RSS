@@ -74,6 +74,7 @@ namespace Grupp_28_RSS
             return result;
         }
 
+
         public bool CheckIfCategoryIsAvailable(TextBox textBox)
         {
             var KategorierSomFinns = kategoriService.GetAllKategoris();
@@ -89,6 +90,8 @@ namespace Grupp_28_RSS
             }
             return true;
         }
+
+
 
     }
 }
