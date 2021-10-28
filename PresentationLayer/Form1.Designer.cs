@@ -149,6 +149,7 @@ namespace Grupp_28_RSS
             this.lvFeed.TabIndex = 7;
             this.lvFeed.UseCompatibleStateImageBehavior = false;
             this.lvFeed.View = System.Windows.Forms.View.Details;
+            this.lvFeed.SelectedIndexChanged += new System.EventHandler(this.lvFeed_SelectedIndexChanged);
             // 
             // colFeedAvsnitt
             // 
@@ -191,6 +192,7 @@ namespace Grupp_28_RSS
             this.btnUppdateraFeed.TabIndex = 9;
             this.btnUppdateraFeed.Text = "♻";
             this.btnUppdateraFeed.UseVisualStyleBackColor = false;
+            this.btnUppdateraFeed.Click += new System.EventHandler(this.btnUppdateraFeed_Click);
             // 
             // btnTaBort
             // 
@@ -202,6 +204,7 @@ namespace Grupp_28_RSS
             this.btnTaBort.TabIndex = 10;
             this.btnTaBort.Text = "❌";
             this.btnTaBort.UseVisualStyleBackColor = false;
+            this.btnTaBort.Click += new System.EventHandler(this.btnTaBort_Click);
             // 
             // btnAndraNamnKategori
             // 
