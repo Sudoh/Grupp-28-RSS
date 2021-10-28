@@ -5,12 +5,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
+using DataAccessLayer.Repositories;
+using modelss;
+using ServiceLayer.ServiceFolder;
 
 
 namespace Grupp_28_RSS
 {
-    class Validering
+    public class Validering
+
+       
     {
+        KategoriService kategoriService;
+
+        public Validering()
+        {
+            kategoriService = new KategoriService();
+        }
         public bool StringIsEmpty(string input)
         {
             bool result = false;
@@ -62,6 +73,25 @@ namespace Grupp_28_RSS
 
             return result;
         }
+
+
+        public bool CheckIfCategoryIsAvailable(TextBox textBox)
+        {
+            var KategorierSomFinns = kategoriService.GetAllKategoris();
+
+            foreach (var kategori in KategorierSomFinns)
+            {
+                if (textBox.Text == kategori.ToString())
+                {
+                    MessageBox.Show("Det finns redan en kategori med det namnet");
+                    return false;
+                }
+
+            }
+            return true;
+        }
+
+
 
     }
 }
