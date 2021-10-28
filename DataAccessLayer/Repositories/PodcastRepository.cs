@@ -44,10 +44,12 @@ namespace DataAccessLayer.Repositories
 
         public void Delete(int index)
         {
-            throw new NotImplementedException();
+            listOfPodcasts.RemoveAt(index);
+            SaveChanges();
+
         }
 
-         public List<Podcast> GetAll()
+        public List<Podcast> GetAll()
         {
             List<Podcast> listOfPodcasts = new List<Podcast>();
 
@@ -66,7 +68,7 @@ namespace DataAccessLayer.Repositories
 
         public int GetIndex(string name)
         {
-            throw new NotImplementedException();
+           return GetAll().FindIndex(e => e.Namn.Equals(name));
         }
 
         public Podcast GetPodcastByName(string name)
@@ -82,7 +84,12 @@ namespace DataAccessLayer.Repositories
 
         public void Update(int index, Podcast entity)
         {
-                
+            listOfPodcasts[index].Namn = entity.Namn.ToString();
+            listOfPodcasts[index].kategori = entity.kategori.ToString();
+            listOfPodcasts[index].UppdateringsIntervall = entity.UppdateringsIntervall;
+
+
+            SaveChanges();
         }
     }
 }

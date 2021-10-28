@@ -42,5 +42,22 @@ namespace ServiceLayer.ServiceFolder
             int index = podcastRepository.GetIndex(name);
             podcastRepository.Delete(index);
         }
+
+        public void ChangePodcast(string oldName, string newName, int oldIntervall, int newIntervall, string oldKategori, string newKategori)
+        {
+
+            Podcast uppdateradPodcast;
+            int index = podcastRepository.GetIndex(oldName);
+
+            uppdateradPodcast = new Podcast
+            {
+                Namn = newName,
+                kategori = newKategori,
+                UppdateringsIntervall = newIntervall
+            };
+
+            podcastRepository.Update(index, uppdateradPodcast);
+
+        }
     }
 }
