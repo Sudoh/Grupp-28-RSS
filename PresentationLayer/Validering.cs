@@ -39,6 +39,18 @@ namespace Grupp_28_RSS
             }
             return URLValidering.Length != 0 ? true : false;
         }
-       
+
+        public bool ComboBoxHasSelectedValue(ComboBox comboBox)
+        {
+            bool result = true;
+
+            if (!(comboBox.SelectedIndex > -1))
+            {
+                result = false;
+            }
+
+            return result;
+        }
+
     }
 }
