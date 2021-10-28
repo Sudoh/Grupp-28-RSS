@@ -37,7 +37,7 @@ namespace Grupp_28_RSS
             podcastService = new PodcastService();
 
         }
-        
+
         private void FrmAvsnitt_Load(object sender, EventArgs e)
         {
             //Lägg in alla kod som ska köras när formen laddar.
@@ -66,7 +66,7 @@ namespace Grupp_28_RSS
             }
             lvFeed.EndUpdate();
             lvFeed.Refresh();
-         
+
 
         }
 
@@ -135,7 +135,7 @@ namespace Grupp_28_RSS
 
         private void btnLaggTillURL_Click(object sender, EventArgs e)
         {
-           
+
             podcastService.DownloadPodcast(txtRSSURL.Text.ToString(), txtPodcastName.Text.ToString(), cmbKategori.SelectedItem.ToString(), Convert.ToInt32(cmbUppdateringsIntervall.SelectedIndex));
             ClearAndReloadPodcastsListAfterChange();
 
@@ -170,11 +170,43 @@ namespace Grupp_28_RSS
         {
 
             //Sätter några fält till värden som är lagrade om använderaren skulle vilja ändra i feed.
+            FeedFormControllUpdater();
+
+            SendSelectedFeedToAvsnittHandler();
+
+
+        }
+
+        private void SendSelectedFeedToAvsnittHandler()
+        {
+            var item = lvFeed.SelectedItems[0];
+
+
+
+            valdPodcast = item.SubItems[1].Text;
+
+            //Sätter alla fält till vald podcast för ändring
+            txtPodcastName.Text = item.SubItems[1].Text;
+            valdPodcastNamn = item.SubItems[1].Text;
+
+            cmbUppdateringsIntervall.SelectedIndex = Convert.ToInt32(item.SubItems[2].Text);
+            valdPodcastIntervall = cmbUppdateringsIntervall.SelectedIndex;
+
+            cmbKategori.SelectedIndex = kategoriService.GetKategoriIndex(item.SubItems[3].Text);
+            valdPodcastKategori = cmbKategori.Text;
+
+
+            txtPodcastName.Text = item.SubItems[1].Text;
+        }
+
+        private void FeedFormControllUpdater()
+        {
+            
 
             //Gör något bara om något är valt. Ananrs blir det null error utan ifsatsen.
             if (lvFeed.SelectedItems.Count > 0)
             {
-                
+
                 var item = lvFeed.SelectedItems[0];
 
                 valdPodcast = item.SubItems[1].Text;
@@ -192,7 +224,6 @@ namespace Grupp_28_RSS
 
                 txtPodcastName.Text = item.SubItems[1].Text;
                 //valdPodcast = lvFeed.Items[1].Text;
-
             }
         }
     }
