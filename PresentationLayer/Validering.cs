@@ -51,6 +51,17 @@ namespace Grupp_28_RSS
 
             return result;
         }
+        public bool TextBoxNotEmptyOrNull(TextBox textBox)
+        {
+            bool result = true;
+
+            if (!String.IsNullOrEmpty(textBox.Text))
+            {
+                result = false;
+            }
+
+            return result;
+        }
 
     }
 }
