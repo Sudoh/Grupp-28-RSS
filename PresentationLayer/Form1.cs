@@ -17,10 +17,11 @@ namespace Grupp_28_RSS
     {
 
         private string valdKategori;
-
+     
         KategoriService kategoriService;
         //AvsnittService avsnittService;
         PodcastService podcastService;
+        private static Validering validator = new Validering();
         public FrmAvsnitt()
         {
             InitializeComponent();
@@ -28,6 +29,7 @@ namespace Grupp_28_RSS
             kategoriService = new KategoriService();
             //avsnittService = new AvsnittService();
             podcastService = new PodcastService();
+            validator = new Validering();
 
         }
         
@@ -57,7 +59,7 @@ namespace Grupp_28_RSS
         private void btnAndraNamnKategori_Click(object sender, EventArgs e)
         {
 
-            if (valdKategori != null && valdKategori != txtNyKategori.Text)
+            if (valdKategori != null)
             {
                 kategoriService.RenameKategori(valdKategori, txtNyKategori.Text);
                 //string nyNamn = txtNyKategori.Text;
@@ -69,7 +71,7 @@ namespace Grupp_28_RSS
 
         private void btnLaggTillKategori_Click(object sender, EventArgs e)
         {
-            if (txtNyKategori.Text != valdKategori)
+            if (txtNyKategori.Text != valdKategori && validator.CheckIfCategoryIsAvailable(txtNyKategori))
             {
                 kategoriService.CreateKategori(txtNyKategori.Text);
                 txtNyKategori.Text = null;

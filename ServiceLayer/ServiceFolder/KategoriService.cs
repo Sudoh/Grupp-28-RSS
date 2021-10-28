@@ -44,5 +44,7 @@ namespace ServiceLayer.ServiceFolder
         {
             return kategoriRepository.GetAll();
         }
+
+        
     }
 }
