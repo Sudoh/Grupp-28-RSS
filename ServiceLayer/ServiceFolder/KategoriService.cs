@@ -44,5 +44,12 @@ namespace ServiceLayer.ServiceFolder
         {
             return kategoriRepository.GetAll();
         }
+
+        public int GetKategoriIndex(string name)
+        {
+            int index = kategoriRepository.GetIndex(name);
+
+            return index;
+        }
     }
 }
