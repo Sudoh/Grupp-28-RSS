@@ -186,6 +186,7 @@ private void ClearNewsTextAfterChange()
             {
                 FeedFormControllUpdater(lvFeed.SelectedItems[0]);
                 SendSelectedFeedToAvsnittHandler(lvFeed.SelectedItems[0]);
+                ClearNewsTextAfterChange();
             }
 
 
