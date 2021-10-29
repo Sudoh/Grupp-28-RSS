@@ -31,5 +31,15 @@ namespace modelss
             NewsLink = "";
             NewsDescription = "";
         }
+
+        public object ToList()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string DisplayNews()
+        {
+            return NewsDescription;
+        }
     }
 }

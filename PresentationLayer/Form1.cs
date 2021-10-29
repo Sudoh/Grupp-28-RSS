@@ -18,6 +18,7 @@ namespace Grupp_28_RSS
 
         private string valdKategori;
         private string valdPodcast;
+        private List<Avsnitt> valdAvsnitt;
 
         private string valdPodcastNamn;
         private string valdPodcastKategori;
@@ -26,15 +27,17 @@ namespace Grupp_28_RSS
 
 
         KategoriService kategoriService;
-        //AvsnittService avsnittService;
+        AvsnittService avsnittService;
         PodcastService podcastService;
+
+
         private static Validering validator = new Validering();
         public FrmAvsnitt()
         {
             InitializeComponent();
             valdKategori = null;
             kategoriService = new KategoriService();
-            //avsnittService = new AvsnittService();
+            avsnittService = new AvsnittService();
             podcastService = new PodcastService();
             validator = new Validering();
 
@@ -68,7 +71,15 @@ namespace Grupp_28_RSS
             lvFeed.EndUpdate();
             lvFeed.Refresh();
 
+            ClearAvsnittList();
 
+
+        }
+
+        private void ClearAvsnittList()
+        {
+            lvAvsnitt.Items.Clear();
+            //lvAvsnitt.Refresh();
         }
 
         private void ClearAndReloadKategorieListAfterChange()
@@ -144,9 +155,9 @@ namespace Grupp_28_RSS
 
         }
 
-        private void txtDescription_TextChanged(object sender, EventArgs e)
+private void ClearNewsTextAfterChange()
         {
-
+            txtDescription.Text = "";
         }
 
         private void btnTaBort_Click(object sender, EventArgs e)
@@ -157,6 +168,7 @@ namespace Grupp_28_RSS
                 ClearAndReloadKategorieListAfterChange();
             }
             ClearAndReloadPodcastsListAfterChange();
+            ClearNewsTextAfterChange();
         }
 
         private void btnUppdateraFeed_Click(object sender, EventArgs e)
@@ -182,13 +194,14 @@ namespace Grupp_28_RSS
         private void SendSelectedFeedToAvsnittHandler(ListViewItem item)
         {
 
-            var avsnitten = podcastService.GetAllAvsnittFromPodcastByName(item.SubItems[1].Text);
+            valdAvsnitt = podcastService.GetAllAvsnittFromPodcastByName(item.SubItems[1].Text);
+
 
             lvAvsnitt.BeginUpdate();
             lvAvsnitt.Items.Clear();
 
             int i = 1;
-            foreach (var a in avsnitten)
+            foreach (var a in valdAvsnitt)
             {
 
                 ListViewItem rad = new ListViewItem(i.ToString());
@@ -200,6 +213,21 @@ namespace Grupp_28_RSS
             lvAvsnitt.EndUpdate();
             lvAvsnitt.Refresh();
 
+        }
+
+        public void GetOneAvsnittDescription(ListViewItem item)
+        {
+
+            string titel = item.SubItems[1].Text;
+
+        
+
+            var nyhet = from n in valdAvsnitt
+                           where n.NewsTitel == titel
+                           select n.NewsDescription.ToString();
+
+
+            txtDescription.Text = nyhet.FirstOrDefault();
         }
 
         private void FeedFormControllUpdater(ListViewItem item)
@@ -226,6 +254,15 @@ namespace Grupp_28_RSS
             
 
             
+        }
+
+        private void lvAvsnitt_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lvAvsnitt.SelectedItems.Count > 0)
+            {
+                GetOneAvsnittDescription(lvAvsnitt.SelectedItems[0]);
+
+            }
         }
     }
 }
