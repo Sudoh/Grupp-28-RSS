@@ -73,7 +73,7 @@ namespace DataAccessLayer.Repositories
 
         public Podcast GetPodcastByName(string name)
         {
-            throw new NotImplementedException();
+            return GetAll().FirstOrDefault(p => p.Namn.Equals(name));
         }
 
         public void SaveChanges()
@@ -87,7 +87,6 @@ namespace DataAccessLayer.Repositories
             listOfPodcasts[index].Namn = entity.Namn.ToString();
             listOfPodcasts[index].kategori = entity.kategori.ToString();
             listOfPodcasts[index].UppdateringsIntervall = entity.UppdateringsIntervall;
-
 
             SaveChanges();
         }

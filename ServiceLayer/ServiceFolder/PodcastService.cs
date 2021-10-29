@@ -36,6 +36,12 @@ namespace ServiceLayer.ServiceFolder
 
         }
 
+        public List<Avsnitt> GetAllAvsnittFromPodcastByName(string name)
+        {
+
+         return podcastRepository.GetPodcastByName(name).DisplayAllaAvsnitt();
+   
+        }
 
         public void DeletPodcast(string name)
         {

@@ -18,6 +18,7 @@ namespace Grupp_28_RSS
 
         private string valdKategori;
         private string valdPodcast;
+        private List<Avsnitt> valdAvsnitt;
 
         private string valdPodcastNamn;
         private string valdPodcastKategori;
@@ -26,15 +27,17 @@ namespace Grupp_28_RSS
 
 
         KategoriService kategoriService;
-        //AvsnittService avsnittService;
+        AvsnittService avsnittService;
         PodcastService podcastService;
+
+
         private static Validering validator = new Validering();
         public FrmAvsnitt()
         {
             InitializeComponent();
             valdKategori = null;
             kategoriService = new KategoriService();
-            //avsnittService = new AvsnittService();
+            avsnittService = new AvsnittService();
             podcastService = new PodcastService();
             validator = new Validering();
 
@@ -52,7 +55,6 @@ namespace Grupp_28_RSS
         {
 
             lvFeed.BeginUpdate();
-
             lvFeed.Items.Clear();
             foreach (Podcast item in podcastService.GetAllPodcasts())
             {
@@ -69,7 +71,15 @@ namespace Grupp_28_RSS
             lvFeed.EndUpdate();
             lvFeed.Refresh();
 
+            ClearAvsnittList();
 
+
+        }
+
+        private void ClearAvsnittList()
+        {
+            lvAvsnitt.Items.Clear();
+            //lvAvsnitt.Refresh();
         }
 
         private void ClearAndReloadKategorieListAfterChange()
@@ -145,9 +155,9 @@ namespace Grupp_28_RSS
 
         }
 
-        private void txtDescription_TextChanged(object sender, EventArgs e)
+private void ClearNewsTextAfterChange()
         {
-
+            txtDescription.Text = "";
         }
 
         private void btnTaBort_Click(object sender, EventArgs e)
@@ -158,6 +168,7 @@ namespace Grupp_28_RSS
                 ClearAndReloadKategorieListAfterChange();
             }
             ClearAndReloadPodcastsListAfterChange();
+            ClearNewsTextAfterChange();
         }
 
         private void btnUppdateraFeed_Click(object sender, EventArgs e)
@@ -171,12 +182,60 @@ namespace Grupp_28_RSS
         private void lvFeed_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Sätter några fält till värden som är lagrade om använderaren skulle vilja ändra i feed.
-
-            //Gör något bara om något är valt. Ananrs blir det null error utan ifsatsen.
             if (lvFeed.SelectedItems.Count > 0)
             {
+                FeedFormControllUpdater(lvFeed.SelectedItems[0]);
+                SendSelectedFeedToAvsnittHandler(lvFeed.SelectedItems[0]);
+            }
 
-                var item = lvFeed.SelectedItems[0];
+
+        }
+
+        private void SendSelectedFeedToAvsnittHandler(ListViewItem item)
+        {
+
+            valdAvsnitt = podcastService.GetAllAvsnittFromPodcastByName(item.SubItems[1].Text);
+
+
+            lvAvsnitt.BeginUpdate();
+            lvAvsnitt.Items.Clear();
+
+            int i = 1;
+            foreach (var a in valdAvsnitt)
+            {
+
+                ListViewItem rad = new ListViewItem(i.ToString());
+                rad.SubItems.Add(a.NewsTitel.ToString());
+                lvAvsnitt.Items.Add(rad);
+                i++;
+            }
+
+            lvAvsnitt.EndUpdate();
+            lvAvsnitt.Refresh();
+
+        }
+
+        public void GetOneAvsnittDescription(ListViewItem item)
+        {
+
+            string titel = item.SubItems[1].Text;
+
+        
+
+            var nyhet = from n in valdAvsnitt
+                           where n.NewsTitel == titel
+                           select n.NewsDescription.ToString();
+
+
+            txtDescription.Text = nyhet.FirstOrDefault();
+        }
+
+        private void FeedFormControllUpdater(ListViewItem item)
+        {
+            
+            
+            //Gör något bara om något är valt. Ananrs blir det null error utan ifsatsen.
+           
 
                 valdPodcast = item.SubItems[1].Text;
 
@@ -192,8 +251,16 @@ namespace Grupp_28_RSS
 
 
                 txtPodcastName.Text = item.SubItems[1].Text;
-                //valdPodcast = lvFeed.Items[1].Text;
+            
 
+            
+        }
+
+        private void lvAvsnitt_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lvAvsnitt.SelectedItems.Count > 0)
+            {
+                GetOneAvsnittDescription(lvAvsnitt.SelectedItems[0]);
 
             }
         }
