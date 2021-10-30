@@ -21,6 +21,8 @@ namespace modelss
         public int AntalAvsnitt { get; set; }
 
         //public Kategori kategori { get; set; }
+
+        //Ändrar om till att kategori sparas som kategori objekt för att komma index.
         public string kategori { get; set; }
 
         public int UppdateringsIntervall { get; set; }

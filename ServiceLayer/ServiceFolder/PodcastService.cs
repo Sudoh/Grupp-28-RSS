@@ -67,5 +67,10 @@ namespace ServiceLayer.ServiceFolder
 
         }
 
+        public void UpdatePodcasts(string oldkat, string newKat)
+        {
+            podcastRepository.UpdateAllPodcastKategori(oldkat, newKat);
+        }
+
     }
 }
