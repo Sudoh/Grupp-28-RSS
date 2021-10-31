@@ -73,7 +73,6 @@ namespace Grupp_28_RSS
             this.lbxKategorier.Location = new System.Drawing.Point(889, 93);
             this.lbxKategorier.Name = "lbxKategorier";
             this.lbxKategorier.Size = new System.Drawing.Size(252, 173);
-            this.lbxKategorier.Sorted = true;
             this.lbxKategorier.TabIndex = 0;
             this.lbxKategorier.SelectedIndexChanged += new System.EventHandler(this.lbxKategorier_SelectedIndexChanged);
             // 

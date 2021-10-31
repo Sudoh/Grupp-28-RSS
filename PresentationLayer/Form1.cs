@@ -114,6 +114,7 @@ namespace Grupp_28_RSS
         {
 
             lbxKategorier.Items.Clear();
+            lbxKategorier.Items.Add("Visa Alla Podcasts");
             cmbKategori.Text = "";
             cmbKategori.Items.Clear();
 
@@ -179,10 +180,20 @@ namespace Grupp_28_RSS
         private void ShowOnlySelectedFeedsByKategori(string kategori)
         {
             var listOfPodcasts = podcastService.GetAllPodcasts();
+            List<Podcast> kategoriPoddar;
 
-            List<Podcast> kategoriPoddar = (from pod in listOfPodcasts
-                                 where pod.kategori == kategori
-                                 select pod).ToList();
+            if (lbxKategorier.SelectedIndex == 0)
+            {
+                kategoriPoddar = listOfPodcasts;
+            }
+            else
+            {
+                kategoriPoddar = (from pod in listOfPodcasts
+                                                where pod.kategori == kategori
+                                                select pod).ToList();
+            }
+            
+       
 
             ClearAndReloadPodcastsListAfterChange(kategoriPoddar);
         }
