@@ -67,7 +67,8 @@ namespace ServiceLayer.ServiceFolder
             {
                 Namn = newName,
                 kategori = newKategori,
-                UppdateringsIntervall = newIntervall
+                UppdateringsIntervall = newIntervall,
+                datumTillaggd = DateTime.Now
             };
 
             podcastRepository.Update(index, uppdateradPodcast);
