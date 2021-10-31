@@ -8,44 +8,30 @@ using modelss;
 
 namespace DataAccessLayer.Repositories
 {
-   
-    
-
+  
     public class AvsnittRepository
     {
-
        
-        SerializerForPodcast dataManager;
-        List<Podcast> listOfPodcast;
+        List<Avsnitt> listOfAvsnitt;
+
         public AvsnittRepository()
         {
-            dataManager = new SerializerForPodcast();
-            listOfPodcast = new List<Podcast>();
-            listOfPodcast = GetAll();
+             listOfAvsnitt = new List<Avsnitt>();
+            listOfAvsnitt = GetAll();
         }
+
         
-        public List<Podcast> GetAll()
+        public Avsnitt GetTheNewsByIndex(string namn)
         {
-            List<Podcast> listOfPodcasts = new List<Podcast>();
 
-            try
-            {
-                listOfPodcasts = dataManager.Deserialize();
-            }
-            catch (Exception)
-            {
-
-
-            }
-
-            return listOfPodcasts;
+            return GetAll().FirstOrDefault(p => p.NewsTitel.Equals(namn));
 
         }
 
-
-
-
-
+        public List<Avsnitt> GetAll()
+        {
+            return listOfAvsnitt;
+        }
 
 
     }

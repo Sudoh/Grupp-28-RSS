@@ -6,43 +6,22 @@ using System.Threading.Tasks;
 using DataAccessLayer.Repositories;
 using modelss;
 
-
-
 namespace ServiceLayer.ServiceFolder
 {
     
     public class AvsnittService
-
     {
-        private readonly AvsnittRepository AvsnittRepo;
+        AvsnittRepository AvsnittRepository;
 
         public AvsnittService()
         {
-            AvsnittRepo = new AvsnittRepository();
+            AvsnittRepository = new AvsnittRepository();
         }
 
 
-        //static public string updateEpisodeDetails(ListView episodeListview, ListView podcastListview)
-        //{
-
-
-        //    var episodeInfo = getPodcast(podcastListview.SelectedItems[0].Text).EpisodeList.ElementAt(episodeListview.SelectedItems[0].Index);
-        //    return episodeInfo.Description + " \n" + episodeInfo.EpisodeLink;
-
-        //}
-
-        public List<Podcast> GetAllPodcasts()
+        public string GetAvsnitt(string namn)
         {
-            return AvsnittRepo.GetAll();
+            return AvsnittRepository.GetTheNewsByIndex(namn).NewsDescription.ToString();
         }
-        //static public string updateEpisodeDetails(ListView episodeListview, ListView podcastListview)
-        //{
-
-
-        //    var episodeInfo = getPodcast(podcastListview.SelectedItems[0].Text).EpisodeList.ElementAt(episodeListview.SelectedItems[0].Index);
-        //    return episodeInfo.Description + " \n" + episodeInfo.EpisodeLink;
-
-
-        //}
     }
 }

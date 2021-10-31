@@ -21,11 +21,15 @@ namespace modelss
         public int AntalAvsnitt { get; set; }
 
         //public Kategori kategori { get; set; }
+
+        //Ändrar om till att kategori sparas som kategori objekt för att komma index.
         public string kategori { get; set; }
 
         public int UppdateringsIntervall { get; set; }
 
-        public Podcast(string namn, string kategori, string url, int antalAvsnitt, int uppdateringsIntervall, List<Avsnitt> avsnitt)
+        public DateTime datumTillaggd { get; set; }
+
+        public Podcast(string namn, string kategori, string url, int antalAvsnitt, int uppdateringsIntervall, List<Avsnitt> avsnitt, DateTime dateTime)
         {
             Namn = namn;
             this.kategori = kategori;
@@ -33,12 +37,20 @@ namespace modelss
             UppdateringsIntervall = uppdateringsIntervall;
             AntalAvsnitt = antalAvsnitt;
             Avsnitt = avsnitt;
+            datumTillaggd = dateTime;
+
         }
 
         public Podcast()
         {
 
         }
+
+        public List<Avsnitt> DisplayAllaAvsnitt()
+        {
+            return Avsnitt;
+        }
+
     }
 
     }

@@ -48,7 +48,7 @@ namespace DataAccessLayer.Repositories
             }
             catch (Exception)
             {
-
+                
             
             }
 
@@ -79,8 +79,6 @@ namespace DataAccessLayer.Repositories
             //Skicka till serializer
             dataManager.Serialize(listOfKategories);
         }
-
-
 
     }
 

@@ -20,7 +20,7 @@ namespace ServiceLayer.ServiceFolder
         }
 
 
-        public void DownloadPodcast(string url, string namn, string kategori, int uppdateringsFrekvens)
+        public void DownloadPodcast(string url, string namn, string kategori, int uppdateringsFrekvens, DateTime dateTime)
         {
 
             Podcast podcast = new Podcast();
@@ -28,7 +28,14 @@ namespace ServiceLayer.ServiceFolder
             podcast.Namn = namn;
             podcast.kategori = kategori;
             podcast.UppdateringsIntervall = uppdateringsFrekvens;
+            podcast.datumTillaggd = dateTime;
             podcastRepository.Create(podcast);
+
+        }
+
+        public async Task DownloadPodcastAsync(string url, string namn, string kategori, int uppdateringsFrekvens)
+        {
+            await Task.Run(() => DownloadPodcast(url, namn, kategori, uppdateringsFrekvens, DateTime.Now));
 
         }
 
@@ -38,6 +45,12 @@ namespace ServiceLayer.ServiceFolder
 
         }
 
+        public List<Avsnitt> GetAllAvsnittFromPodcastByName(string name)
+        {
+
+         return podcastRepository.GetPodcastByName(name).DisplayAllaAvsnitt();
+   
+        }
 
         public void DeletPodcast(string name)
         {
@@ -56,7 +69,8 @@ namespace ServiceLayer.ServiceFolder
             {
                 Namn = newName,
                 kategori = newKategori,
-                UppdateringsIntervall = newIntervall
+                UppdateringsIntervall = newIntervall,
+                datumTillaggd = DateTime.Now
             };
 
             podcastRepository.Update(index, uppdateradPodcast);
@@ -65,6 +79,11 @@ namespace ServiceLayer.ServiceFolder
         public async Task UpdateAllPodcasts(List<Podcast> podcasts)
         {
             await podcastRepositoryn.UpdateAll(podcasts);
+        }
+
+        public void UpdatePodcasts(string oldkat, string newKat)
+        {
+            podcastRepository.UpdateAllPodcastKategori(oldkat, newKat);
         }
 
     }

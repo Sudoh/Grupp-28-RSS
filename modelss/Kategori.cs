@@ -15,12 +15,14 @@ namespace modelss
         public Kategori(string kategoriNamn)
         {
             KategoriNamn = kategoriNamn;
+
         }
 
         //Tom kontruktor - för att klara krav om fler konstruktörer.
         public Kategori()
         {
             KategoriNamn = "";
+
         }
     }
 }

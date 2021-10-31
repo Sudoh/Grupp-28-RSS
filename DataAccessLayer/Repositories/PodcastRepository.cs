@@ -34,7 +34,8 @@ namespace DataAccessLayer.Repositories
                 kategori = entity.kategori,
                 Namn = entity.Namn,
                 UppdateringsIntervall = entity.UppdateringsIntervall,
-                URL = entity.URL
+                URL = entity.URL,
+                datumTillaggd = entity.datumTillaggd
 
             };
             listOfPodcasts.Add(podcast);
@@ -73,7 +74,7 @@ namespace DataAccessLayer.Repositories
 
         public Podcast GetPodcastByName(string name)
         {
-            throw new NotImplementedException();
+            return GetAll().FirstOrDefault(p => p.Namn.Equals(name));
         }
 
         public void SaveChanges()
@@ -85,10 +86,19 @@ namespace DataAccessLayer.Repositories
         public void Update(int index, Podcast entity)
         {
             listOfPodcasts[index].Namn = entity.Namn.ToString();
-            listOfPodcasts[index].kategori = entity.kategori.ToString();
+            listOfPodcasts[index].kategori = entity.kategori;
             listOfPodcasts[index].UppdateringsIntervall = entity.UppdateringsIntervall;
+            listOfPodcasts[index].datumTillaggd = entity.datumTillaggd;
 
+            SaveChanges();
+        }
 
+        public void UpdateAllPodcastKategori(string oldKategoriName, string newKategoriName)
+        {
+            foreach (var  podcast in listOfPodcasts.Where(podcast => podcast.kategori.Equals(oldKategoriName)))
+            {
+                podcast.kategori = newKategoriName;
+            }
             SaveChanges();
         }
 

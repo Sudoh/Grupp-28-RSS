@@ -20,14 +20,22 @@ namespace Grupp_28_RSS
 
         private string valdKategori;
         private string valdPodcast;
+        private List<Avsnitt> valdAvsnitt;
 
         private string valdPodcastNamn;
-        private string valdPodcastKategori;
+        private int valdPodcastKategori;
         private int valdPodcastIntervall;
         private bool Timerboolean = true;
         KategoriService kategoriService;
+
         //AvsnittService avsnittService;
         private PodcastService podcastService;
+
+        AvsnittService avsnittService;
+        PodcastService podcastService;
+
+
+
         private static Validering validator = new Validering();
         private Timer timer;
         private readonly List<List<Podcast>> lista = new List<List<Podcast>>();
@@ -40,7 +48,7 @@ namespace Grupp_28_RSS
             InitializeComponent();
             valdKategori = null;
             kategoriService = new KategoriService();
-            //avsnittService = new AvsnittService();
+            avsnittService = new AvsnittService();
             podcastService = new PodcastService();
             validator = new Validering();
             PodcastTimer();
@@ -51,6 +59,14 @@ namespace Grupp_28_RSS
         {
             //Lägg in alla kod som ska köras när formen laddar.
             // MessageBox.Show("Welcome to the show");
+            
+            //Hämta podcast.url och lägg till dem i en task för async downloader. 
+            foreach (var podcast in podcastService.GetAllPodcasts())
+            {
+                txtDescription.Text += $"Url: {podcast.URL} med uppdateringsfrekvens {podcast.UppdateringsIntervall}\r\n";
+            }
+
+
             ClearAndReloadKategorieListAfterChange();
             ClearAndReloadPodcastsListAfterChange();
         }
@@ -58,8 +74,11 @@ namespace Grupp_28_RSS
         private void ClearAndReloadPodcastsListAfterChange()
         {
 
-            lvFeed.BeginUpdate();
+            //Uppdatera podcast XML för att ta med senaste ändringar. 
+            //UpdatePodcastXMLToLatest();
 
+
+            lvFeed.BeginUpdate();
             lvFeed.Items.Clear();
             foreach (Podcast item in podcastService.GetAllPodcasts())
             {
@@ -69,6 +88,7 @@ namespace Grupp_28_RSS
                     rad.SubItems.Add(item.Namn.ToString());
                     rad.SubItems.Add(item.UppdateringsIntervall.ToString());
                     rad.SubItems.Add(item.kategori.ToString());
+                    rad.SubItems.Add(item.datumTillaggd.ToString());
                     lvFeed.Items.Add(rad);
 
                 }
@@ -76,7 +96,30 @@ namespace Grupp_28_RSS
             lvFeed.EndUpdate();
             lvFeed.Refresh();
 
+            ClearAvsnittList();
+        }
 
+
+
+        private void UpdatePodcastXMLToLatest()
+        {
+
+            //Om podcast behöver uppdateras. Tid senast uppdaterad - tid nu >= intervall.
+            if (true)
+            {
+                for (int i = 0; i < lvFeed.Items.Count; i++)
+                {
+
+
+                }
+            }
+
+        }
+
+        private void ClearAvsnittList()
+        {
+            lvAvsnitt.Items.Clear();
+            //lvAvsnitt.Refresh();
         }
 
         private void ClearAndReloadKategorieListAfterChange()
@@ -85,6 +128,7 @@ namespace Grupp_28_RSS
             lbxKategorier.Items.Clear();
             cmbKategori.Text = "";
             cmbKategori.Items.Clear();
+
             foreach (Kategori item in kategoriService.GetAllKategoris())
             {
                 if (item != null)
@@ -101,9 +145,11 @@ namespace Grupp_28_RSS
             if (valdKategori != null)
             {
                 kategoriService.RenameKategori(valdKategori, txtNyKategori.Text);
+                podcastService.UpdatePodcasts(valdKategori, txtNyKategori.Text);
                 //string nyNamn = txtNyKategori.Text;
                 //kategoriService.RenameKategori();
-                ClearAndReloadKategorieListAfterChange();
+              ClearAndReloadKategorieListAfterChange();
+              ClearAndReloadPodcastsListAfterChange();
             }
 
         }
@@ -142,19 +188,22 @@ namespace Grupp_28_RSS
 
         }
 
-        private void btnLaggTillURL_Click(object sender, EventArgs e)
+        private async void btnLaggTillURL_Click(object sender, EventArgs e)
         {
 
-            podcastService.DownloadPodcast(txtRSSURL.Text.ToString(), txtPodcastName.Text.ToString(), cmbKategori.SelectedItem.ToString(), Convert.ToInt32(cmbUppdateringsIntervall.SelectedIndex));
+            //IF sats för att kolla om namn som läggs till inte är en dubblett. 
+            //Valt att använda ASYNC när vi lägger till en podcast ifall det skulle vara en stor podcast som "hänger" programmet. 
+
+            await podcastService.DownloadPodcastAsync(txtRSSURL.Text.ToString(), txtPodcastName.Text.ToString(), cmbKategori.SelectedItem.ToString(), Convert.ToInt32(cmbUppdateringsIntervall.SelectedIndex));
             ClearAndReloadPodcastsListAfterChange();
 
 
 
         }
 
-        private void txtDescription_TextChanged(object sender, EventArgs e)
+private void ClearNewsTextAfterChange()
         {
-
+            txtDescription.Text = "";
         }
 
         private void btnTaBort_Click(object sender, EventArgs e)
@@ -165,11 +214,12 @@ namespace Grupp_28_RSS
                 ClearAndReloadKategorieListAfterChange();
             }
             ClearAndReloadPodcastsListAfterChange();
+            ClearNewsTextAfterChange();
         }
 
         private void btnUppdateraFeed_Click(object sender, EventArgs e)
         {
-            podcastService.ChangePodcast(valdPodcastNamn, txtPodcastName.Text, valdPodcastIntervall, cmbUppdateringsIntervall.SelectedIndex, valdPodcastKategori, cmbKategori.SelectedItem.ToString());
+            podcastService.ChangePodcast(valdPodcastNamn, txtPodcastName.Text, valdPodcastIntervall, cmbUppdateringsIntervall.SelectedIndex, lvFeed.SelectedItems[0].SubItems[3].Text, cmbKategori.SelectedItem.ToString());
 
 
             ClearAndReloadPodcastsListAfterChange();
@@ -177,13 +227,67 @@ namespace Grupp_28_RSS
 
         private void lvFeed_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //Sätter några fält till värden som är lagrade om använderaren skulle vilja ändra i feed.
+            //Tar bort möjlighetne att lägga till url för att slippa dubblett. 
+            btnLaggTillURL.Enabled = false;
+            btnLaggTillURL.Visible = false;
+            
 
-            //Gör något bara om något är valt. Ananrs blir det null error utan ifsatsen.
+            //Sätter några fält till värden som är lagrade om använderaren skulle vilja ändra i feed.
             if (lvFeed.SelectedItems.Count > 0)
             {
+                FeedFormControllUpdater(lvFeed.SelectedItems[0]);
+                SendSelectedFeedToAvsnittHandler(lvFeed.SelectedItems[0]);
+                ClearNewsTextAfterChange();
+            }
 
-                var item = lvFeed.SelectedItems[0];
+
+        }
+
+        private void SendSelectedFeedToAvsnittHandler(ListViewItem item)
+        {
+
+            valdAvsnitt = podcastService.GetAllAvsnittFromPodcastByName(item.SubItems[1].Text);
+
+
+            lvAvsnitt.BeginUpdate();
+            lvAvsnitt.Items.Clear();
+
+            int i = 1;
+            foreach (var a in valdAvsnitt)
+            {
+
+                ListViewItem rad = new ListViewItem(i.ToString());
+                rad.SubItems.Add(a.NewsTitel.ToString());
+                lvAvsnitt.Items.Add(rad);
+                i++;
+            }
+
+            lvAvsnitt.EndUpdate();
+            lvAvsnitt.Refresh();
+
+        }
+
+        public void GetOneAvsnittDescription(ListViewItem item)
+        {
+
+            string titel = item.SubItems[1].Text;
+
+        
+
+            var nyhet = from n in valdAvsnitt
+                           where n.NewsTitel == titel
+                           select n.NewsDescription.ToString();
+
+
+            txtDescription.Text = nyhet.FirstOrDefault();
+        }
+
+        private void FeedFormControllUpdater(ListViewItem item)
+        {
+            
+            
+            //Gör något bara om något är valt. Ananrs blir det null error utan ifsatsen.
+           
 
                 valdPodcast = item.SubItems[1].Text;
 
@@ -195,15 +299,24 @@ namespace Grupp_28_RSS
                 valdPodcastIntervall = cmbUppdateringsIntervall.SelectedIndex;
 
                 cmbKategori.SelectedIndex = kategoriService.GetKategoriIndex(item.SubItems[3].Text);
-                valdPodcastKategori = cmbKategori.Text;
+                valdPodcastKategori = cmbKategori.SelectedIndex;
 
 
                 txtPodcastName.Text = item.SubItems[1].Text;
-                //valdPodcast = lvFeed.Items[1].Text;
+            
 
+            
+        }
+
+        private void lvAvsnitt_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lvAvsnitt.SelectedItems.Count > 0)
+            {
+                GetOneAvsnittDescription(lvAvsnitt.SelectedItems[0]);
 
             }
         }
+
 
         private void PodcastTimer()
         {
@@ -287,6 +400,17 @@ namespace Grupp_28_RSS
                     
                 }
             }
+
+        private void txtRSSURL_TextChanged(object sender, EventArgs e)
+        {
+            txtPodcastName.Text = "";
+            cmbKategori.SelectedIndex = -1;
+            cmbUppdateringsIntervall.SelectedIndex = -1;
+            
+            //Enable knappen att lägga till url efter att ha rensat alla fält.
+            btnLaggTillURL.Enabled = true;
+            btnLaggTillURL.Visible = true;
+
         }
     }
 }
