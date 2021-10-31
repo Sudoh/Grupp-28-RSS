@@ -85,9 +85,18 @@ namespace DataAccessLayer.Repositories
         public void Update(int index, Podcast entity)
         {
             listOfPodcasts[index].Namn = entity.Namn.ToString();
-            listOfPodcasts[index].kategori = entity.kategori.ToString();
+            listOfPodcasts[index].kategori = entity.kategori;
             listOfPodcasts[index].UppdateringsIntervall = entity.UppdateringsIntervall;
 
+            SaveChanges();
+        }
+
+        public void UpdateAllPodcastKategori(string oldKategoriName, string newKategoriName)
+        {
+            foreach (var  podcast in listOfPodcasts.Where(podcast => podcast.kategori.Equals(oldKategoriName)))
+            {
+                podcast.kategori = newKategoriName;
+            }
             SaveChanges();
         }
     }

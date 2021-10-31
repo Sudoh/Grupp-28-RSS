@@ -80,8 +80,6 @@ namespace DataAccessLayer.Repositories
             dataManager.Serialize(listOfKategories);
         }
 
-
-
     }
 
 }

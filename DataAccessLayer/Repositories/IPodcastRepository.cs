@@ -15,5 +15,7 @@ namespace DataAccessLayer.Repositories
 
         int GetIndex(string name);
 
+        void UpdateAllPodcastKategori(string oldKategori, string newKategori);
+
     }
 }

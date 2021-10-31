@@ -32,6 +32,7 @@ namespace ServiceLayer.ServiceFolder
             int index = kategoriRepository.GetIndex(oldName);
             uppdateradKategori = new Kategori(nyName);
             kategoriRepository.Update(index, uppdateradKategori);
+   
         }
 
         public void DeleteKategori(string name)
@@ -51,5 +52,6 @@ namespace ServiceLayer.ServiceFolder
 
             return index;
         }
+
     }
 }

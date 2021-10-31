@@ -21,7 +21,7 @@ namespace Grupp_28_RSS
         private List<Avsnitt> valdAvsnitt;
 
         private string valdPodcastNamn;
-        private string valdPodcastKategori;
+        private int valdPodcastKategori;
         private int valdPodcastIntervall;
 
 
@@ -54,6 +54,10 @@ namespace Grupp_28_RSS
         private void ClearAndReloadPodcastsListAfterChange()
         {
 
+            //Uppdatera podcast XML för att ta med senaste ändringar. 
+            UpdatePodcastXMLToLatest();
+
+
             lvFeed.BeginUpdate();
             lvFeed.Items.Clear();
             foreach (Podcast item in podcastService.GetAllPodcasts())
@@ -72,8 +76,17 @@ namespace Grupp_28_RSS
             lvFeed.Refresh();
 
             ClearAvsnittList();
+        }
 
 
+
+        private void UpdatePodcastXMLToLatest()
+        {
+            for (int i = 0; i < lvFeed.Items.Count; i++)
+            {
+                
+        
+            }
         }
 
         private void ClearAvsnittList()
@@ -88,6 +101,7 @@ namespace Grupp_28_RSS
             lbxKategorier.Items.Clear();
             cmbKategori.Text = "";
             cmbKategori.Items.Clear();
+
             foreach (Kategori item in kategoriService.GetAllKategoris())
             {
                 if (item != null)
@@ -104,9 +118,11 @@ namespace Grupp_28_RSS
             if (valdKategori != null)
             {
                 kategoriService.RenameKategori(valdKategori, txtNyKategori.Text);
+                podcastService.UpdatePodcasts(valdKategori, txtNyKategori.Text);
                 //string nyNamn = txtNyKategori.Text;
                 //kategoriService.RenameKategori();
-                ClearAndReloadKategorieListAfterChange();
+              ClearAndReloadKategorieListAfterChange();
+              ClearAndReloadPodcastsListAfterChange();
             }
 
         }
@@ -148,6 +164,9 @@ namespace Grupp_28_RSS
         private void btnLaggTillURL_Click(object sender, EventArgs e)
         {
 
+            //IF sats för att kolla om namn som läggs till inte är en dubblett. 
+
+
             podcastService.DownloadPodcast(txtRSSURL.Text.ToString(), txtPodcastName.Text.ToString(), cmbKategori.SelectedItem.ToString(), Convert.ToInt32(cmbUppdateringsIntervall.SelectedIndex));
             ClearAndReloadPodcastsListAfterChange();
 
@@ -173,7 +192,7 @@ private void ClearNewsTextAfterChange()
 
         private void btnUppdateraFeed_Click(object sender, EventArgs e)
         {
-            podcastService.ChangePodcast(valdPodcastNamn, txtPodcastName.Text, valdPodcastIntervall, cmbUppdateringsIntervall.SelectedIndex, valdPodcastKategori, cmbKategori.SelectedItem.ToString());
+            podcastService.ChangePodcast(valdPodcastNamn, txtPodcastName.Text, valdPodcastIntervall, cmbUppdateringsIntervall.SelectedIndex, lvFeed.SelectedItems[0].SubItems[3].Text, cmbKategori.SelectedItem.ToString());
 
 
             ClearAndReloadPodcastsListAfterChange();
@@ -181,11 +200,17 @@ private void ClearNewsTextAfterChange()
 
         private void lvFeed_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //Tar bort möjlighetne att lägga till url för att slippa dubblett. 
+            btnLaggTillURL.Enabled = false;
+            btnLaggTillURL.Visible = false;
+            
+
             //Sätter några fält till värden som är lagrade om använderaren skulle vilja ändra i feed.
             if (lvFeed.SelectedItems.Count > 0)
             {
                 FeedFormControllUpdater(lvFeed.SelectedItems[0]);
                 SendSelectedFeedToAvsnittHandler(lvFeed.SelectedItems[0]);
+                ClearNewsTextAfterChange();
             }
 
 
@@ -247,7 +272,7 @@ private void ClearNewsTextAfterChange()
                 valdPodcastIntervall = cmbUppdateringsIntervall.SelectedIndex;
 
                 cmbKategori.SelectedIndex = kategoriService.GetKategoriIndex(item.SubItems[3].Text);
-                valdPodcastKategori = cmbKategori.Text;
+                valdPodcastKategori = cmbKategori.SelectedIndex;
 
 
                 txtPodcastName.Text = item.SubItems[1].Text;
@@ -263,6 +288,17 @@ private void ClearNewsTextAfterChange()
                 GetOneAvsnittDescription(lvAvsnitt.SelectedItems[0]);
 
             }
+        }
+
+        private void txtRSSURL_TextChanged(object sender, EventArgs e)
+        {
+            txtPodcastName.Text = "";
+            cmbKategori.SelectedIndex = -1;
+            cmbUppdateringsIntervall.SelectedIndex = -1;
+            
+            //Enable knappen att lägga till url efter att ha rensat alla fält.
+            btnLaggTillURL.Enabled = true;
+            btnLaggTillURL.Visible = true;
         }
     }
 }

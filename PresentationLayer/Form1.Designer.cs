@@ -88,6 +88,8 @@ namespace Grupp_28_RSS
             // 
             // lvFeed
             // 
+            this.lvFeed.AllowColumnReorder = true;
+            this.lvFeed.BackColor = System.Drawing.SystemColors.Window;
             this.lvFeed.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colFeedAvsnitt,
             this.colFeedNamn,
@@ -97,8 +99,8 @@ namespace Grupp_28_RSS
             this.lvFeed.FullRowSelect = true;
             this.lvFeed.GridLines = true;
             this.lvFeed.HideSelection = false;
-            this.lvFeed.LabelEdit = true;
             this.lvFeed.Location = new System.Drawing.Point(12, 93);
+            this.lvFeed.MultiSelect = false;
             this.lvFeed.Name = "lvFeed";
             this.lvFeed.Size = new System.Drawing.Size(871, 173);
             this.lvFeed.TabIndex = 7;
@@ -336,6 +338,7 @@ namespace Grupp_28_RSS
             this.txtRSSURL.Size = new System.Drawing.Size(288, 20);
             this.txtRSSURL.TabIndex = 28;
             this.txtRSSURL.Text = "https://www.svt.se/nyheter/rss.xml";
+            this.txtRSSURL.TextChanged += new System.EventHandler(this.txtRSSURL_TextChanged);
             // 
             // cmbUppdateringsIntervall
             // 
