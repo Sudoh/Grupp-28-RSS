@@ -30,6 +30,12 @@ namespace ServiceLayer.ServiceFolder
 
         }
 
+        public async Task DownloadPodcastAsync(string url, string namn, string kategori, int uppdateringsFrekvens)
+        {
+            await Task.Run(() => DownloadPodcast(url, namn, kategori, uppdateringsFrekvens));
+
+        }
+
         public List<Podcast> GetAllPodcasts()
         {
             return podcastRepository.GetAll();

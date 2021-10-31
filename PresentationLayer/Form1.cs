@@ -47,6 +47,14 @@ namespace Grupp_28_RSS
         {
             //Lägg in alla kod som ska köras när formen laddar.
             // MessageBox.Show("Welcome to the show");
+            
+            //Hämta podcast.url och lägg till dem i en task för async downloader. 
+            foreach (var podcast in podcastService.GetAllPodcasts())
+            {
+                txtDescription.Text += $"Url: {podcast.URL} med uppdateringsfrekvens {podcast.UppdateringsIntervall}\r\n";
+            }
+
+
             ClearAndReloadKategorieListAfterChange();
             ClearAndReloadPodcastsListAfterChange();
         }
@@ -161,13 +169,13 @@ namespace Grupp_28_RSS
 
         }
 
-        private void btnLaggTillURL_Click(object sender, EventArgs e)
+        private async void btnLaggTillURL_Click(object sender, EventArgs e)
         {
 
             //IF sats för att kolla om namn som läggs till inte är en dubblett. 
+            //Valt att använda ASYNC när vi lägger till en podcast ifall det skulle vara en stor podcast som "hänger" programmet. 
 
-
-            podcastService.DownloadPodcast(txtRSSURL.Text.ToString(), txtPodcastName.Text.ToString(), cmbKategori.SelectedItem.ToString(), Convert.ToInt32(cmbUppdateringsIntervall.SelectedIndex));
+            await podcastService.DownloadPodcastAsync(txtRSSURL.Text.ToString(), txtPodcastName.Text.ToString(), cmbKategori.SelectedItem.ToString(), Convert.ToInt32(cmbUppdateringsIntervall.SelectedIndex));
             ClearAndReloadPodcastsListAfterChange();
 
 
