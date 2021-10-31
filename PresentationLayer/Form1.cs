@@ -56,10 +56,10 @@ namespace Grupp_28_RSS
 
 
             ClearAndReloadKategorieListAfterChange();
-            ClearAndReloadPodcastsListAfterChange();
+            ClearAndReloadPodcastsListAfterChange(podcastService.GetAllPodcasts());
         }
 
-        private void ClearAndReloadPodcastsListAfterChange()
+        private void ClearAndReloadPodcastsListAfterChange(List<Podcast> podcast)
         {
 
             //Uppdatera podcast XML för att ta med senaste ändringar. 
@@ -68,7 +68,7 @@ namespace Grupp_28_RSS
 
             lvFeed.BeginUpdate();
             lvFeed.Items.Clear();
-            foreach (Podcast item in podcastService.GetAllPodcasts())
+            foreach (Podcast item in podcast)
             {
                 if (item != null)
                 {
@@ -137,7 +137,7 @@ namespace Grupp_28_RSS
                 //string nyNamn = txtNyKategori.Text;
                 //kategoriService.RenameKategori();
               ClearAndReloadKategorieListAfterChange();
-              ClearAndReloadPodcastsListAfterChange();
+              ClearAndReloadPodcastsListAfterChange(podcastService.GetAllPodcasts());
             }
 
         }
@@ -171,9 +171,20 @@ namespace Grupp_28_RSS
             {
                 txtNyKategori.Text = lbxKategorier.SelectedItem.ToString();
                 valdKategori = lbxKategorier.SelectedItem.ToString();
+                ShowOnlySelectedFeedsByKategori(valdKategori);
             }
 
+        }
 
+        private void ShowOnlySelectedFeedsByKategori(string kategori)
+        {
+            var listOfPodcasts = podcastService.GetAllPodcasts();
+
+            List<Podcast> kategoriPoddar = (from pod in listOfPodcasts
+                                 where pod.kategori == kategori
+                                 select pod).ToList();
+
+            ClearAndReloadPodcastsListAfterChange(kategoriPoddar);
         }
 
         private async void btnLaggTillURL_Click(object sender, EventArgs e)
@@ -183,7 +194,7 @@ namespace Grupp_28_RSS
             //Valt att använda ASYNC när vi lägger till en podcast ifall det skulle vara en stor podcast som "hänger" programmet. 
 
             await podcastService.DownloadPodcastAsync(txtRSSURL.Text.ToString(), txtPodcastName.Text.ToString(), cmbKategori.SelectedItem.ToString(), Convert.ToInt32(cmbUppdateringsIntervall.SelectedIndex));
-            ClearAndReloadPodcastsListAfterChange();
+            ClearAndReloadPodcastsListAfterChange(podcastService.GetAllPodcasts());
 
 
 
@@ -201,7 +212,7 @@ private void ClearNewsTextAfterChange()
                 podcastService.DeletPodcast(txtPodcastName.Text);
                 ClearAndReloadKategorieListAfterChange();
             }
-            ClearAndReloadPodcastsListAfterChange();
+            ClearAndReloadPodcastsListAfterChange(podcastService.GetAllPodcasts());
             ClearNewsTextAfterChange();
         }
 
@@ -210,7 +221,7 @@ private void ClearNewsTextAfterChange()
             podcastService.ChangePodcast(valdPodcastNamn, txtPodcastName.Text, valdPodcastIntervall, cmbUppdateringsIntervall.SelectedIndex, lvFeed.SelectedItems[0].SubItems[3].Text, cmbKategori.SelectedItem.ToString());
 
 
-            ClearAndReloadPodcastsListAfterChange();
+            ClearAndReloadPodcastsListAfterChange(podcastService.GetAllPodcasts());
         }
 
         private void lvFeed_SelectedIndexChanged(object sender, EventArgs e)
