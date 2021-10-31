@@ -29,6 +29,7 @@ namespace Grupp_28_RSS
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lbxKategorier = new System.Windows.Forms.ListBox();
             this.lbxAvsnitt = new System.Windows.Forms.ListBox();
             this.lblAvsnitt = new System.Windows.Forms.Label();
@@ -57,6 +58,7 @@ namespace Grupp_28_RSS
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.Timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // lbxKategorier
@@ -330,6 +332,10 @@ namespace Grupp_28_RSS
             this.label1.TabIndex = 24;
             this.label1.Text = "Kategori";
             // 
+            // Timer1
+            // 
+            this.Timer1.Tick += new System.EventHandler(this.TimeTracker_Tick);
+            // 
             // FrmAvsnitt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -397,6 +403,7 @@ namespace Grupp_28_RSS
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Timer Timer1;
     }
 }
 
