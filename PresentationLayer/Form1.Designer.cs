@@ -29,6 +29,7 @@ namespace Grupp_28_RSS
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lbxKategorier = new System.Windows.Forms.ListBox();
             this.lblAvsnitt = new System.Windows.Forms.Label();
             this.lvFeed = new System.Windows.Forms.ListView();
@@ -45,6 +46,9 @@ namespace Grupp_28_RSS
             this.colAvsnittNr = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colAvsnittTitel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
+
+            this.Timer1 = new System.Windows.Forms.Timer(this.components);
+
             this.label3 = new System.Windows.Forms.Label();
             this.txtPodcastName = new System.Windows.Forms.TextBox();
             this.txtNyKategori = new System.Windows.Forms.TextBox();
@@ -61,6 +65,7 @@ namespace Grupp_28_RSS
             this.cmbUppdateringsIntervall = new System.Windows.Forms.ComboBox();
             this.cmbKategori = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
+
             this.SuspendLayout();
             // 
             // lbxKategorier
@@ -372,6 +377,10 @@ namespace Grupp_28_RSS
             this.label4.TabIndex = 42;
             this.label4.Text = "lbHrLine1";
             // 
+            // Timer1
+            // 
+            this.Timer1.Tick += new System.EventHandler(this.TimeTracker_Tick);
+            // 
             // FrmAvsnitt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -428,6 +437,9 @@ namespace Grupp_28_RSS
         private System.Windows.Forms.ColumnHeader colAvsnittTitel;
         private System.Windows.Forms.ColumnHeader colFeedSenastUppdaterad;
         private System.Windows.Forms.Label label1;
+
+        private System.Windows.Forms.Timer Timer1;
+
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtPodcastName;
         private System.Windows.Forms.TextBox txtNyKategori;
@@ -444,6 +456,7 @@ namespace Grupp_28_RSS
         private System.Windows.Forms.ComboBox cmbUppdateringsIntervall;
         private System.Windows.Forms.ComboBox cmbKategori;
         private System.Windows.Forms.Label label4;
+
     }
 }
 

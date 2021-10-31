@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using modelss;
 using ServiceLayer.ServiceFolder;
+using System.Diagnostics;
+using DataAccesLayer;
 
 namespace Grupp_28_RSS
 {
@@ -23,15 +25,24 @@ namespace Grupp_28_RSS
         private string valdPodcastNamn;
         private int valdPodcastKategori;
         private int valdPodcastIntervall;
-
-
-
+        private bool Timerboolean = true;
         KategoriService kategoriService;
+
+        //AvsnittService avsnittService;
+        private PodcastService podcastService;
+
         AvsnittService avsnittService;
         PodcastService podcastService;
 
 
+
         private static Validering validator = new Validering();
+        private Timer timer;
+        private readonly List<List<Podcast>> lista = new List<List<Podcast>>();
+        private readonly List<Podcast> Interval1 = new List<Podcast>();
+        private readonly List<Podcast> Interval2 = new List<Podcast>();
+        private readonly List<Podcast> Interval3 = new List<Podcast>();
+        private readonly int[] intervalNumbers = new int[] { 0, 1, 2 };
         public FrmAvsnitt()
         {
             InitializeComponent();
@@ -40,6 +51,7 @@ namespace Grupp_28_RSS
             avsnittService = new AvsnittService();
             podcastService = new PodcastService();
             validator = new Validering();
+            PodcastTimer();
 
         }
 
@@ -305,6 +317,90 @@ private void ClearNewsTextAfterChange()
             }
         }
 
+
+        private void PodcastTimer()
+        {
+            List<Podcast> podcast = podcastService.GetAllPodcasts();
+            int uppdateFrequency = 0;
+            foreach (Podcast podcasts in podcast)
+            {
+                switch (podcasts.UppdateringsIntervall)
+                {
+                    case 0:
+                        Interval1.Add(podcasts);
+                        break;
+                    case 1:
+                        Interval2.Add(podcasts);
+                        break;
+                    case 2:
+                        Interval3.Add(podcasts);
+                        break;
+                }
+            }
+            lista.Add(Interval1);
+            lista.Add(Interval2);
+            lista.Add(Interval3);
+
+            for (int i = 0; i < lista.Count; i++)
+            {
+                switch (i + 1)
+                {
+                    case 0:
+                        uppdateFrequency = 60000;
+                        break;
+                    case 1:
+                        uppdateFrequency = 300000;
+                        break;
+                    case 2:
+                        uppdateFrequency = 600000;
+                        break;
+                }
+
+                timer = new Timer
+                {
+
+                    Interval = uppdateFrequency,
+                    Enabled = true,
+                    Tag = lista[i],
+                };
+
+                if (Timerboolean)
+                {
+                    timer.Tick += new EventHandler(TimeTracker_Tick);
+                    timer.Start();
+                }
+            }
+
+            Timerboolean = false;
+        }
+
+        private void TimeTracker_Tick(object sender, EventArgs e)
+        {
+            Timer timer = (Timer)sender;
+            List<Podcast> Tuppdate = (List<Podcast>)timer.Tag;
+
+             UppdateraFranTimer(Tuppdate);
+        }
+        private async void UppdateraFranTimer(List<Podcast> Tuppdate)
+        {
+            
+            var watch = Stopwatch.StartNew();
+            
+
+            if (Tuppdate.Count > 0)
+            {
+                try
+                {
+                    await podcastService.UpdateAllPodcasts(Tuppdate);
+                    watch.Stop();
+                    
+                }
+                catch (Exception)
+                {
+                    
+                }
+            }
+
         private void txtRSSURL_TextChanged(object sender, EventArgs e)
         {
             txtPodcastName.Text = "";
@@ -314,6 +410,8 @@ private void ClearNewsTextAfterChange()
             //Enable knappen att lägga till url efter att ha rensat alla fält.
             btnLaggTillURL.Enabled = true;
             btnLaggTillURL.Visible = true;
+
         }
     }
 }
+
