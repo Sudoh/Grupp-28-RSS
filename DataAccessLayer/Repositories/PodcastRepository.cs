@@ -88,6 +88,7 @@ namespace DataAccessLayer.Repositories
             listOfPodcasts[index].Namn = entity.Namn.ToString();
             listOfPodcasts[index].kategori = entity.kategori;
             listOfPodcasts[index].UppdateringsIntervall = entity.UppdateringsIntervall;
+            listOfPodcasts[index].datumTillaggd = entity.datumTillaggd;
 
             SaveChanges();
         }
