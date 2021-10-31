@@ -63,7 +63,7 @@ namespace Grupp_28_RSS
         {
 
             //Uppdatera podcast XML för att ta med senaste ändringar. 
-            UpdatePodcastXMLToLatest();
+            //UpdatePodcastXMLToLatest();
 
 
             lvFeed.BeginUpdate();
@@ -76,6 +76,7 @@ namespace Grupp_28_RSS
                     rad.SubItems.Add(item.Namn.ToString());
                     rad.SubItems.Add(item.UppdateringsIntervall.ToString());
                     rad.SubItems.Add(item.kategori.ToString());
+                    rad.SubItems.Add(item.datumTillaggd.ToString());
                     lvFeed.Items.Add(rad);
 
                 }
@@ -90,11 +91,17 @@ namespace Grupp_28_RSS
 
         private void UpdatePodcastXMLToLatest()
         {
-            for (int i = 0; i < lvFeed.Items.Count; i++)
+
+            //Om podcast behöver uppdateras. Tid senast uppdaterad - tid nu >= intervall.
+            if (true)
             {
-                
-        
+                for (int i = 0; i < lvFeed.Items.Count; i++)
+                {
+
+
+                }
             }
+
         }
 
         private void ClearAvsnittList()

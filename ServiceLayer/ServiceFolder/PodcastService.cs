@@ -18,7 +18,7 @@ namespace ServiceLayer.ServiceFolder
         }
 
 
-        public void DownloadPodcast(string url, string namn, string kategori, int uppdateringsFrekvens)
+        public void DownloadPodcast(string url, string namn, string kategori, int uppdateringsFrekvens, DateTime dateTime)
         {
 
             Podcast podcast = new Podcast();
@@ -26,13 +26,14 @@ namespace ServiceLayer.ServiceFolder
             podcast.Namn = namn;
             podcast.kategori = kategori;
             podcast.UppdateringsIntervall = uppdateringsFrekvens;
+            podcast.datumTillaggd = dateTime;
             podcastRepository.Create(podcast);
 
         }
 
         public async Task DownloadPodcastAsync(string url, string namn, string kategori, int uppdateringsFrekvens)
         {
-            await Task.Run(() => DownloadPodcast(url, namn, kategori, uppdateringsFrekvens));
+            await Task.Run(() => DownloadPodcast(url, namn, kategori, uppdateringsFrekvens, DateTime.Now));
 
         }
 

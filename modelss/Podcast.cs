@@ -27,7 +27,9 @@ namespace modelss
 
         public int UppdateringsIntervall { get; set; }
 
-        public Podcast(string namn, string kategori, string url, int antalAvsnitt, int uppdateringsIntervall, List<Avsnitt> avsnitt)
+        public DateTime datumTillaggd { get; set; }
+
+        public Podcast(string namn, string kategori, string url, int antalAvsnitt, int uppdateringsIntervall, List<Avsnitt> avsnitt, DateTime dateTime)
         {
             Namn = namn;
             this.kategori = kategori;
@@ -35,6 +37,8 @@ namespace modelss
             UppdateringsIntervall = uppdateringsIntervall;
             AntalAvsnitt = antalAvsnitt;
             Avsnitt = avsnitt;
+            datumTillaggd = dateTime;
+
         }
 
         public Podcast()

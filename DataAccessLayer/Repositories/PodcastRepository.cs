@@ -34,7 +34,8 @@ namespace DataAccessLayer.Repositories
                 kategori = entity.kategori,
                 Namn = entity.Namn,
                 UppdateringsIntervall = entity.UppdateringsIntervall,
-                URL = entity.URL
+                URL = entity.URL,
+                datumTillaggd = entity.datumTillaggd
 
             };
             listOfPodcasts.Add(podcast);
