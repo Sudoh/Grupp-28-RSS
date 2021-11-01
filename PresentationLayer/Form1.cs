@@ -17,11 +17,11 @@ namespace Grupp_28_RSS
     {
 
         private string valdKategori;
-        private string valdPodcast;
+   //     private string valdPodcast;
         private List<Avsnitt> valdAvsnitt;
 
         private string valdPodcastNamn;
-        private int valdPodcastKategori;
+        private string valdPodcastKategori;
         private int valdPodcastIntervall;
 
 
@@ -140,6 +140,10 @@ namespace Grupp_28_RSS
 
             cmbKategori.Text = "";
             cmbKategori.Items.Clear();
+
+            cmbUppdateradKategori.Text = "";
+            cmbUppdateradKategori.Items.Clear();
+
            foreach (Kategori item in kategoriService.GetAllKategoris())
             {
                 if (item != null)
@@ -147,6 +151,7 @@ namespace Grupp_28_RSS
                     lbxKategorier.Items.Add(item.KategoriNamn);
                     lbxNewsReaderKategori.Items.Add(item.KategoriNamn);
                     cmbKategori.Items.Add(item.KategoriNamn);
+                    cmbUppdateradKategori.Items.Add(item.KategoriNamn);
                 
                 }
             }
@@ -236,11 +241,22 @@ namespace Grupp_28_RSS
             //IF sats för att kolla om namn som läggs till inte är en dubblett. 
             //Valt att använda ASYNC när vi lägger till en podcast ifall det skulle vara en stor podcast som "hänger" programmet. 
 
-            await podcastService.DownloadPodcastAsync(txtRSSURL.Text.ToString(), txtPodcastName.Text.ToString(), cmbKategori.SelectedItem.ToString(), Convert.ToInt32(cmbUppdateringsIntervall.SelectedIndex));
-            ClearAndReloadPodcastsListAfterChange(podcastService.GetAllPodcasts());
+            if (txtRSSURL.Text != "" && txtPodcastName != null && cmbIntervall.SelectedIndex != -1 && cmbKategori.SelectedIndex != -1)
+            {
+                await podcastService.DownloadPodcastAsync(txtRSSURL.Text.ToString(), txtPodcastName.Text.ToString(), cmbKategori.SelectedItem.ToString(), Convert.ToInt32(cmbIntervall.SelectedIndex));
+                ClearAndReloadPodcastsListAfterChange(podcastService.GetAllPodcasts());
+            }
+            else
+            {
+                 
+                btnLaggTillURL.BackColor = Color.Red;
+            }
 
 
 
+
+            btnLaggTillURL.Enabled = false;
+           // btnLaggTillURL.BackColor = Color.LightGray;
         }
 
 private void ClearNewsTextAfterChange()
@@ -261,11 +277,12 @@ private void ClearNewsTextAfterChange()
 
         private void btnUppdateraFeed_Click(object sender, EventArgs e)
         {
-            podcastService.ChangePodcast(valdPodcastNamn, txtPodcastName.Text, valdPodcastIntervall, cmbUppdateringsIntervall.SelectedIndex, lvFeed.SelectedItems[0].SubItems[3].Text, cmbKategori.SelectedItem.ToString());
+            podcastService.ChangePodcast(valdPodcastNamn, txtUppdateradPodcastNamn.Text, valdPodcastIntervall, cmbUppdateradIntervall.SelectedIndex, valdPodcastKategori, cmbUppdateradKategori.SelectedItem.ToString());
 
 
             ClearAndReloadPodcastsListAfterChange(podcastService.GetAllPodcasts());
             btnUppdateraFeed.Enabled = false;
+            btnUppdateraFeed.BackColor = Color.LightGray;
         }
 
         private void lvFeed_SelectedIndexChanged(object sender, EventArgs e)
@@ -325,26 +342,33 @@ private void ClearNewsTextAfterChange()
         private void FeedFormControllUpdater(ListBox item)
         {
 
-
-            //Gör något bara om något är valt. Ananrs blir det null error utan ifsatsen.
+                       
             btnUppdateraFeed.Enabled = true;
+            btnUppdateraFeed.BackColor = Color.GreenYellow;
             
                 //Sätter alla fält till vald podcast för ändring
                 txtUppdateradPodcastNamn.Text = item.SelectedItem.ToString();
-;
+
+            //Loopia ingeom alla podcast för att hitta den rätta. 
+            //Använder en LINQ för att det är så vacker och lätt att arbeta med.
             var podcast = from pod in podcastService.GetAllPodcasts()
                           where pod.Namn == txtUppdateradPodcastNamn.Text
                           select pod;
 
-            foreach (var bird in podcast)
+            //Använder Foreach för att jag vet inte hur jag ska kunna sätta fler värden med linq.
+            foreach (var valdPod in podcast)
             {
-                cmbUppdateradKategori.SelectedItem = bird.kategori;
-                cmbUppdateringsIntervall.SelectedIndex = bird.UppdateringsIntervall;
-                
+                cmbUppdateradKategori.SelectedItem = valdPod.kategori;
+                cmbUppdateradIntervall.SelectedIndex = valdPod.UppdateringsIntervall;
             }
-            
 
-            
+            //Fortsätter ange värden till olika text fält
+            valdPodcastNamn = txtUppdateradPodcastNamn.Text;
+            valdPodcastKategori = cmbUppdateradKategori.SelectedItem.ToString();
+            valdPodcastIntervall = cmbUppdateradIntervall.SelectedIndex;
+
+
+
         }
 
         private void lvAvsnitt_SelectedIndexChanged(object sender, EventArgs e)
@@ -360,11 +384,12 @@ private void ClearNewsTextAfterChange()
         {
             txtPodcastName.Text = "";
             cmbKategori.SelectedIndex = -1;
-            cmbUppdateringsIntervall.SelectedIndex = -1;
-            
+            cmbIntervall.SelectedIndex = -1;
+
             //Enable knappen att lägga till url efter att ha rensat alla fält.
             btnLaggTillURL.Enabled = true;
-            btnLaggTillURL.Visible = true;
+            btnLaggTillURL.BackColor = Color.GreenYellow;
+
         }
 
         private void lbxNewsReaderKategori_SelectedIndexChanged(object sender, EventArgs e)
@@ -395,6 +420,27 @@ private void ClearNewsTextAfterChange()
         private void lbxPodcastToChange_SelectedIndexChanged(object sender, EventArgs e)
         {
             FeedFormControllUpdater(lbxPodcastToChange);
+        }
+
+        private void tabPageNewsManager_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbKategori_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbxPodcastToDelete_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnTaBort.Enabled = true;
+            btnTaBort.BackColor = Color.GreenYellow;
+        }
+
+        private void GreyAndDisableButtons(object sender, EventArgs e)
+        {
+            //sender[BackColor = Color.Gray];
         }
     }
 }
