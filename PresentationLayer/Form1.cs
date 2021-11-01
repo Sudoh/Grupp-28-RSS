@@ -102,10 +102,15 @@ namespace Grupp_28_RSS
         private void ClearAndReloadPodcastManagerNameList()
         {
             var listOfpodcasts = podcastService.GetAllPodcasts();
-            lbxPodcastNamesToDelete.Items.Clear();
+            
+            lbxPodcastToDelete.Items.Clear();
+            lbxPodcastToChange.Items.Clear();
+
+
             foreach (Podcast pod in listOfpodcasts)
             {
-                lbxPodcastNamesToDelete.Items.Add(pod.Namn);
+                lbxPodcastToDelete.Items.Add(pod.Namn);
+                lbxPodcastToChange.Items.Add(pod.Namn);
             }
 
         }
@@ -258,7 +263,7 @@ private void ClearNewsTextAfterChange()
         {
             if (lvFeed.SelectedItems != null)
             {
-                podcastService.DeletPodcast(lbxPodcastNamesToDelete.SelectedItem.ToString());
+                podcastService.DeletPodcast(lbxPodcastToDelete.SelectedItem.ToString());
                 ClearAndReloadKategorieListAfterChange();
             }
             ClearAndReloadPodcastsListAfterChange(podcastService.GetAllPodcasts());
@@ -273,19 +278,20 @@ private void ClearNewsTextAfterChange()
 
             ClearAndReloadPodcastsListAfterChange(podcastService.GetAllPodcasts());
 
+            btnUppdateraFeed.Enabled = false;
+
+
+
         }
 
         private void lvFeed_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //Tar bort möjlighetne att lägga till url för att slippa dubblett. 
-            btnLaggTillURL.Enabled = false;
-            btnLaggTillURL.Visible = false;
-            
+          
 
             //Sätter några fält till värden som är lagrade om använderaren skulle vilja ändra i feed.
             if (lvFeed.SelectedItems.Count > 0)
             {
-                FeedFormControllUpdater(lvFeed.SelectedItems[0]);
+            
                 SendSelectedFeedToAvsnittHandler(lvFeed.SelectedItems[0]);
                 ClearNewsTextAfterChange();
             }
@@ -332,27 +338,26 @@ private void ClearNewsTextAfterChange()
             txtDescription.Text = nyhet.FirstOrDefault();
         }
 
-        private void FeedFormControllUpdater(ListViewItem item)
+        private void FeedFormControllUpdater(ListBox item)
         {
-            
-            
+
+
             //Gör något bara om något är valt. Ananrs blir det null error utan ifsatsen.
-           
-
-                valdPodcast = item.SubItems[1].Text;
-
+            btnUppdateraFeed.Enabled = true;
+            
                 //Sätter alla fält till vald podcast för ändring
-                txtPodcastName.Text = item.SubItems[1].Text;
-                valdPodcastNamn = item.SubItems[1].Text;
+                txtUppdateradPodcastNamn.Text = item.SelectedItem.ToString();
+;
+            var podcast = from pod in podcastService.GetAllPodcasts()
+                          where pod.Namn == txtUppdateradPodcastNamn.Text
+                          select pod;
 
-                cmbUppdateringsIntervall.SelectedIndex = Convert.ToInt32(item.SubItems[2].Text);
-                valdPodcastIntervall = cmbUppdateringsIntervall.SelectedIndex;
-
-                cmbKategori.SelectedIndex = kategoriService.GetKategoriIndex(item.SubItems[3].Text);
-                valdPodcastKategori = cmbKategori.SelectedIndex;
-
-
-                txtPodcastName.Text = item.SubItems[1].Text;
+            foreach (var bird in podcast)
+            {
+                cmbUppdateradKategori.SelectedItem = bird.kategori;
+                cmbUppdateringsIntervall.SelectedIndex = bird.UppdateringsIntervall;
+                
+            }
             
 
             
@@ -440,6 +445,12 @@ private void ClearNewsTextAfterChange()
         }
 
 
+        private void lbxPodcastToChange_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FeedFormControllUpdater(lbxPodcastToChange);
+        }
+
+
             private void txtRSSURL_TextChanged(object sender, EventArgs e)
             {
                 txtPodcastName.Text = "";
@@ -455,7 +466,6 @@ private void ClearNewsTextAfterChange()
         
 
     } }
-
 
     }
 }
