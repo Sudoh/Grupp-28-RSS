@@ -88,8 +88,20 @@ namespace Grupp_28_RSS
             lvFeed.Refresh();
 
             ClearAvsnittList();
+            ClearAndReloadPodcastManagerNameList();
         }
 
+
+        private void ClearAndReloadPodcastManagerNameList()
+        {
+            var listOfpodcasts = podcastService.GetAllPodcasts();
+            lbxPodcastNamesToDelete.Items.Clear();
+            foreach (Podcast pod in listOfpodcasts)
+            {
+                lbxPodcastNamesToDelete.Items.Add(pod.Namn);
+            }
+
+        }
 
 
         private void UpdatePodcastXMLToLatest()
@@ -235,7 +247,7 @@ private void ClearNewsTextAfterChange()
         {
             if (lvFeed.SelectedItems != null)
             {
-                podcastService.DeletPodcast(txtPodcastName.Text);
+                podcastService.DeletPodcast(lbxPodcastNamesToDelete.SelectedItem.ToString());
                 ClearAndReloadKategorieListAfterChange();
             }
             ClearAndReloadPodcastsListAfterChange(podcastService.GetAllPodcasts());
@@ -363,6 +375,14 @@ private void ClearNewsTextAfterChange()
                 ShowOnlySelectedFeedsByKategori(kategori);
             }
       
+
+        }
+
+        private void tabPageNewsManager_Enter(object sender, EventArgs e)
+        {
+
+
+            ClearAndReloadPodcastManagerNameList();
 
         }
     }

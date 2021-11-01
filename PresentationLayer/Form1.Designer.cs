@@ -66,6 +66,8 @@ namespace Grupp_28_RSS
             this.lbxNewsReaderKategori = new System.Windows.Forms.ListBox();
             this.tabPageNewsManager = new System.Windows.Forms.TabPage();
             this.tabPageKategoriManager = new System.Windows.Forms.TabPage();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lbxPodcastNamesToDelete = new System.Windows.Forms.ListBox();
             this.tabReader.SuspendLayout();
             this.tabPageNewsReader.SuspendLayout();
             this.tabPageNewsManager.SuspendLayout();
@@ -307,9 +309,9 @@ namespace Grupp_28_RSS
             // 
             this.btnTaBort.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnTaBort.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTaBort.Location = new System.Drawing.Point(797, 26);
+            this.btnTaBort.Location = new System.Drawing.Point(273, 144);
             this.btnTaBort.Name = "btnTaBort";
-            this.btnTaBort.Size = new System.Drawing.Size(37, 37);
+            this.btnTaBort.Size = new System.Drawing.Size(97, 95);
             this.btnTaBort.TabIndex = 31;
             this.btnTaBort.Text = "❌";
             this.btnTaBort.UseVisualStyleBackColor = false;
@@ -425,6 +427,8 @@ namespace Grupp_28_RSS
             // 
             // tabPageNewsManager
             // 
+            this.tabPageNewsManager.Controls.Add(this.lbxPodcastNamesToDelete);
+            this.tabPageNewsManager.Controls.Add(this.label5);
             this.tabPageNewsManager.Controls.Add(this.txtRSSURL);
             this.tabPageNewsManager.Controls.Add(this.txtPodcastName);
             this.tabPageNewsManager.Controls.Add(this.cmbKategori);
@@ -442,6 +446,7 @@ namespace Grupp_28_RSS
             this.tabPageNewsManager.TabIndex = 2;
             this.tabPageNewsManager.Text = "News Manager";
             this.tabPageNewsManager.UseVisualStyleBackColor = true;
+            this.tabPageNewsManager.Enter += new System.EventHandler(this.tabPageNewsManager_Enter);
             // 
             // tabPageKategoriManager
             // 
@@ -459,6 +464,24 @@ namespace Grupp_28_RSS
             this.tabPageKategoriManager.TabIndex = 1;
             this.tabPageKategoriManager.Text = "Kategori manager";
             this.tabPageKategoriManager.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(19, 128);
+            this.label5.Name = "label5";
+            this.label5.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.label5.Size = new System.Drawing.Size(65, 13);
+            this.label5.TabIndex = 42;
+            this.label5.Text = "Ta bort feed";
+            // 
+            // lbxPodcastNamesToDelete
+            // 
+            this.lbxPodcastNamesToDelete.FormattingEnabled = true;
+            this.lbxPodcastNamesToDelete.Location = new System.Drawing.Point(22, 144);
+            this.lbxPodcastNamesToDelete.Name = "lbxPodcastNamesToDelete";
+            this.lbxPodcastNamesToDelete.Size = new System.Drawing.Size(245, 95);
+            this.lbxPodcastNamesToDelete.TabIndex = 43;
             // 
             // FrmAvsnitt
             // 
@@ -520,6 +543,8 @@ namespace Grupp_28_RSS
         private System.Windows.Forms.TabPage tabPageNewsManager;
         private System.Windows.Forms.ListBox lbxNewsReaderKategori;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ListBox lbxPodcastNamesToDelete;
     }
 }
 
