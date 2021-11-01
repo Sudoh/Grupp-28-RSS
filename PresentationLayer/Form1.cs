@@ -32,6 +32,13 @@ namespace Grupp_28_RSS
 
 
         private static Validering validator = new Validering();
+
+        private Timer timer;
+        private readonly List<List<Podcast>> lista = new List<List<Podcast>>();
+        private readonly List<Podcast> Interval0 = new List<Podcast>();
+        private readonly List<Podcast> Interval1 = new List<Podcast>();
+        private readonly List<Podcast> Interval2 = new List<Podcast>();
+
         public FrmAvsnitt()
         {
             InitializeComponent();
@@ -232,7 +239,11 @@ namespace Grupp_28_RSS
             //Valt att använda ASYNC när vi lägger till en podcast ifall det skulle vara en stor podcast som "hänger" programmet. 
 
             await podcastService.DownloadPodcastAsync(txtRSSURL.Text.ToString(), txtPodcastName.Text.ToString(), cmbKategori.SelectedItem.ToString(), Convert.ToInt32(cmbUppdateringsIntervall.SelectedIndex));
+
+            PodcastTimer();
+
             ClearAndReloadPodcastsListAfterChange(podcastService.GetAllPodcasts());
+
 
 
 
@@ -259,7 +270,9 @@ private void ClearNewsTextAfterChange()
             podcastService.ChangePodcast(valdPodcastNamn, txtPodcastName.Text, valdPodcastIntervall, cmbUppdateringsIntervall.SelectedIndex, lvFeed.SelectedItems[0].SubItems[3].Text, cmbKategori.SelectedItem.ToString());
 
 
+
             ClearAndReloadPodcastsListAfterChange(podcastService.GetAllPodcasts());
+
         }
 
         private void lvFeed_SelectedIndexChanged(object sender, EventArgs e)
@@ -368,6 +381,28 @@ private void ClearNewsTextAfterChange()
         private void lbxNewsReaderKategori_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+            List<Podcast> podcast = podcastService.GetAllPodcasts();
+            int uppdateFrequency = 0;
+            foreach (Podcast podcasts in podcast)
+            {
+                switch (podcasts.UppdateringsIntervall)
+                {
+                    case 0:
+                        Interval0.Add(podcasts);
+                        break;
+                    case 1:
+                        Interval1.Add(podcasts);
+                        break;
+                    case 2:
+                        Interval2.Add(podcasts);
+                        break;
+                }
+            }
+            lista.Add(Interval0);
+            lista.Add(Interval1);
+            lista.Add(Interval2);
+
+
             if (lbxNewsReaderKategori.SelectedItem !=null)
             {
                 string kategori = lbxNewsReaderKategori.SelectedItem.ToString();
@@ -382,12 +417,46 @@ private void ClearNewsTextAfterChange()
 
         }
 
+        private void UppdateraFranTimer(List<Podcast> Tuppdate)
+        {
+
+            var watch = Stopwatch.StartNew();
+
+
         private void tabPageNewsManager_Enter(object sender, EventArgs e)
         {
+
+
+            if (Tuppdate.Count > 0)
+            {
+                try
+                {
+                    ClearAndReloadPodcastsListAfterChange();
+                    watch.Stop();
 
 
             ClearAndReloadPodcastManagerNameList();
 
         }
+
+
+            private void txtRSSURL_TextChanged(object sender, EventArgs e)
+            {
+                txtPodcastName.Text = "";
+                cmbKategori.SelectedIndex = -1;
+                cmbUppdateringsIntervall.SelectedIndex = -1;
+
+                //Enable knappen att lägga till url efter att ha rensat alla fält.
+                btnLaggTillURL.Enabled = true;
+                btnLaggTillURL.Visible = true;
+
+            }
+
+        
+
+    } }
+
+
     }
 }
+
