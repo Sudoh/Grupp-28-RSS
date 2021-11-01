@@ -247,7 +247,7 @@ namespace Grupp_28_RSS
 
             await podcastService.DownloadPodcastAsync(txtRSSURL.Text.ToString(), txtPodcastName.Text.ToString(), cmbKategori.SelectedItem.ToString(), Convert.ToInt32(cmbUppdateringsIntervall.SelectedIndex));
 
-            //PodcastTimer();
+            PodcastTimer();
 
             ClearAndReloadPodcastsListAfterChange(podcastService.GetAllPodcasts());
 
