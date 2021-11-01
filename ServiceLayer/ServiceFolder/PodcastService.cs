@@ -11,12 +11,10 @@ namespace ServiceLayer.ServiceFolder
     public class PodcastService
     {
         IPodcastRepository<Podcast> podcastRepository;
-        private readonly PodcastRepository podcastRepositoryn;
 
         public PodcastService()
         {
             podcastRepository = new PodcastRepository();
-            podcastRepositoryn = new PodcastRepository();
         }
 
 
@@ -76,15 +74,34 @@ namespace ServiceLayer.ServiceFolder
             podcastRepository.Update(index, uppdateradPodcast);
 
         }
-        public async Task UpdateAllPodcasts(List<Podcast> podcasts)
-        {
-            await podcastRepositoryn.UpdateAll(podcasts);
-        }
 
         public void UpdatePodcasts(string oldkat, string newKat)
         {
             podcastRepository.UpdateAllPodcastKategori(oldkat, newKat);
         }
+
+        public void DeletePodcastByKategori(string podcastKategori)
+        {
+
+           
+            var listOfpodcasts = podcastRepository.GetAll();
+
+
+            //int index = podcastRepository.GetIndex(kategori);
+
+            var listOfPodcasts = (from pod in listOfpodcasts
+                           where pod.kategori == podcastKategori
+                           select pod).ToList();
+
+            foreach (Podcast item in listOfPodcasts)
+            {
+                string name = item.Namn;
+                int index = podcastRepository.GetIndex(name);
+                podcastRepository.Delete(index);
+            }
+            
+        }
+
 
     }
 }
