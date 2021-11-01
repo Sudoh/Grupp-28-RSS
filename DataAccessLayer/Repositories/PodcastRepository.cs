@@ -101,6 +101,23 @@ namespace DataAccessLayer.Repositories
             }
             SaveChanges();
         }
+        public async Task UpdateAll(List<Podcast> podcasts)
+        {
+            List<List<Avsnitt>> episodes = new List<List<Avsnitt>>();
+            List<Avsnitt> updatedEpisodes = new List<Avsnitt>();
+
+            foreach (Podcast podcast in podcasts)
+            {
+                updatedEpisodes = await Task.Run(() => feedDownloader.RssRead(podcast.URL));
+                episodes.Add(updatedEpisodes);
+
+
+                podcast.Avsnitt = updatedEpisodes;
+
+            }
+
+            SaveChanges();
+        }
 
     }
 }

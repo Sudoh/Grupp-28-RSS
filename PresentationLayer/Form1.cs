@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using modelss;
 using ServiceLayer.ServiceFolder;
+using System.Diagnostics;
 
 namespace Grupp_28_RSS
 {
@@ -38,6 +39,7 @@ namespace Grupp_28_RSS
         private readonly List<Podcast> Interval0 = new List<Podcast>();
         private readonly List<Podcast> Interval1 = new List<Podcast>();
         private readonly List<Podcast> Interval2 = new List<Podcast>();
+        private bool Timerboolean = true;
 
         public FrmAvsnitt()
         {
@@ -245,7 +247,7 @@ namespace Grupp_28_RSS
 
             await podcastService.DownloadPodcastAsync(txtRSSURL.Text.ToString(), txtPodcastName.Text.ToString(), cmbKategori.SelectedItem.ToString(), Convert.ToInt32(cmbUppdateringsIntervall.SelectedIndex));
 
-            PodcastTimer();
+            //PodcastTimer();
 
             ClearAndReloadPodcastsListAfterChange(podcastService.GetAllPodcasts());
 
@@ -386,6 +388,44 @@ private void ClearNewsTextAfterChange()
         private void lbxNewsReaderKategori_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+            if (lbxNewsReaderKategori.SelectedItem != null)
+            {
+                string kategori = lbxNewsReaderKategori.SelectedItem.ToString();
+
+                if (kategori != null)
+                {
+                    ShowOnlySelectedFeedsByKategori(kategori);
+                }
+            }
+
+
+
+        }
+
+        private void tabPageNewsManager_Enter(object sender, EventArgs e)
+        {
+
+
+            ClearAndReloadPodcastManagerNameList();
+
+        }
+
+        private void lbxPodcastToChange_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FeedFormControllUpdater(lbxPodcastToChange);
+        }
+
+        private void tabPageNewsManager_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbKategori_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void PodcastTimer()
+        {
             List<Podcast> podcast = podcastService.GetAllPodcasts();
             int uppdateFrequency = 0;
             foreach (Podcast podcasts in podcast)
@@ -407,66 +447,69 @@ private void ClearNewsTextAfterChange()
             lista.Add(Interval1);
             lista.Add(Interval2);
 
-
-            if (lbxNewsReaderKategori.SelectedItem !=null)
+            for (int i = 0; i < lista.Count; i++)
             {
-                string kategori = lbxNewsReaderKategori.SelectedItem.ToString();
-
-                if (kategori != null)
+                switch (i + 1)
                 {
-                    ShowOnlySelectedFeedsByKategori(kategori);
+                    case 0:
+                        uppdateFrequency = 60000;
+                        break;
+                    case 1:
+                        uppdateFrequency = 300000;
+                        break;
+                    case 2:
+                        uppdateFrequency = 600000;
+                        break;
+                }
+
+                timer = new Timer
+                {
+
+                    Interval = uppdateFrequency,
+                    Enabled = true,
+                    Tag = lista[i],
+                };
+
+                if (Timerboolean)
+                {
+                    timer.Tick += new EventHandler(TimeTracker_Tick);
+                    timer.Start();
                 }
             }
 
-      
-
+            Timerboolean = false;
         }
 
-        private void UppdateraFranTimer(List<Podcast> Tuppdate)
+        private void TimeTracker_Tick(object sender, EventArgs e)
+        {
+            Timer timer = (Timer)sender;
+            List<Podcast> Tuppdate = (List<Podcast>)timer.Tag;
+
+            UppdateraFranTimer(Tuppdate);
+        }
+        private async void UppdateraFranTimer(List<Podcast> Tuppdate)
         {
 
             var watch = Stopwatch.StartNew();
-
-
-        private void tabPageNewsManager_Enter(object sender, EventArgs e)
-        {
 
 
             if (Tuppdate.Count > 0)
             {
                 try
                 {
-                    ClearAndReloadPodcastsListAfterChange();
+                    await podcastService.UpdateAllPodcasts(Tuppdate);
                     watch.Stop();
 
+                }
+                catch (Exception)
+                {
 
-            ClearAndReloadPodcastManagerNameList();
-
-        }
-
-
-        private void lbxPodcastToChange_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            FeedFormControllUpdater(lbxPodcastToChange);
-        }
-
-
-            private void txtRSSURL_TextChanged(object sender, EventArgs e)
-            {
-                txtPodcastName.Text = "";
-                cmbKategori.SelectedIndex = -1;
-                cmbUppdateringsIntervall.SelectedIndex = -1;
-
-                //Enable knappen att lägga till url efter att ha rensat alla fält.
-                btnLaggTillURL.Enabled = true;
-                btnLaggTillURL.Visible = true;
-
+                }
             }
+        }
 
         
-
-    } }
-
     }
 }
+
 
