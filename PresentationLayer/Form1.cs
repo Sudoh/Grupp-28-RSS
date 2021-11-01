@@ -39,10 +39,10 @@ namespace Grupp_28_RSS
         private static Validering validator = new Validering();
         private Timer timer;
         private readonly List<List<Podcast>> lista = new List<List<Podcast>>();
+        private readonly List<Podcast> Interval0 = new List<Podcast>();
         private readonly List<Podcast> Interval1 = new List<Podcast>();
         private readonly List<Podcast> Interval2 = new List<Podcast>();
-        private readonly List<Podcast> Interval3 = new List<Podcast>();
-        private readonly int[] intervalNumbers = new int[] { 0, 1, 2 };
+        
         public FrmAvsnitt()
         {
             InitializeComponent();
@@ -196,6 +196,7 @@ namespace Grupp_28_RSS
 
             await podcastService.DownloadPodcastAsync(txtRSSURL.Text.ToString(), txtPodcastName.Text.ToString(), cmbKategori.SelectedItem.ToString(), Convert.ToInt32(cmbUppdateringsIntervall.SelectedIndex));
             ClearAndReloadPodcastsListAfterChange();
+            PodcastTimer();
 
 
 
@@ -221,7 +222,7 @@ namespace Grupp_28_RSS
         {
             podcastService.ChangePodcast(valdPodcastNamn, txtPodcastName.Text, valdPodcastIntervall, cmbUppdateringsIntervall.SelectedIndex, lvFeed.SelectedItems[0].SubItems[3].Text, cmbKategori.SelectedItem.ToString());
 
-
+            //PodcastTimer();
             ClearAndReloadPodcastsListAfterChange();
         }
 
@@ -327,19 +328,19 @@ namespace Grupp_28_RSS
                 switch (podcasts.UppdateringsIntervall)
                 {
                     case 0:
-                        Interval1.Add(podcasts);
+                        Interval0.Add(podcasts);
                         break;
                     case 1:
-                        Interval2.Add(podcasts);
+                        Interval1.Add(podcasts);
                         break;
                     case 2:
-                        Interval3.Add(podcasts);
+                        Interval2.Add(podcasts);
                         break;
                 }
             }
+            lista.Add(Interval0);
             lista.Add(Interval1);
             lista.Add(Interval2);
-            lista.Add(Interval3);
 
             for (int i = 0; i < lista.Count; i++)
             {
@@ -391,7 +392,7 @@ namespace Grupp_28_RSS
             {
                 try
                 {
-                    await podcastService.UpdateAllPodcasts(Tuppdate);
+                    ClearAndReloadPodcastsListAfterChange();
                     watch.Stop();
 
                 }
@@ -413,6 +414,8 @@ namespace Grupp_28_RSS
                 btnLaggTillURL.Visible = true;
 
             }
+
         
+
     } }
 
