@@ -49,6 +49,7 @@ namespace Grupp_28_RSS
             avsnittService = new AvsnittService();
             podcastService = new PodcastService();
             validator = new Validering();
+            PodcastTimer();
 
         }
 
@@ -485,28 +486,28 @@ private void ClearNewsTextAfterChange()
             Timer timer = (Timer)sender;
             List<Podcast> Tuppdate = (List<Podcast>)timer.Tag;
 
-            UppdateraFranTimer(Tuppdate);
+            ClearAndReloadPodcastsListAfterChange(podcastService.GetAllPodcasts());
         }
-        private async void UppdateraFranTimer(List<Podcast> Tuppdate)
-        {
+        //private async void UppdateraFranTimer(List<Podcast> Tuppdate)
+        //{
 
-            var watch = Stopwatch.StartNew();
+        //    var watch = Stopwatch.StartNew();
 
 
-            if (Tuppdate.Count > 0)
-            {
-                try
-                {
-                    await podcastService.UpdateAllPodcasts(Tuppdate);
-                    watch.Stop();
+        //    if (Tuppdate.Count > 0)
+        //    {
+        //        try
+        //        {
+        //            await podcastService.UpdateAllPodcasts(Tuppdate);
+        //            watch.Stop();
 
-                }
-                catch (Exception)
-                {
+        //        }
+        //        catch (Exception)
+        //        {
 
-                }
-            }
-        }
+        //        }
+        //    }
+        //}
 
         
     }
