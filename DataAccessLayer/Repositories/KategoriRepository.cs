@@ -29,6 +29,8 @@ namespace DataAccessLayer.Repositories
             SaveChanges();
         }
 
+       
+
         public void Delete(int index)
         {
             //Metoderna pratar med serializer

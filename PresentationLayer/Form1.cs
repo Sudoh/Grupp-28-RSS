@@ -7,8 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DataAccessLayer.Repositories;
 using modelss;
 using ServiceLayer.ServiceFolder;
+using Tulpep.NotificationWindow;
 
 namespace Grupp_28_RSS
 {
@@ -135,45 +137,63 @@ namespace Grupp_28_RSS
 
             cmbKategori.Text = "";
             cmbKategori.Items.Clear();
-           foreach (Kategori item in kategoriService.GetAllKategoris())
+            foreach (Kategori item in kategoriService.GetAllKategoris())
             {
                 if (item != null)
                 {
                     lbxKategorier.Items.Add(item.KategoriNamn);
                     lbxNewsReaderKategori.Items.Add(item.KategoriNamn);
                     cmbKategori.Items.Add(item.KategoriNamn);
-                
+
                 }
             }
         }
 
-        
+
 
         private void btnAndraNamnKategori_Click(object sender, EventArgs e)
         {
 
             if (valdKategori != null)
+
             {
+
                 kategoriService.RenameKategori(valdKategori, txtNyKategori.Text);
                 podcastService.UpdatePodcasts(valdKategori, txtNyKategori.Text);
                 //string nyNamn = txtNyKategori.Text;
                 //kategoriService.RenameKategori();
-              ClearAndReloadKategorieListAfterChange();
-              ClearAndReloadPodcastsListAfterChange(podcastService.GetAllPodcasts());
+                ClearAndReloadKategorieListAfterChange();
+                ClearAndReloadPodcastsListAfterChange(podcastService.GetAllPodcasts());
             }
-
+            else
+                    MessageBox.Show("You need to Write Newname in the space");
+                         
         }
 
         private void btnLaggTillKategori_Click(object sender, EventArgs e)
         {
-            if (txtNyKategori.Text != valdKategori && validator.CheckIfCategoryIsAvailable(txtNyKategori))
+            if (txtNyKategori.Text != lbxKategorier.Text)
             {
-                kategoriService.CreateKategori(txtNyKategori.Text);
-                txtNyKategori.Text = null;
-                ClearAndReloadKategorieListAfterChange();
+                if (txtNyKategori.Text != valdKategori && validator.CheckIfCategoryIsAvailable(txtNyKategori))
+                {
+                    kategoriService.CreateKategori(txtNyKategori.Text);
+                    txtNyKategori.Text = null;
+                    ClearAndReloadKategorieListAfterChange();
+
+                    PopupNotifier popup = new PopupNotifier();
+                    popup.TitleText = "Notification";
+                    popup.ContentText = "You  have  just  added  new  kategori  to  the  lista";
+                    popup.Popup();
+
+                }
+                
             }
+            else
+                MessageBox.Show("Check out if you forget to write newkategori");
 
         }
+    
+        
 
         private void btnTaBortKategori_Click(object sender, EventArgs e)
         {
@@ -387,6 +407,11 @@ private void ClearNewsTextAfterChange()
 
 
             ClearAndReloadPodcastManagerNameList();
+
+        }
+
+        private void txtNyKategori_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }
