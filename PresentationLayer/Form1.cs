@@ -382,7 +382,7 @@ namespace Grupp_28_RSS
 
             UppdateraFranTimer(Tuppdate);
         }
-        private async void UppdateraFranTimer(List<Podcast> Tuppdate)
+        private void UppdateraFranTimer(List<Podcast> Tuppdate)
         {
 
             var watch = Stopwatch.StartNew();
