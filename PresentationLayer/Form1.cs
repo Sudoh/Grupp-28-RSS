@@ -11,6 +11,7 @@ using modelss;
 using ServiceLayer.ServiceFolder;
 using System.Diagnostics;
 using DataAccesLayer;
+using Tulpep.NotificationWindow;
 
 namespace Grupp_28_RSS
 {
@@ -161,7 +162,14 @@ namespace Grupp_28_RSS
                 kategoriService.CreateKategori(txtNyKategori.Text);
                 txtNyKategori.Text = null;
                 ClearAndReloadKategorieListAfterChange();
+
+                PopupNotifier popup = new PopupNotifier();
+                popup.TitleText = "Notification";
+                popup.ContentText = "You  have  just  added new kategiory  to  your  list";
+                popup.Popup();
             }
+
+          
 
         }
 
