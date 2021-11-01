@@ -241,10 +241,6 @@ namespace Grupp_28_RSS
             //IF sats för att kolla om namn som läggs till inte är en dubblett. 
             //Valt att använda ASYNC när vi lägger till en podcast ifall det skulle vara en stor podcast som "hänger" programmet. 
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> parent of b34f79b (Update Form1.cs)
             if (txtRSSURL.Text != "" && txtPodcastName != null && cmbIntervall.SelectedIndex != -1 && cmbKategori.SelectedIndex != -1)
             {
                 await podcastService.DownloadPodcastAsync(txtRSSURL.Text.ToString(), txtPodcastName.Text.ToString(), cmbKategori.SelectedItem.ToString(), Convert.ToInt32(cmbIntervall.SelectedIndex));
@@ -261,16 +257,6 @@ namespace Grupp_28_RSS
 
             btnLaggTillURL.Enabled = false;
            // btnLaggTillURL.BackColor = Color.LightGray;
-<<<<<<< HEAD
-=======
-=======
-            await podcastService.DownloadPodcastAsync(txtRSSURL.Text.ToString(), txtPodcastName.Text.ToString(), cmbKategori.SelectedItem.ToString(), Convert.ToInt32(cmbUppdateringsIntervall.SelectedIndex));
-            ClearAndReloadPodcastsListAfterChange(podcastService.GetAllPodcasts());
-
-
-
->>>>>>> parent of 4737a70 (Merge branch 'master' into PayamKatt)
->>>>>>> parent of b34f79b (Update Form1.cs)
         }
 
 private void ClearNewsTextAfterChange()
@@ -293,19 +279,10 @@ private void ClearNewsTextAfterChange()
         {
             podcastService.ChangePodcast(valdPodcastNamn, txtUppdateradPodcastNamn.Text, valdPodcastIntervall, cmbUppdateradIntervall.SelectedIndex, valdPodcastKategori, cmbUppdateradKategori.SelectedItem.ToString());
 
-<<<<<<< HEAD
 
             ClearAndReloadPodcastsListAfterChange(podcastService.GetAllPodcasts());
             btnUppdateraFeed.Enabled = false;
             btnUppdateraFeed.BackColor = Color.LightGray;
-=======
-            ClearAndReloadPodcastsListAfterChange(podcastService.GetAllPodcasts());
-            btnUppdateraFeed.Enabled = false;
-<<<<<<< HEAD
-            btnUppdateraFeed.BackColor = Color.LightGray;
-=======
->>>>>>> parent of 4737a70 (Merge branch 'master' into PayamKatt)
->>>>>>> parent of b34f79b (Update Form1.cs)
         }
 
         private void lvFeed_SelectedIndexChanged(object sender, EventArgs e)
@@ -444,10 +421,6 @@ private void ClearNewsTextAfterChange()
         {
             FeedFormControllUpdater(lbxPodcastToChange);
         }
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> parent of b34f79b (Update Form1.cs)
 
         private void tabPageNewsManager_Click(object sender, EventArgs e)
         {
@@ -469,10 +442,5 @@ private void ClearNewsTextAfterChange()
         {
             //sender[BackColor = Color.Gray];
         }
-<<<<<<< HEAD
-=======
-=======
->>>>>>> parent of 4737a70 (Merge branch 'master' into PayamKatt)
->>>>>>> parent of b34f79b (Update Form1.cs)
     }
 }
