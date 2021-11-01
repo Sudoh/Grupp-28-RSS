@@ -368,12 +368,16 @@ private void ClearNewsTextAfterChange()
         private void lbxNewsReaderKategori_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            string kategori = lbxNewsReaderKategori.SelectedItem.ToString();
-
-            if (kategori != null )
+            if (lbxNewsReaderKategori.SelectedItem !=null)
             {
-                ShowOnlySelectedFeedsByKategori(kategori);
+                string kategori = lbxNewsReaderKategori.SelectedItem.ToString();
+
+                if (kategori != null)
+                {
+                    ShowOnlySelectedFeedsByKategori(kategori);
+                }
             }
+
       
 
         }
