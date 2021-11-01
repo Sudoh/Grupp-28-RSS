@@ -11,12 +11,10 @@ namespace ServiceLayer.ServiceFolder
     public class PodcastService
     {
         IPodcastRepository<Podcast> podcastRepository;
-        private readonly PodcastRepository podcastRepositoryn;
 
         public PodcastService()
         {
             podcastRepository = new PodcastRepository();
-            podcastRepositoryn = new PodcastRepository();
         }
 
 
@@ -75,10 +73,6 @@ namespace ServiceLayer.ServiceFolder
 
             podcastRepository.Update(index, uppdateradPodcast);
 
-        }
-        public async Task UpdateAllPodcasts(List<Podcast> podcasts)
-        {
-            await podcastRepositoryn.UpdateAll(podcasts);
         }
 
         public void UpdatePodcasts(string oldkat, string newKat)

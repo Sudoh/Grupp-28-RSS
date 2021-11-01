@@ -29,7 +29,6 @@ namespace Grupp_28_RSS
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.lbxKategorier = new System.Windows.Forms.ListBox();
             this.lblAvsnitt = new System.Windows.Forms.Label();
             this.lvFeed = new System.Windows.Forms.ListView();
@@ -46,9 +45,6 @@ namespace Grupp_28_RSS
             this.colAvsnittNr = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colAvsnittTitel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
-
-            this.Timer1 = new System.Windows.Forms.Timer(this.components);
-
             this.label3 = new System.Windows.Forms.Label();
             this.txtPodcastName = new System.Windows.Forms.TextBox();
             this.txtNyKategori = new System.Windows.Forms.TextBox();
@@ -67,7 +63,6 @@ namespace Grupp_28_RSS
             this.tabReader = new System.Windows.Forms.TabControl();
             this.tabPageNewsReader = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
-
             this.lbxNewsReaderKategori = new System.Windows.Forms.ListBox();
             this.tabPageNewsManager = new System.Windows.Forms.TabPage();
             this.tabPageKategoriManager = new System.Windows.Forms.TabPage();
@@ -77,7 +72,6 @@ namespace Grupp_28_RSS
             this.tabPageNewsReader.SuspendLayout();
             this.tabPageNewsManager.SuspendLayout();
             this.tabPageKategoriManager.SuspendLayout();
-
             this.SuspendLayout();
             // 
             // lbxKategorier
@@ -489,10 +483,6 @@ namespace Grupp_28_RSS
             this.lbxPodcastNamesToDelete.Size = new System.Drawing.Size(245, 95);
             this.lbxPodcastNamesToDelete.TabIndex = 43;
             // 
-            // Timer1
-            // 
-            this.Timer1.Tick += new System.EventHandler(this.TimeTracker_Tick);
-            // 
             // FrmAvsnitt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -532,9 +522,6 @@ namespace Grupp_28_RSS
         private System.Windows.Forms.ColumnHeader colAvsnittTitel;
         private System.Windows.Forms.ColumnHeader colFeedSenastUppdaterad;
         private System.Windows.Forms.Label label1;
-
-        private System.Windows.Forms.Timer Timer1;
-
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtPodcastName;
         private System.Windows.Forms.TextBox txtNyKategori;
@@ -558,7 +545,6 @@ namespace Grupp_28_RSS
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ListBox lbxPodcastNamesToDelete;
-
     }
 }
 
