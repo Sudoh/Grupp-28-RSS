@@ -47,11 +47,14 @@ namespace Grupp_28_RSS
         {
             //Lägg in alla kod som ska köras när formen laddar.
             // MessageBox.Show("Welcome to the show");
-            
+
             //Hämta podcast.url och lägg till dem i en task för async downloader. 
+            txtDescription.Text = $"Idag är den {DateTime.Now.ToShortDateString()} och nedan visas alla sparade podcasts:\r\n";
+            txtDescription.Text += $"---------------------------------------\r\n";
+
             foreach (var podcast in podcastService.GetAllPodcasts())
             {
-                txtDescription.Text += $"Url: {podcast.URL} med uppdateringsfrekvens {podcast.UppdateringsIntervall}\r\n";
+                txtDescription.Text += $"{podcast.URL}\r\n";
             }
 
 
@@ -114,19 +117,25 @@ namespace Grupp_28_RSS
         {
 
             lbxKategorier.Items.Clear();
-            lbxKategorier.Items.Add("Visa Alla Podcasts");
+
+            lbxNewsReaderKategori.Items.Clear();
+            lbxNewsReaderKategori.Items.Add("Visa Alla Nyheter");
+
             cmbKategori.Text = "";
             cmbKategori.Items.Clear();
-
-            foreach (Kategori item in kategoriService.GetAllKategoris())
+           foreach (Kategori item in kategoriService.GetAllKategoris())
             {
                 if (item != null)
                 {
                     lbxKategorier.Items.Add(item.KategoriNamn);
+                    lbxNewsReaderKategori.Items.Add(item.KategoriNamn);
                     cmbKategori.Items.Add(item.KategoriNamn);
+                
                 }
             }
         }
+
+        
 
         private void btnAndraNamnKategori_Click(object sender, EventArgs e)
         {
@@ -158,9 +167,13 @@ namespace Grupp_28_RSS
         {
             if (lbxKategorier.SelectedItem != null)
             {
+
+                podcastService.DeletePodcastByKategori(lbxKategorier.SelectedItem.ToString());
+
                 kategoriService.DeleteKategori(lbxKategorier.SelectedItem.ToString());
                 txtNyKategori.Text = null;
                 ClearAndReloadKategorieListAfterChange();
+                ClearAndReloadPodcastsListAfterChange(podcastService.GetAllPodcasts());
             }
 
         }
@@ -172,7 +185,6 @@ namespace Grupp_28_RSS
             {
                 txtNyKategori.Text = lbxKategorier.SelectedItem.ToString();
                 valdKategori = lbxKategorier.SelectedItem.ToString();
-                ShowOnlySelectedFeedsByKategori(valdKategori);
             }
 
         }
@@ -182,7 +194,7 @@ namespace Grupp_28_RSS
             var listOfPodcasts = podcastService.GetAllPodcasts();
             List<Podcast> kategoriPoddar;
 
-            if (lbxKategorier.SelectedIndex == 0)
+            if (lbxNewsReaderKategori.SelectedIndex == 0)
             {
                 kategoriPoddar = listOfPodcasts;
             }
@@ -336,6 +348,11 @@ private void ClearNewsTextAfterChange()
             //Enable knappen att lägga till url efter att ha rensat alla fält.
             btnLaggTillURL.Enabled = true;
             btnLaggTillURL.Visible = true;
+        }
+
+        private void lbxNewsReaderKategori_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ShowOnlySelectedFeedsByKategori(lbxNewsReaderKategori.SelectedItem.ToString());
         }
     }
 }

@@ -80,5 +80,28 @@ namespace ServiceLayer.ServiceFolder
             podcastRepository.UpdateAllPodcastKategori(oldkat, newKat);
         }
 
+        public void DeletePodcastByKategori(string podcastKategori)
+        {
+
+           
+            var listOfpodcasts = podcastRepository.GetAll();
+
+
+            //int index = podcastRepository.GetIndex(kategori);
+
+            var listOfPodcasts = (from pod in listOfpodcasts
+                           where pod.kategori == podcastKategori
+                           select pod).ToList();
+
+            foreach (Podcast item in listOfPodcasts)
+            {
+                string name = item.Namn;
+                int index = podcastRepository.GetIndex(name);
+                podcastRepository.Delete(index);
+            }
+            
+        }
+
+
     }
 }
