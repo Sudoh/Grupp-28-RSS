@@ -62,10 +62,10 @@ namespace Grupp_28_RSS
             this.cmbKategori = new System.Windows.Forms.ComboBox();
             this.tabReader = new System.Windows.Forms.TabControl();
             this.tabPageNewsReader = new System.Windows.Forms.TabPage();
+            this.label4 = new System.Windows.Forms.Label();
             this.lbxNewsReaderKategori = new System.Windows.Forms.ListBox();
             this.tabPageNewsManager = new System.Windows.Forms.TabPage();
             this.tabPageKategoriManager = new System.Windows.Forms.TabPage();
-            this.label4 = new System.Windows.Forms.Label();
             this.tabReader.SuspendLayout();
             this.tabPageNewsReader.SuspendLayout();
             this.tabPageNewsManager.SuspendLayout();
@@ -107,10 +107,10 @@ namespace Grupp_28_RSS
             this.lvFeed.FullRowSelect = true;
             this.lvFeed.GridLines = true;
             this.lvFeed.HideSelection = false;
-            this.lvFeed.Location = new System.Drawing.Point(146, 35);
+            this.lvFeed.Location = new System.Drawing.Point(127, 35);
             this.lvFeed.MultiSelect = false;
             this.lvFeed.Name = "lvFeed";
-            this.lvFeed.Size = new System.Drawing.Size(393, 285);
+            this.lvFeed.Size = new System.Drawing.Size(412, 285);
             this.lvFeed.TabIndex = 7;
             this.lvFeed.UseCompatibleStateImageBehavior = false;
             this.lvFeed.View = System.Windows.Forms.View.Details;
@@ -119,12 +119,12 @@ namespace Grupp_28_RSS
             // colFeedAvsnitt
             // 
             this.colFeedAvsnitt.Text = "Avsnitt";
-            this.colFeedAvsnitt.Width = 48;
+            this.colFeedAvsnitt.Width = 35;
             // 
             // colFeedNamn
             // 
             this.colFeedNamn.Text = "Namn";
-            this.colFeedNamn.Width = 250;
+            this.colFeedNamn.Width = 140;
             // 
             // colFeedIntervall
             // 
@@ -213,7 +213,7 @@ namespace Grupp_28_RSS
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(23, 17);
+            this.label1.Location = new System.Drawing.Point(23, 27);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(74, 13);
             this.label1.TabIndex = 41;
@@ -237,7 +237,7 @@ namespace Grupp_28_RSS
             // 
             // txtNyKategori
             // 
-            this.txtNyKategori.Location = new System.Drawing.Point(26, 34);
+            this.txtNyKategori.Location = new System.Drawing.Point(26, 43);
             this.txtNyKategori.Name = "txtNyKategori";
             this.txtNyKategori.Size = new System.Drawing.Size(150, 20);
             this.txtNyKategori.TabIndex = 38;
@@ -273,7 +273,7 @@ namespace Grupp_28_RSS
             // btnTaBortKategori
             // 
             this.btnTaBortKategori.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTaBortKategori.Location = new System.Drawing.Point(215, 30);
+            this.btnTaBortKategori.Location = new System.Drawing.Point(215, 39);
             this.btnTaBortKategori.Name = "btnTaBortKategori";
             this.btnTaBortKategori.Size = new System.Drawing.Size(27, 23);
             this.btnTaBortKategori.TabIndex = 34;
@@ -284,7 +284,7 @@ namespace Grupp_28_RSS
             // btnLaggTillKategori
             // 
             this.btnLaggTillKategori.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLaggTillKategori.Location = new System.Drawing.Point(182, 30);
+            this.btnLaggTillKategori.Location = new System.Drawing.Point(182, 39);
             this.btnLaggTillKategori.Name = "btnLaggTillKategori";
             this.btnLaggTillKategori.Size = new System.Drawing.Size(27, 23);
             this.btnLaggTillKategori.TabIndex = 33;
@@ -295,7 +295,7 @@ namespace Grupp_28_RSS
             // btnAndraNamnKategori
             // 
             this.btnAndraNamnKategori.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAndraNamnKategori.Location = new System.Drawing.Point(251, 31);
+            this.btnAndraNamnKategori.Location = new System.Drawing.Point(251, 40);
             this.btnAndraNamnKategori.Name = "btnAndraNamnKategori";
             this.btnAndraNamnKategori.Size = new System.Drawing.Size(27, 23);
             this.btnAndraNamnKategori.TabIndex = 32;
@@ -401,6 +401,15 @@ namespace Grupp_28_RSS
             this.tabPageNewsReader.Text = "News Reader";
             this.tabPageNewsReader.UseVisualStyleBackColor = true;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 19);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(58, 13);
+            this.label4.TabIndex = 28;
+            this.label4.Text = "Kategorier:";
+            // 
             // lbxNewsReaderKategori
             // 
             this.lbxNewsReaderKategori.FormattingEnabled = true;
@@ -410,7 +419,7 @@ namespace Grupp_28_RSS
             "TestKategori3"});
             this.lbxNewsReaderKategori.Location = new System.Drawing.Point(6, 35);
             this.lbxNewsReaderKategori.Name = "lbxNewsReaderKategori";
-            this.lbxNewsReaderKategori.Size = new System.Drawing.Size(134, 277);
+            this.lbxNewsReaderKategori.Size = new System.Drawing.Size(115, 277);
             this.lbxNewsReaderKategori.TabIndex = 27;
             this.lbxNewsReaderKategori.SelectedIndexChanged += new System.EventHandler(this.lbxNewsReaderKategori_SelectedIndexChanged);
             // 
@@ -436,13 +445,13 @@ namespace Grupp_28_RSS
             // 
             // tabPageKategoriManager
             // 
+            this.tabPageKategoriManager.Controls.Add(this.label1);
+            this.tabPageKategoriManager.Controls.Add(this.txtNyKategori);
+            this.tabPageKategoriManager.Controls.Add(this.btnTaBortKategori);
+            this.tabPageKategoriManager.Controls.Add(this.btnLaggTillKategori);
             this.tabPageKategoriManager.Controls.Add(this.lbxKategorier);
             this.tabPageKategoriManager.Controls.Add(this.lblNyKategori);
-            this.tabPageKategoriManager.Controls.Add(this.label1);
             this.tabPageKategoriManager.Controls.Add(this.btnAndraNamnKategori);
-            this.tabPageKategoriManager.Controls.Add(this.btnLaggTillKategori);
-            this.tabPageKategoriManager.Controls.Add(this.btnTaBortKategori);
-            this.tabPageKategoriManager.Controls.Add(this.txtNyKategori);
             this.tabPageKategoriManager.Location = new System.Drawing.Point(4, 22);
             this.tabPageKategoriManager.Name = "tabPageKategoriManager";
             this.tabPageKategoriManager.Padding = new System.Windows.Forms.Padding(3);
@@ -450,15 +459,6 @@ namespace Grupp_28_RSS
             this.tabPageKategoriManager.TabIndex = 1;
             this.tabPageKategoriManager.Text = "Kategori manager";
             this.tabPageKategoriManager.UseVisualStyleBackColor = true;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 19);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(58, 13);
-            this.label4.TabIndex = 28;
-            this.label4.Text = "Kategorier:";
             // 
             // FrmAvsnitt
             // 
@@ -469,7 +469,6 @@ namespace Grupp_28_RSS
             this.Name = "FrmAvsnitt";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Really Simple Syndication by Grupp 28 ";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmAvsnitt_Load);
             this.tabReader.ResumeLayout(false);
             this.tabPageNewsReader.ResumeLayout(false);

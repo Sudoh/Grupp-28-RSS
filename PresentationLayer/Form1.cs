@@ -165,7 +165,10 @@ namespace Grupp_28_RSS
 
         private void btnTaBortKategori_Click(object sender, EventArgs e)
         {
-            if (lbxKategorier.SelectedItem != null)
+            
+            DialogResult dialogResult = MessageBox.Show("Vill du ta bort kategori och alla podcast inom?", "Kategori manager", MessageBoxButtons.YesNo);
+         
+                if (lbxKategorier.SelectedItem != null && dialogResult == DialogResult.Yes)
             {
 
                 podcastService.DeletePodcastByKategori(lbxKategorier.SelectedItem.ToString());
@@ -352,7 +355,15 @@ private void ClearNewsTextAfterChange()
 
         private void lbxNewsReaderKategori_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ShowOnlySelectedFeedsByKategori(lbxNewsReaderKategori.SelectedItem.ToString());
+
+            string kategori = lbxNewsReaderKategori.SelectedItem.ToString();
+
+            if (kategori != null )
+            {
+                ShowOnlySelectedFeedsByKategori(kategori);
+            }
+      
+
         }
     }
 }
