@@ -254,9 +254,12 @@ namespace Grupp_28_RSS
 
 
 
-
-            btnLaggTillURL.Enabled = false;
-           // btnLaggTillURL.BackColor = Color.LightGray;
+            txtPodcastName.Text = "";
+            txtRSSURL.Text = "";
+            cmbIntervall.SelectedIndex = -1;
+            cmbKategori.SelectedIndex = -1;
+           btnLaggTillURL.Enabled = false;
+           btnLaggTillURL.BackColor = Color.LightGray;
         }
 
 private void ClearNewsTextAfterChange()
@@ -441,6 +444,18 @@ private void ClearNewsTextAfterChange()
         private void GreyAndDisableButtons(object sender, EventArgs e)
         {
             //sender[BackColor = Color.Gray];
+        }
+
+
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+            btnLaggTillURL.BackColor = Color.Yellow;
+        }
+
+        private void groupBox1_Leave(object sender, EventArgs e)
+        {
+            btnLaggTillURL.BackColor = Color.LightGray;
         }
     }
 }

@@ -73,14 +73,15 @@ namespace Grupp_28_RSS
             this.txtUppdateradPodcastNamn = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.lbxPodcastToChange = new System.Windows.Forms.ListBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.lbxPodcastToDelete = new System.Windows.Forms.ListBox();
             this.label5 = new System.Windows.Forms.Label();
             this.tabPageKategoriManager = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tabReader.SuspendLayout();
             this.tabPageNewsReader.SuspendLayout();
             this.tabPageNewsManager.SuspendLayout();
             this.tabPageKategoriManager.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbxKategorier
@@ -233,7 +234,7 @@ namespace Grupp_28_RSS
             // lblNyPodcastNamn
             // 
             this.lblNyPodcastNamn.AutoSize = true;
-            this.lblNyPodcastNamn.Location = new System.Drawing.Point(22, 91);
+            this.lblNyPodcastNamn.Location = new System.Drawing.Point(3, 67);
             this.lblNyPodcastNamn.Name = "lblNyPodcastNamn";
             this.lblNyPodcastNamn.Size = new System.Drawing.Size(38, 13);
             this.lblNyPodcastNamn.TabIndex = 40;
@@ -241,7 +242,7 @@ namespace Grupp_28_RSS
             // 
             // txtPodcastName
             // 
-            this.txtPodcastName.Location = new System.Drawing.Point(25, 107);
+            this.txtPodcastName.Location = new System.Drawing.Point(6, 83);
             this.txtPodcastName.Name = "txtPodcastName";
             this.txtPodcastName.Size = new System.Drawing.Size(310, 20);
             this.txtPodcastName.TabIndex = 39;
@@ -256,7 +257,7 @@ namespace Grupp_28_RSS
             // lbNyPodcastKategori
             // 
             this.lbNyPodcastKategori.AutoSize = true;
-            this.lbNyPodcastKategori.Location = new System.Drawing.Point(188, 130);
+            this.lbNyPodcastKategori.Location = new System.Drawing.Point(169, 106);
             this.lbNyPodcastKategori.Name = "lbNyPodcastKategori";
             this.lbNyPodcastKategori.Size = new System.Drawing.Size(49, 13);
             this.lbNyPodcastKategori.TabIndex = 37;
@@ -265,7 +266,7 @@ namespace Grupp_28_RSS
             // lbNyPodcastIntervall
             // 
             this.lbNyPodcastIntervall.AutoSize = true;
-            this.lbNyPodcastIntervall.Location = new System.Drawing.Point(22, 130);
+            this.lbNyPodcastIntervall.Location = new System.Drawing.Point(3, 106);
             this.lbNyPodcastIntervall.Name = "lbNyPodcastIntervall";
             this.lbNyPodcastIntervall.Size = new System.Drawing.Size(47, 13);
             this.lbNyPodcastIntervall.TabIndex = 36;
@@ -274,7 +275,7 @@ namespace Grupp_28_RSS
             // lbNyPodcastUrl
             // 
             this.lbNyPodcastUrl.AutoSize = true;
-            this.lbNyPodcastUrl.Location = new System.Drawing.Point(22, 52);
+            this.lbNyPodcastUrl.Location = new System.Drawing.Point(3, 28);
             this.lbNyPodcastUrl.Name = "lbNyPodcastUrl";
             this.lbNyPodcastUrl.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lbNyPodcastUrl.Size = new System.Drawing.Size(32, 13);
@@ -345,7 +346,7 @@ namespace Grupp_28_RSS
             this.btnLaggTillURL.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btnLaggTillURL.Enabled = false;
             this.btnLaggTillURL.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLaggTillURL.Location = new System.Drawing.Point(341, 68);
+            this.btnLaggTillURL.Location = new System.Drawing.Point(322, 44);
             this.btnLaggTillURL.Name = "btnLaggTillURL";
             this.btnLaggTillURL.Size = new System.Drawing.Size(100, 100);
             this.btnLaggTillURL.TabIndex = 29;
@@ -355,7 +356,7 @@ namespace Grupp_28_RSS
             // 
             // txtRSSURL
             // 
-            this.txtRSSURL.Location = new System.Drawing.Point(25, 68);
+            this.txtRSSURL.Location = new System.Drawing.Point(6, 44);
             this.txtRSSURL.Name = "txtRSSURL";
             this.txtRSSURL.Size = new System.Drawing.Size(310, 20);
             this.txtRSSURL.TabIndex = 28;
@@ -369,7 +370,7 @@ namespace Grupp_28_RSS
             "var 1 minut",
             "var 5 minuter",
             "var 10 minter"});
-            this.cmbIntervall.Location = new System.Drawing.Point(25, 146);
+            this.cmbIntervall.Location = new System.Drawing.Point(6, 122);
             this.cmbIntervall.Name = "cmbIntervall";
             this.cmbIntervall.Size = new System.Drawing.Size(157, 21);
             this.cmbIntervall.TabIndex = 27;
@@ -377,7 +378,7 @@ namespace Grupp_28_RSS
             // cmbKategori
             // 
             this.cmbKategori.FormattingEnabled = true;
-            this.cmbKategori.Location = new System.Drawing.Point(188, 146);
+            this.cmbKategori.Location = new System.Drawing.Point(169, 122);
             this.cmbKategori.Name = "cmbKategori";
             this.cmbKategori.Size = new System.Drawing.Size(147, 21);
             this.cmbKategori.Sorted = true;
@@ -440,6 +441,7 @@ namespace Grupp_28_RSS
             // 
             // tabPageNewsManager
             // 
+            this.tabPageNewsManager.Controls.Add(this.groupBox1);
             this.tabPageNewsManager.Controls.Add(this.label10);
             this.tabPageNewsManager.Controls.Add(this.cmbUppdateradKategori);
             this.tabPageNewsManager.Controls.Add(this.label9);
@@ -448,19 +450,9 @@ namespace Grupp_28_RSS
             this.tabPageNewsManager.Controls.Add(this.txtUppdateradPodcastNamn);
             this.tabPageNewsManager.Controls.Add(this.label7);
             this.tabPageNewsManager.Controls.Add(this.lbxPodcastToChange);
-            this.tabPageNewsManager.Controls.Add(this.label6);
             this.tabPageNewsManager.Controls.Add(this.lbxPodcastToDelete);
             this.tabPageNewsManager.Controls.Add(this.label5);
-            this.tabPageNewsManager.Controls.Add(this.txtRSSURL);
-            this.tabPageNewsManager.Controls.Add(this.txtPodcastName);
-            this.tabPageNewsManager.Controls.Add(this.cmbKategori);
-            this.tabPageNewsManager.Controls.Add(this.cmbIntervall);
-            this.tabPageNewsManager.Controls.Add(this.lbNyPodcastUrl);
-            this.tabPageNewsManager.Controls.Add(this.btnLaggTillURL);
             this.tabPageNewsManager.Controls.Add(this.btnTaBort);
-            this.tabPageNewsManager.Controls.Add(this.lblNyPodcastNamn);
-            this.tabPageNewsManager.Controls.Add(this.lbNyPodcastIntervall);
-            this.tabPageNewsManager.Controls.Add(this.lbNyPodcastKategori);
             this.tabPageNewsManager.Controls.Add(this.btnUppdateraFeed);
             this.tabPageNewsManager.Location = new System.Drawing.Point(4, 22);
             this.tabPageNewsManager.Name = "tabPageNewsManager";
@@ -545,16 +537,6 @@ namespace Grupp_28_RSS
             this.lbxPodcastToChange.TabIndex = 45;
             this.lbxPodcastToChange.SelectedIndexChanged += new System.EventHandler(this.lbxPodcastToChange_SelectedIndexChanged);
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(19, 26);
-            this.label6.Name = "label6";
-            this.label6.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label6.Size = new System.Drawing.Size(70, 13);
-            this.label6.TabIndex = 44;
-            this.label6.Text = "Lägg till Feed";
-            // 
             // lbxPodcastToDelete
             // 
             this.lbxPodcastToDelete.FormattingEnabled = true;
@@ -591,6 +573,26 @@ namespace Grupp_28_RSS
             this.tabPageKategoriManager.Text = "Kategori manager";
             this.tabPageKategoriManager.UseVisualStyleBackColor = true;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.txtRSSURL);
+            this.groupBox1.Controls.Add(this.lbNyPodcastKategori);
+            this.groupBox1.Controls.Add(this.lbNyPodcastIntervall);
+            this.groupBox1.Controls.Add(this.lblNyPodcastNamn);
+            this.groupBox1.Controls.Add(this.btnLaggTillURL);
+            this.groupBox1.Controls.Add(this.lbNyPodcastUrl);
+            this.groupBox1.Controls.Add(this.cmbIntervall);
+            this.groupBox1.Controls.Add(this.cmbKategori);
+            this.groupBox1.Controls.Add(this.txtPodcastName);
+            this.groupBox1.Location = new System.Drawing.Point(25, 23);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(432, 160);
+            this.groupBox1.TabIndex = 53;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Lägg till Podcast";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            this.groupBox1.Leave += new System.EventHandler(this.groupBox1_Leave);
+            // 
             // FrmAvsnitt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -608,6 +610,8 @@ namespace Grupp_28_RSS
             this.tabPageNewsManager.PerformLayout();
             this.tabPageKategoriManager.ResumeLayout(false);
             this.tabPageKategoriManager.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -653,7 +657,6 @@ namespace Grupp_28_RSS
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ListBox lbxPodcastToDelete;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ListBox lbxPodcastToChange;
         private System.Windows.Forms.ComboBox cmbUppdateradKategori;
         private System.Windows.Forms.Label label9;
@@ -662,6 +665,7 @@ namespace Grupp_28_RSS
         private System.Windows.Forms.TextBox txtUppdateradPodcastNamn;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
 
