@@ -102,5 +102,10 @@ namespace DataAccessLayer.Repositories
             SaveChanges();
         }
 
+
+        public async Task UpdatePodcastAvsnitt(string namn, string url)
+        {
+            
+        }
     }
 }

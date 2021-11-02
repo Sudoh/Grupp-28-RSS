@@ -29,6 +29,7 @@ namespace Grupp_28_RSS
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lbxKategorier = new System.Windows.Forms.ListBox();
             this.lblAvsnitt = new System.Windows.Forms.Label();
             this.lvFeed = new System.Windows.Forms.ListView();
@@ -65,6 +66,7 @@ namespace Grupp_28_RSS
             this.label4 = new System.Windows.Forms.Label();
             this.lbxNewsReaderKategori = new System.Windows.Forms.ListBox();
             this.tabPageNewsManager = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label10 = new System.Windows.Forms.Label();
             this.cmbUppdateradKategori = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -76,12 +78,13 @@ namespace Grupp_28_RSS
             this.lbxPodcastToDelete = new System.Windows.Forms.ListBox();
             this.label5 = new System.Windows.Forms.Label();
             this.tabPageKategoriManager = new System.Windows.Forms.TabPage();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.timerX = new System.Windows.Forms.Timer(this.components);
+            this.txtStatus = new System.Windows.Forms.TextBox();
             this.tabReader.SuspendLayout();
             this.tabPageNewsReader.SuspendLayout();
             this.tabPageNewsManager.SuspendLayout();
-            this.tabPageKategoriManager.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.tabPageKategoriManager.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbxKategorier
@@ -401,6 +404,7 @@ namespace Grupp_28_RSS
             // 
             // tabPageNewsReader
             // 
+            this.tabPageNewsReader.Controls.Add(this.txtStatus);
             this.tabPageNewsReader.Controls.Add(this.label4);
             this.tabPageNewsReader.Controls.Add(this.lbxNewsReaderKategori);
             this.tabPageNewsReader.Controls.Add(this.lblTitelDescription);
@@ -435,7 +439,7 @@ namespace Grupp_28_RSS
             "TestKategori3"});
             this.lbxNewsReaderKategori.Location = new System.Drawing.Point(6, 35);
             this.lbxNewsReaderKategori.Name = "lbxNewsReaderKategori";
-            this.lbxNewsReaderKategori.Size = new System.Drawing.Size(115, 277);
+            this.lbxNewsReaderKategori.Size = new System.Drawing.Size(115, 121);
             this.lbxNewsReaderKategori.TabIndex = 27;
             this.lbxNewsReaderKategori.SelectedIndexChanged += new System.EventHandler(this.lbxNewsReaderKategori_SelectedIndexChanged);
             // 
@@ -462,6 +466,26 @@ namespace Grupp_28_RSS
             this.tabPageNewsManager.UseVisualStyleBackColor = true;
             this.tabPageNewsManager.Click += new System.EventHandler(this.tabPageNewsManager_Click);
             this.tabPageNewsManager.Enter += new System.EventHandler(this.tabPageNewsManager_Enter);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.txtRSSURL);
+            this.groupBox1.Controls.Add(this.lbNyPodcastKategori);
+            this.groupBox1.Controls.Add(this.lbNyPodcastIntervall);
+            this.groupBox1.Controls.Add(this.lblNyPodcastNamn);
+            this.groupBox1.Controls.Add(this.btnLaggTillURL);
+            this.groupBox1.Controls.Add(this.lbNyPodcastUrl);
+            this.groupBox1.Controls.Add(this.cmbIntervall);
+            this.groupBox1.Controls.Add(this.cmbKategori);
+            this.groupBox1.Controls.Add(this.txtPodcastName);
+            this.groupBox1.Location = new System.Drawing.Point(25, 23);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(432, 160);
+            this.groupBox1.TabIndex = 53;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Lägg till Podcast";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            this.groupBox1.Leave += new System.EventHandler(this.groupBox1_Leave);
             // 
             // label10
             // 
@@ -573,25 +597,17 @@ namespace Grupp_28_RSS
             this.tabPageKategoriManager.Text = "Kategori manager";
             this.tabPageKategoriManager.UseVisualStyleBackColor = true;
             // 
-            // groupBox1
+            // timerX
             // 
-            this.groupBox1.Controls.Add(this.txtRSSURL);
-            this.groupBox1.Controls.Add(this.lbNyPodcastKategori);
-            this.groupBox1.Controls.Add(this.lbNyPodcastIntervall);
-            this.groupBox1.Controls.Add(this.lblNyPodcastNamn);
-            this.groupBox1.Controls.Add(this.btnLaggTillURL);
-            this.groupBox1.Controls.Add(this.lbNyPodcastUrl);
-            this.groupBox1.Controls.Add(this.cmbIntervall);
-            this.groupBox1.Controls.Add(this.cmbKategori);
-            this.groupBox1.Controls.Add(this.txtPodcastName);
-            this.groupBox1.Location = new System.Drawing.Point(25, 23);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(432, 160);
-            this.groupBox1.TabIndex = 53;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Lägg till Podcast";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
-            this.groupBox1.Leave += new System.EventHandler(this.groupBox1_Leave);
+            this.timerX.Tick += new System.EventHandler(this.timerX_Tick);
+            // 
+            // txtStatus
+            // 
+            this.txtStatus.Location = new System.Drawing.Point(6, 162);
+            this.txtStatus.Multiline = true;
+            this.txtStatus.Name = "txtStatus";
+            this.txtStatus.Size = new System.Drawing.Size(115, 158);
+            this.txtStatus.TabIndex = 29;
             // 
             // FrmAvsnitt
             // 
@@ -608,10 +624,10 @@ namespace Grupp_28_RSS
             this.tabPageNewsReader.PerformLayout();
             this.tabPageNewsManager.ResumeLayout(false);
             this.tabPageNewsManager.PerformLayout();
-            this.tabPageKategoriManager.ResumeLayout(false);
-            this.tabPageKategoriManager.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.tabPageKategoriManager.ResumeLayout(false);
+            this.tabPageKategoriManager.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -666,6 +682,8 @@ namespace Grupp_28_RSS
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Timer timerX;
+        private System.Windows.Forms.TextBox txtStatus;
     }
 }
 

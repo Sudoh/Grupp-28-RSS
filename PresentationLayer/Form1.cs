@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -24,7 +25,12 @@ namespace Grupp_28_RSS
         private string valdPodcastKategori;
         private int valdPodcastIntervall;
 
-
+        private Timer timer;
+        private readonly List<List<Podcast>> lista = new List<List<Podcast>>();
+        private readonly List<Podcast> Interval0 = new List<Podcast>();
+        private readonly List<Podcast> Interval1 = new List<Podcast>();
+        private readonly List<Podcast> Interval2 = new List<Podcast>();
+        private bool canBind = true;
 
         KategoriService kategoriService;
         AvsnittService avsnittService;
@@ -40,6 +46,8 @@ namespace Grupp_28_RSS
             avsnittService = new AvsnittService();
             podcastService = new PodcastService();
             validator = new Validering();
+
+            CreateTimerData();
 
         }
 
@@ -457,5 +465,100 @@ private void ClearNewsTextAfterChange()
         {
             btnLaggTillURL.BackColor = Color.LightGray;
         }
+
+
+        //Timer Update Code Start
+
+        private void CreateTimerData()
+        {
+            List<Podcast> podcasts = podcastService.GetAllPodcasts();
+            int selectedInterval = 0;
+
+            foreach (Podcast podcast in podcasts)
+            {
+                switch (podcast.UppdateringsIntervall)
+                {
+                    case 0:
+                        Interval0.Add(podcast);
+                        break;
+                    case 1:
+                        Interval1.Add(podcast);
+                        break;
+                    case 2:
+                        Interval2.Add(podcast);
+                        break;
+                }
+            }
+
+            lista.Add(Interval0);
+            lista.Add(Interval1);
+            lista.Add(Interval2);
+
+            for (int i = 0; i < lista.Count; i++)
+            {
+                switch (i + 1)
+                {
+                    case 1:
+                        selectedInterval = 1000;
+                        break;
+                    case 2:
+                        selectedInterval = 60000;
+                        break;
+                    case 3:
+                        selectedInterval = 120000;
+                        break;
+                }
+
+                timer = new Timer
+                {
+
+                    Interval = selectedInterval,
+                    Enabled = true,
+                    Tag = lista[i],
+                };
+
+                if (canBind)
+                {
+                    timer.Tick += new EventHandler(timerX_Tick);
+                    timer.Start();
+                }
+            }
+
+            canBind = false;
+        }
+
+        private void timerX_Tick(object sender, EventArgs e)
+        {
+            Timer timer = (Timer)sender;
+            List<Podcast> batch = (List<Podcast>)timer.Tag;
+
+            BatchUpdate(batch);
+        }
+
+        private async void BatchUpdate(List<Podcast> batch)
+        {
+            var progress = new Progress<int>();
+            var watch = Stopwatch.StartNew();
+          
+
+            if (batch.Count > 0)
+            {
+                try
+                {
+                    txtStatus.Text = "Loading...";
+                    await podcastService.DownloadNewAvsnittForPodcasts(batch);
+                    watch.Stop();
+                    txtStatus.Text = ("Feed updated successfully...");
+                    txtStatus.Text = ($"Total execution time (ms): " + (watch.ElapsedMilliseconds));
+                    ClearAndReloadPodcastsListAfterChange(podcastService.GetAllPodcasts());
+                }
+                catch (Exception)
+                {
+                    txtStatus.Text = ("Vänta tills programmet är klar innan du gör något");
+          
+                }
+            }
+        }
+
     }
 }
