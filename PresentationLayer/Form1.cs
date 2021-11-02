@@ -499,7 +499,7 @@ private void ClearNewsTextAfterChange()
                 switch (i + 1)
                 {
                     case 1:
-                        selectedInterval = 1000;
+                        selectedInterval = 10000;
                         break;
                     case 2:
                         selectedInterval = 60000;
@@ -538,18 +538,15 @@ private void ClearNewsTextAfterChange()
         private async void BatchUpdate(List<Podcast> batch)
         {
             var progress = new Progress<int>();
-            var watch = Stopwatch.StartNew();
-          
+                 
 
             if (batch.Count > 0)
             {
                 try
                 {
-                    txtStatus.Text = "Loading...";
+                    txtStatus.Text += "Loading...";
                     await podcastService.DownloadNewAvsnittForPodcasts(batch);
-                    watch.Stop();
-                    txtStatus.Text = ("Feed updated successfully...");
-                    txtStatus.Text = ($"Total execution time (ms): " + (watch.ElapsedMilliseconds));
+                    txtStatus.Text += $"Uppdaterad.";
                     ClearAndReloadPodcastsListAfterChange(podcastService.GetAllPodcasts());
                 }
                 catch (Exception)

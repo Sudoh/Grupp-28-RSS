@@ -63,6 +63,7 @@ namespace Grupp_28_RSS
             this.cmbKategori = new System.Windows.Forms.ComboBox();
             this.tabReader = new System.Windows.Forms.TabControl();
             this.tabPageNewsReader = new System.Windows.Forms.TabPage();
+            this.txtStatus = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.lbxNewsReaderKategori = new System.Windows.Forms.ListBox();
             this.tabPageNewsManager = new System.Windows.Forms.TabPage();
@@ -79,7 +80,6 @@ namespace Grupp_28_RSS
             this.label5 = new System.Windows.Forms.Label();
             this.tabPageKategoriManager = new System.Windows.Forms.TabPage();
             this.timerX = new System.Windows.Forms.Timer(this.components);
-            this.txtStatus = new System.Windows.Forms.TextBox();
             this.tabReader.SuspendLayout();
             this.tabPageNewsReader.SuspendLayout();
             this.tabPageNewsManager.SuspendLayout();
@@ -421,6 +421,15 @@ namespace Grupp_28_RSS
             this.tabPageNewsReader.Text = "News Reader";
             this.tabPageNewsReader.UseVisualStyleBackColor = true;
             // 
+            // txtStatus
+            // 
+            this.txtStatus.Location = new System.Drawing.Point(6, 162);
+            this.txtStatus.Multiline = true;
+            this.txtStatus.Name = "txtStatus";
+            this.txtStatus.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtStatus.Size = new System.Drawing.Size(115, 158);
+            this.txtStatus.TabIndex = 29;
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -600,14 +609,6 @@ namespace Grupp_28_RSS
             // timerX
             // 
             this.timerX.Tick += new System.EventHandler(this.timerX_Tick);
-            // 
-            // txtStatus
-            // 
-            this.txtStatus.Location = new System.Drawing.Point(6, 162);
-            this.txtStatus.Multiline = true;
-            this.txtStatus.Name = "txtStatus";
-            this.txtStatus.Size = new System.Drawing.Size(115, 158);
-            this.txtStatus.TabIndex = 29;
             // 
             // FrmAvsnitt
             // 

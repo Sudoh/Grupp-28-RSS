@@ -17,7 +17,7 @@ namespace DataAccessLayer.Repositories
 
         void UpdateAllPodcastKategori(string oldKategori, string newKategori);
 
-        Task UpdatePodcastAvsnitt(string namn, string url);
+        Task UpdatePodcastAvsnitt(List<Podcast> batch);
 
     }
 }

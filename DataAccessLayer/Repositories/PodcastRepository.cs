@@ -103,9 +103,18 @@ namespace DataAccessLayer.Repositories
         }
 
 
-        public async Task UpdatePodcastAvsnitt(string namn, string url)
+        public async Task UpdatePodcastAvsnitt(List<Podcast> batch)
         {
-            
+
+            List<Avsnitt> nyaAvsnitt = new List<Avsnitt>();
+
+            foreach (var item in batch)
+            {
+                nyaAvsnitt = await Task.Run(() => feedDownloader.RssRead(item.URL));
+                item.AntalAvsnitt = 77;
+                item.datumTillaggd = DateTime.Now;
+            }
+            SaveChanges();
         }
     }
 }
